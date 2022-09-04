@@ -1,26 +1,29 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import "./header.css";
 
 const Header = () => {
   return (
     <div className="headerContainer">
-      <div>logo</div>
+      <div className="logo-container">
+        <img src="/logo.jpg" alt="logo" />
+      </div>
       <nav>
         <ul className="nav">
           <li>
-            <Link to="/">Главная</Link>
+            <NavLink exact to="/">
+              Главная
+            </NavLink>
           </li>
           <li>
-            <Link to="/cart">Корзина</Link>
-          </li>
-          <li>
-            <Link to="/login">Авторизация</Link>
+            <NavLink to="/cart">Корзина</NavLink>
           </li>
         </ul>
       </nav>
       <div className="signIn">
-        <button>Вход</button>
-        <button>Регистрация</button>
+        <NavLink to="/login/registrtion">Регистрация</NavLink>
+        <NavLink exact to="/login">
+          Вход
+        </NavLink>
       </div>
     </div>
   );

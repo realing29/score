@@ -20,6 +20,10 @@
 .product__info-container{
   flex-grow: 1;
 }
+.product__info-container a{
+  text-decoration: none;
+  color: rgb(54, 54, 54)
+}
 .product h3:first-letter,
 .product p:first-letter {
   text-transform: capitalize;

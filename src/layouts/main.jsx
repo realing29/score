@@ -1,12 +1,16 @@
-import Header from "../components/ui/header/header";
 import ProductsPage from "../components/page/products";
+import ProductPage from "../components/page/product";
+import { Route, Switch } from "react-router-dom";
+import "./main.css";
 
 const Main = () => {
   return (
-    <>
-      <Header />
-      <ProductsPage />
-    </>
+    <div className="main-container">
+      <Switch>
+        <Route exact path="/" component={ProductsPage} />
+        <Route path="/product/:id" component={ProductPage} />
+      </Switch>
+    </div>
   );
 };
 

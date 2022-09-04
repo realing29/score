@@ -1,11 +1,11 @@
 import { useState } from "react";
 import TextField from "../../common/form/textField";
 
-const LoginPage = () => {
+const RegistrationPage = () => {
   const [data, setData] = useState({
     login: "",
     password: "",
-    remember: false,
+    repeatPassword: "",
   });
 
   const handleChange = ({ name, value }) => {
@@ -14,7 +14,7 @@ const LoginPage = () => {
 
   return (
     <div>
-      <h1>Авторизация</h1>
+      <h1>Регистрация</h1>
       <form>
         <TextField
           label="Логин"
@@ -29,13 +29,20 @@ const LoginPage = () => {
           onChange={handleChange}
           type="password"
         />
+        <TextField
+          label="Повторите пароль"
+          value={data.repeatPassword}
+          name="repeatPassword"
+          onChange={handleChange}
+          type="password"
+        />
         <input type="checkbox" name="remember" id="remember" />
-        <label htmlFor="remember">Оставаться в системе</label>
+        <label htmlFor="remember">Принимаю пользовательское соглашение</label>
         <br />
-        <button type="button">Войти</button>
+        <button type="button">Зарегистрироваться</button>
       </form>
     </div>
   );
 };
 
-export default LoginPage;
+export default RegistrationPage;

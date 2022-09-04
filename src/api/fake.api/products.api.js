@@ -3,5 +3,10 @@ const fetchAll = async () => {
   const result = await respons.json();
   return result;
 };
+const getById = async (id) => {
+  const respons = await fetch(`http://localhost:81/products/${id}`);
+  const result = await respons.json();
+  return result;
+};
 
-export default { fetchAll };
+export default { fetchAll, getById };

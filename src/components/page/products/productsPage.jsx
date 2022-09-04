@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import API from "../../../api";
 import "./products.css";
 
@@ -13,7 +14,7 @@ const ProductsPage = () => {
   }, []);
 
   return (
-    <>
+    <div>
       {products
         ? products.map((item) => (
             <div key={item.id} className="product">
@@ -21,7 +22,9 @@ const ProductsPage = () => {
                 <img src={item.src} alt={item.src} className="product__img" />
               </div>
               <div className="product__info-container">
-                <h3>{item.name}</h3>
+                <h3>
+                  <Link to={"/product/" + item.id}>{item.name}</Link>
+                </h3>
                 <p>
                   <span>{item.description}</span>
                 </p>
@@ -128,7 +131,7 @@ const ProductsPage = () => {
               </div>
             </div>
           ))}
-    </>
+    </div>
   );
 };
 
