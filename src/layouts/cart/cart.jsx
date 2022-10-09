@@ -4,6 +4,7 @@ import API from "../../api";
 import CartItems from "../../components/ui/cartItems";
 import { useCart } from "../../hooks/useCart";
 import "./cart.css";
+import TotalAmount from "../../components/ui/totalAmount";
 
 const Cart = () => {
   const [products, setProducts] = useState({});
@@ -45,10 +46,21 @@ const Cart = () => {
     },
   };
 
+  const total = Object.values(products).reduce(
+    (acc, cur) => {
+      return {
+        sum: +acc.sum + +cur.amount * +cur.price,
+        amount: +acc.amount + +cur.amount,
+      };
+    },
+    { amount: 0, sum: 0 }
+  );
+
   return (
     <div className="cart-container">
       <h1>Корзина</h1>
       <CartItems products={products} onChangeAmount={handleAmountChange} />
+      <TotalAmount {...total} />
     </div>
   );
 };

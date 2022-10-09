@@ -3,11 +3,11 @@ import API from "../../../api";
 import { useCart } from "../../../hooks/useCart";
 import Product from "../../ui/product/product";
 import ProductLoader from "../../ui/product/productLoader";
-import "./products.css";
+import "./productsList.css";
 
-const ProductsPage = () => {
+const ProductsPage = ({ search }) => {
   const { cart } = useCart();
-  const [products, setProducts] = useState();
+  const [products, setProducts] = useState([]);
   const fetchProducts = async () => {
     const result = await API.products.fetchAll();
     setProducts(result);
@@ -15,11 +15,16 @@ const ProductsPage = () => {
   useEffect(() => {
     fetchProducts();
   }, []);
+  let newProducts = search
+    ? products.filter((item) => {
+        return new RegExp(search).test(item.name);
+      })
+    : products;
 
   return (
     <div>
-      {products
-        ? products.map((item) => (
+      {newProducts
+        ? newProducts.map((item) => (
             <Product
               {...item}
               key={item.id}

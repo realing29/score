@@ -1,12 +1,14 @@
 import { NavLink } from "react-router-dom";
+import Search from "../search";
 import "./header.css";
 
-const Header = () => {
+const Header = ({ handleSearch, search }) => {
   return (
     <div className="headerContainer">
       <div className="logo-container">
         <img src="/logo.jpg" alt="logo" />
       </div>
+      <Search handleSearch={handleSearch} search={search} />
       <nav>
         <ul className="nav">
           <li>

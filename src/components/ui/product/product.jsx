@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import ButtonBuy from "../buttonBuy/buttonBuy";
+import ButtonBuy from "../buttonBuy";
 
 const Product = ({ id, src, name, description, price, isInCart }) => {
   return (
