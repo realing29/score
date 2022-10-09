@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
-import ButtonBuy from "../buttonBuy";
+import ButtonBuy from "../buttonBuy/buttonBuy";
 
-const Product = ({ id, src, name, description, price }) => {
+const Product = ({ id, src, name, description, price, isInCart }) => {
   return (
     <div className="product">
       <div className="product__img-container">
@@ -19,7 +19,7 @@ const Product = ({ id, src, name, description, price }) => {
         <p className="product__price">
           <span>{price + " ₽"}</span>
         </p>
-        <ButtonBuy id={id} />
+        <ButtonBuy id={id} isInCart={isInCart} />
       </div>
     </div>
   );

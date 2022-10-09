@@ -1,0 +1,12 @@
+.product__buy {
+  border: 1px solid #ddd;
+  padding: 5px 9px;
+  background: #ffc967;
+  box-shadow: 1px 1px 1.5px 0.5px #eee;
+  font-size: 17px;
+  white-space: nowrap;
+}
+.product__buy:hover{
+  background-color: #ffe3b0;
+  cursor: pointer;
+}

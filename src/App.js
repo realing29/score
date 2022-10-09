@@ -4,16 +4,19 @@ import Main from "./layouts/main/main";
 import Login from "./layouts/authorization/authorization";
 import Cart from "./layouts/cart/cart";
 import Header from "./components/ui/header";
+import CartProvider from "./hooks/useCart";
 
 function App() {
   return (
     <>
-      <Header />
-      <Switch>
-        <Route path="/login" component={Login} />
-        <Route path="/cart" component={Cart} />
-        <Route path="/" component={Main} />
-      </Switch>
+      <CartProvider>
+        <Header />
+        <Switch>
+          <Route path="/login" component={Login} />
+          <Route path="/cart" component={Cart} />
+          <Route path="/" component={Main} />
+        </Switch>
+      </CartProvider>
     </>
   );
 }

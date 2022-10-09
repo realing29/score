@@ -2,36 +2,42 @@ import { useEffect } from "react";
 import { useState } from "react";
 import API from "../../api";
 import CartItems from "../../components/ui/cartItems";
-import {
-  cartChangeProductAmount,
-  cartGetProducts,
-} from "../../services/localStorage.service";
+import { useCart } from "../../hooks/useCart";
 import "./cart.css";
 
 const Cart = () => {
   const [products, setProducts] = useState({});
+  const { cart, cartChangeProductAmount } = useCart();
   useEffect(() => {
-    const prouductsIds = cartGetProducts();
-    Object.entries(prouductsIds).map(async ([id, { amount }]) => {
-      const item = { ...(await API.products.getById(id)), amount };
-      setProducts((prev) => ({ ...prev, [id]: item }));
+    Object.entries(cart).map(async ([id, { amount }]) => {
+      if (!products[id]) {
+        const item = { ...(await API.products.getById(id)), amount };
+        setProducts((prev) => ({ ...prev, [id]: item }));
+      }
     });
-  }, []);
+    let newProduct = { ...products };
+    Object.keys(products).map((id) => {
+      if (!cart[id]) {
+        delete newProduct[id];
+      }
+    });
+    setProducts(newProduct);
+  }, [cart]);
 
   const handleAmountChange = {
     increment: (id) => {
       setProducts((prev) => ({
         ...prev,
-        [id]: { ...prev[id], amount: prev[id].amount + 1 },
+        [id]: { ...prev[id], amount: +prev[id].amount + 1 },
       }));
-      cartChangeProductAmount(id, products[id].amount + 1);
+      cartChangeProductAmount(id, +products[id].amount + 1);
     },
     decrement: (id) => {
       setProducts((prev) => ({
         ...prev,
-        [id]: { ...prev[id], amount: prev[id].amount - 1 },
+        [id]: { ...prev[id], amount: +prev[id].amount - 1 },
       }));
-      cartChangeProductAmount(id, products[id].amount - 1);
+      cartChangeProductAmount(id, +products[id].amount - 1);
     },
     set: (id, val) => {
       setProducts((prev) => ({ ...prev, [id]: { ...prev[id], amount: val } }));

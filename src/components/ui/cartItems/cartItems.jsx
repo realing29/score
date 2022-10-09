@@ -2,7 +2,7 @@ import "./cartItems.css";
 
 const CartItems = ({ products, onChangeAmount }) => {
   const handleChangeAmount = (e, id) => {
-    if (e.target.value > 0) {
+    if (e.target.value >= 0) {
       onChangeAmount.set(id, e.target.value);
     }
   };

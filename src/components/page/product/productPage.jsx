@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import API from "../../../api";
-import ButtonBuy from "../../ui/buttonBuy";
+import ButtonBuy from "../../ui/buttonBuy/buttonBuy";
 import "./product.css";
 
 const ProductPage = () => {
