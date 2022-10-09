@@ -1,5 +1,5 @@
-import ProductsPage from "../components/page/products";
-import ProductPage from "../components/page/product";
+import ProductsPage from "../../components/page/products";
+import ProductPage from "../../components/page/product";
 import { Route, Switch } from "react-router-dom";
 import "./main.css";
 

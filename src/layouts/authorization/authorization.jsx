@@ -1,6 +1,6 @@
 import { Route, Switch } from "react-router-dom";
-import LoginPage from "../components/page/login";
-import RegistrationPage from "../components/page/registration";
+import LoginPage from "../../components/page/login";
+import RegistrationPage from "../../components/page/registration";
 import "./authorization.css";
 
 const Login = () => {
