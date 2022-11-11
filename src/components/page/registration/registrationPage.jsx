@@ -1,16 +1,16 @@
-import { useState } from "react";
-import TextField from "../../common/form/textField";
+import { useState } from "react"
+import TextField from "../../common/form/textField"
 
 const RegistrationPage = () => {
   const [data, setData] = useState({
     login: "",
     password: "",
     repeatPassword: "",
-  });
+  })
 
   const handleChange = ({ name, value }) => {
-    setData((prev) => ({ ...prev, [name]: value }));
-  };
+    setData((prev) => ({ ...prev, [name]: value }))
+  }
 
   return (
     <div>
@@ -42,7 +42,7 @@ const RegistrationPage = () => {
         <button type="button">Зарегистрироваться</button>
       </form>
     </div>
-  );
-};
+  )
+}
 
-export default RegistrationPage;
+export default RegistrationPage

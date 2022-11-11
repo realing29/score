@@ -1,5 +1,5 @@
-import PropTypes from "prop-types";
-import "./totalAmount.css";
+import PropTypes from "prop-types"
+import "./totalAmount.css"
 
 const TotalAmount = ({ sum, amount }) => {
   return (
@@ -9,12 +9,12 @@ const TotalAmount = ({ sum, amount }) => {
       <p className="total-container__sum">{sum} р.</p>
       <button className="total-container__buy">Оформить</button>
     </div>
-  );
-};
+  )
+}
 
 TotalAmount.propTypes = {
   amount: PropTypes.number,
   sum: PropTypes.number,
-};
+}
 
-export default TotalAmount;
+export default TotalAmount

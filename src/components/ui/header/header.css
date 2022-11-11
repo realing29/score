@@ -1,10 +1,10 @@
-.headerContainer{
+.headerContainer {
   display: flex;
   justify-content: space-between;
   background: #fff;
-  }
+}
 
-.nav{
+.nav {
   display: flex;
 }
 
@@ -12,13 +12,14 @@
   list-style: none;
   margin-right: 5px;
 }
-.active{
+.active {
   font-weight: bold;
 }
-.nav{
+.nav {
   margin: 0;
 }
-.nav a, .signIn a{
+.nav a,
+.signIn a {
   display: inline-block;
   text-decoration: none;
   height: 50px;
@@ -28,15 +29,15 @@
   font-size: 20px;
   color: #666;
 }
-.logo-container{
+.logo-container {
   height: 82px;
   width: 82px;
 }
-.logo-container img{
+.logo-container img {
   max-width: 100%;
   max-height: 100%;
 }
 
-.signIn{
+.signIn {
   display: flex;
 }

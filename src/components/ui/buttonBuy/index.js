@@ -1,2 +1,2 @@
-import ButtonBuy from "./buttonBuy";
-export default ButtonBuy;
+import ButtonBuy from "./buttonBuy"
+export default ButtonBuy

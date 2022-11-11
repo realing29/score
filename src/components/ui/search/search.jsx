@@ -1,17 +1,17 @@
-import PropTypes from "prop-types";
-import { useLocation, useNavigate } from "react-router-dom";
-import "./search.css";
+import PropTypes from "prop-types"
+import { useLocation, useNavigate } from "react-router-dom"
+import "./search.css"
 
 const Search = ({ handleSearch, search }) => {
-  const navigate = useNavigate();
-  const location = useLocation();
+  const navigate = useNavigate()
+  const location = useLocation()
 
   const handleChange = (e) => {
     if (location.pathname !== "/") {
-      navigate("/");
+      navigate("/")
     }
-    handleSearch(e.target.value);
-  };
+    handleSearch(e.target.value)
+  }
   return (
     <div className="search-product">
       <input
@@ -22,12 +22,12 @@ const Search = ({ handleSearch, search }) => {
         onChange={handleChange}
       />
     </div>
-  );
-};
+  )
+}
 
 Search.propTypes = {
   handleSearch: PropTypes.func,
   search: PropTypes.string,
-};
+}
 
-export default Search;
+export default Search

@@ -1,5 +1,5 @@
 const enums = (items) => {
-  items;
-  return {};
-};
-export default enums;
+  items
+  return {}
+}
+export default enums

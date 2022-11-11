@@ -1,7 +1,7 @@
-import PropTypes from "prop-types";
-import { NavLink } from "react-router-dom";
-import Search from "../search";
-import "./header.css";
+import PropTypes from "prop-types"
+import { NavLink } from "react-router-dom"
+import Search from "../search"
+import "./header.css"
 
 const Header = ({ handleSearch, search }) => {
   return (
@@ -25,12 +25,12 @@ const Header = ({ handleSearch, search }) => {
         <NavLink to="/login">Вход</NavLink>
       </div>
     </div>
-  );
-};
+  )
+}
 
 Header.propTypes = {
   handleSearch: PropTypes.func,
   search: PropTypes.string,
-};
+}
 
-export default Header;
+export default Header

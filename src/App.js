@@ -1,18 +1,18 @@
-import "./app.css";
-import { Route, Routes } from "react-router-dom";
-import Main from "./layouts/main/main";
-import Login from "./layouts/authorization/authorization";
-import Cart from "./layouts/cart/cart";
-import Header from "./components/ui/header";
-import { useState } from "react";
-import LoginPage from "./components/page/login";
-import RegistrationPage from "./components/page/registration";
-import ProductsListPage from "./components/page/productList";
-import ProductPage from "./components/page/product";
+import "./app.css"
+import { Route, Routes } from "react-router-dom"
+import Main from "./layouts/main/main"
+import Login from "./layouts/authorization/authorization"
+import Cart from "./layouts/cart/cart"
+import Header from "./components/ui/header"
+import { useState } from "react"
+import LoginPage from "./components/page/login"
+import RegistrationPage from "./components/page/registration"
+import ProductsListPage from "./components/page/productList"
+import ProductPage from "./components/page/product"
 
 function App() {
-  const [search, setSearch] = useState("");
-  const handleSearch = (val) => setSearch(val);
+  const [search, setSearch] = useState("")
+  const handleSearch = (val) => setSearch(val)
 
   return (
     <>
@@ -31,7 +31,7 @@ function App() {
         <Route path="cart" element={<Cart />} />
       </Routes>
     </>
-  );
+  )
 }
 
-export default App;
+export default App

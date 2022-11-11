@@ -1,13 +1,13 @@
-import PropTypes from "prop-types";
-import "./cartItems.css";
+import PropTypes from "prop-types"
+import "./cartItems.css"
 
 const CartItems = ({ products, onChangeAmount }) => {
   const handleChangeAmount = (e, id) => {
     if (e.target.value >= 0) {
-      onChangeAmount.set(id, e.target.value);
+      onChangeAmount.set(id, e.target.value)
     }
-  };
-  const newProducts = Object.values(products);
+  }
+  const newProducts = Object.values(products)
   if (newProducts.length > 0) {
     return (
       <>
@@ -34,15 +34,15 @@ const CartItems = ({ products, onChangeAmount }) => {
           </div>
         ))}
       </>
-    );
+    )
   } else {
-    return "Корзина пуста";
+    return "Корзина пуста"
   }
-};
+}
 
 CartItems.propTypes = {
   products: PropTypes.object,
   onChangeAmount: PropTypes.object,
-};
+}
 
-export default CartItems;
+export default CartItems

@@ -8,9 +8,7 @@ const ProductLoader = () => {
         <h3>&ensp;&ensp;&ensp;&ensp;&ensp;</h3>
         <p>
           <span>&ensp;&ensp;&ensp;&ensp;&ensp;</span>{" "}
-          <span>
-            &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;
-          </span>
+          <span>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;</span>
           <span>&ensp;&ensp;&ensp;&ensp;&ensp;</span>{" "}
           <span>
             &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;
@@ -36,9 +34,7 @@ const ProductLoader = () => {
             &ensp;&ensp;&ensp;&ensp;&ensp; &ensp;&ensp;&ensp;&ensp;&ensp;
           </span>{" "}
           <span>&ensp;&ensp;&ensp;&ensp;&ensp;</span>{" "}
-          <span>
-            &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;
-          </span>
+          <span>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;</span>
           <span>&ensp;&ensp;&ensp;&ensp;&ensp;</span>{" "}
           <span>
             &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;
@@ -76,7 +72,7 @@ const ProductLoader = () => {
         <button className="product__buy">&ensp;&ensp;&ensp;&ensp;&ensp;</button>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default ProductLoader;
+export default ProductLoader

@@ -7,7 +7,7 @@
   font-size: 17px;
   white-space: nowrap;
 }
-.product__buy:hover{
+.product__buy:hover {
   background-color: #ffe3b0;
   cursor: pointer;
 }

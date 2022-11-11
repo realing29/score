@@ -1,6 +1,6 @@
-import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
-import ButtonBuy from "../buttonBuy";
+import PropTypes from "prop-types"
+import { Link } from "react-router-dom"
+import ButtonBuy from "../buttonBuy"
 
 const Product = ({ id, src, name, description, price, isInCart }) => {
   return (
@@ -23,8 +23,8 @@ const Product = ({ id, src, name, description, price, isInCart }) => {
         <ButtonBuy id={id} isInCart={isInCart} />
       </div>
     </div>
-  );
-};
+  )
+}
 
 Product.propTypes = {
   description: PropTypes.string,
@@ -33,6 +33,6 @@ Product.propTypes = {
   name: PropTypes.string,
   price: PropTypes.string,
   src: PropTypes.string,
-};
+}
 
-export default Product;
+export default Product
