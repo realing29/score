@@ -1,5 +1,6 @@
 import { useState } from "react"
 import TextField from "../../common/form/textField"
+import style from "./style.module.sass"
 
 const RegistrationPage = () => {
   const [data, setData] = useState({
@@ -13,9 +14,9 @@ const RegistrationPage = () => {
   }
 
   return (
-    <div>
-      <h1>Регистрация</h1>
-      <form>
+    <div className={style.registration}>
+      <form className={style.registration__form}>
+        <h1>Регистрация</h1>
         <TextField
           label="Логин"
           value={data.login}
@@ -36,10 +37,15 @@ const RegistrationPage = () => {
           onChange={handleChange}
           type="password"
         />
-        <input type="checkbox" name="remember" id="remember" />
-        <label htmlFor="remember">Принимаю пользовательское соглашение</label>
+
+        <label htmlFor="remember">
+          <input type="checkbox" name="remember" id="remember" />
+          Принимаю пользовательское соглашение
+        </label>
         <br />
-        <button type="button">Зарегистрироваться</button>
+        <button className={style.registration__submit} type="button">
+          Зарегистрироваться
+        </button>
       </form>
     </div>
   )

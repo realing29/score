@@ -31,7 +31,7 @@ Product.propTypes = {
   id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   isInCart: PropTypes.bool,
   name: PropTypes.string,
-  price: PropTypes.string,
+  price: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   src: PropTypes.string,
 }
 
