@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import "./cartItems.css";
 
 const CartItems = ({ products, onChangeAmount }) => {
@@ -37,6 +38,11 @@ const CartItems = ({ products, onChangeAmount }) => {
   } else {
     return "Корзина пуста";
   }
+};
+
+CartItems.propTypes = {
+  products: PropTypes.object,
+  onChangeAmount: PropTypes.object,
 };
 
 export default CartItems;

@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { NavLink } from "react-router-dom";
 import Search from "../search";
 import "./header.css";
@@ -12,9 +13,7 @@ const Header = ({ handleSearch, search }) => {
       <nav>
         <ul className="nav">
           <li>
-            <NavLink exact to="/">
-              Главная
-            </NavLink>
+            <NavLink to="/">Главная</NavLink>
           </li>
           <li>
             <NavLink to="/cart">Корзина</NavLink>
@@ -23,12 +22,15 @@ const Header = ({ handleSearch, search }) => {
       </nav>
       <div className="signIn">
         <NavLink to="/login/registrtion">Регистрация</NavLink>
-        <NavLink exact to="/login">
-          Вход
-        </NavLink>
+        <NavLink to="/login">Вход</NavLink>
       </div>
     </div>
   );
+};
+
+Header.propTypes = {
+  handleSearch: PropTypes.func,
+  search: PropTypes.string,
 };
 
 export default Header;

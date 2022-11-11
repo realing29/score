@@ -2,13 +2,16 @@ import { useEffect } from "react";
 import { useState } from "react";
 import API from "../../api";
 import CartItems from "../../components/ui/cartItems";
-import { useCart } from "../../hooks/useCart";
 import "./cart.css";
 import TotalAmount from "../../components/ui/totalAmount";
+import { changeCartProductAmount, getCartProducts } from "../../store/cart";
+import { useDispatch, useSelector } from "react-redux";
 
 const Cart = () => {
   const [products, setProducts] = useState({});
-  const { cart, cartChangeProductAmount } = useCart();
+  
+  const dispatch = useDispatch();
+  const cart = useSelector(getCartProducts());
   useEffect(() => {
     Object.entries(cart).map(async ([id, { amount }]) => {
       if (!products[id]) {
@@ -31,18 +34,18 @@ const Cart = () => {
         ...prev,
         [id]: { ...prev[id], amount: +prev[id].amount + 1 },
       }));
-      cartChangeProductAmount(id, +products[id].amount + 1);
+      dispatch(changeCartProductAmount({ id, val: +products[id].amount + 1 }));
     },
     decrement: (id) => {
       setProducts((prev) => ({
         ...prev,
         [id]: { ...prev[id], amount: +prev[id].amount - 1 },
       }));
-      cartChangeProductAmount(id, +products[id].amount - 1);
+      dispatch(changeCartProductAmount({ id, val: +products[id].amount - 1 }));
     },
     set: (id, val) => {
       setProducts((prev) => ({ ...prev, [id]: { ...prev[id], amount: val } }));
-      cartChangeProductAmount(id, val);
+      dispatch(changeCartProductAmount({ id, val }));
     },
   };
 

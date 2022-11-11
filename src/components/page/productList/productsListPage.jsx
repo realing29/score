@@ -1,12 +1,14 @@
+import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import API from "../../../api";
-import { useCart } from "../../../hooks/useCart";
+import { getCartProducts } from "../../../store/cart";
 import Product from "../../ui/product/product";
 import ProductLoader from "../../ui/product/productLoader";
 import "./productsList.css";
 
 const ProductsPage = ({ search }) => {
-  const { cart } = useCart();
+  const cart = useSelector(getCartProducts());
   const [products, setProducts] = useState([]);
   const fetchProducts = async () => {
     const result = await API.products.fetchAll();
@@ -34,6 +36,10 @@ const ProductsPage = ({ search }) => {
         : new Array(10).fill(0).map((item, i) => <ProductLoader key={i} />)}
     </div>
   );
+};
+
+ProductsPage.propTypes = {
+  search: PropTypes.string,
 };
 
 export default ProductsPage;

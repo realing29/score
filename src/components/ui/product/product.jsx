@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import ButtonBuy from "../buttonBuy";
 
@@ -23,6 +24,15 @@ const Product = ({ id, src, name, description, price, isInCart }) => {
       </div>
     </div>
   );
+};
+
+Product.propTypes = {
+  description: PropTypes.string,
+  id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  isInCart: PropTypes.bool,
+  name: PropTypes.string,
+  price: PropTypes.string,
+  src: PropTypes.string,
 };
 
 export default Product;

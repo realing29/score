@@ -1,11 +1,13 @@
+import PropTypes from "prop-types";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { useCart } from "../../../hooks/useCart";
+import { addCart } from "../../../store/cart";
 import "./buttonBuy.css";
 
 const ButtonBuy = ({ id, isInCart }) => {
-  const { cartAddProduct } = useCart();
+  const dispatch = useDispatch();
   const handleClick = () => {
-    cartAddProduct(id);
+    dispatch(addCart(id));
   };
   if (isInCart) {
     return (
@@ -19,6 +21,11 @@ const ButtonBuy = ({ id, isInCart }) => {
       Купить
     </button>
   );
+};
+
+ButtonBuy.propTypes = {
+  id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  isInCart: PropTypes.bool,
 };
 
 export default ButtonBuy;

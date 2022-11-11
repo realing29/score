@@ -1,10 +1,14 @@
-import { useHistory } from "react-router-dom";
+import PropTypes from "prop-types";
+import { useLocation, useNavigate } from "react-router-dom";
 import "./search.css";
+
 const Search = ({ handleSearch, search }) => {
-  const history = useHistory();
+  const navigate = useNavigate();
+  const location = useLocation();
+
   const handleChange = (e) => {
-    if (history.location.pathname !== "/") {
-      history.push("/");
+    if (location.pathname !== "/") {
+      navigate("/");
     }
     handleSearch(e.target.value);
   };
@@ -19,6 +23,11 @@ const Search = ({ handleSearch, search }) => {
       />
     </div>
   );
+};
+
+Search.propTypes = {
+  handleSearch: PropTypes.func,
+  search: PropTypes.string,
 };
 
 export default Search;

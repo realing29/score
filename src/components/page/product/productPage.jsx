@@ -1,14 +1,17 @@
 import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import API from "../../../api";
-import { useCart } from "../../../hooks/useCart";
+// import { useCart } from "../../../hooks/useCart";
+import { getCartProducts } from "../../../store/cart";
 import ButtonBuy from "../../ui/buttonBuy";
 import "./product.css";
 
 const ProductPage = () => {
   const { id } = useParams();
   const [product, setProduct] = useState();
-  const { cart } = useCart();
+  // const { cart } = useCart();
+  const cart = useSelector(getCartProducts());
 
   const getProduct = async (id) => {
     const product = await API.products.getById(id);
