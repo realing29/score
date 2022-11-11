@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react"
-import { useSelector } from "react-redux"
-import { useParams } from "react-router-dom"
-import API from "../../../api"
-import { getCartProducts } from "../../../store/cart"
-import ButtonBuy from "../../ui/buttonBuy"
-import style from "./product.module.sass"
+import { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux'
+import { useParams } from 'react-router-dom'
+import API from '../../../api'
+import { getCartProducts } from '../../../store/cart'
+import ButtonBuy from '../../ui/buttonBuy'
+import style from './product.module.sass'
 
 const ProductPage = () => {
   const { id } = useParams()
@@ -26,7 +26,7 @@ const ProductPage = () => {
           <img className={style.product_card__img} src={product.src} alt={product.src} />
         </div>
         <p>{product.description}</p>
-        <div className={style.product_card__price}>{product.price + " ₽"}</div>
+        <div className={style.product_card__price}>{product.price + ' ₽'}</div>
         <ButtonBuy id={id} isInCart={Boolean(cart[id])} />
       </div>
     )

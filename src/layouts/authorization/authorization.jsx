@@ -1,10 +1,10 @@
-import { Outlet } from "react-router-dom"
+import { Outlet } from 'react-router-dom'
 
-import "./authorization.css"
+import './authorization.css'
 
 const Login = () => {
   return (
-    <div className="authLayout">
+    <div className='authLayout'>
       <Outlet />
     </div>
   )

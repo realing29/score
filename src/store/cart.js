@@ -1,8 +1,8 @@
-const { createSlice } = require("@reduxjs/toolkit")
-const lStorage = require("../services/localStorage.service")
+const { createSlice } = require('@reduxjs/toolkit')
+const lStorage = require('../services/localStorage.service')
 
 const cartSlice = createSlice({
-  name: "cart",
+  name: 'cart',
   initialState: { entries: lStorage.cartGetProducts() },
   reducers: {
     cartAddedProduct(state, { payload }) {

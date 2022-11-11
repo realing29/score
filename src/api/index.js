@@ -1,4 +1,4 @@
-import products from "./fake.api/products.api"
+import products from './fake.api/products.api'
 
 const API = {
   products,

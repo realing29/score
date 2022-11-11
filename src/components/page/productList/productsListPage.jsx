@@ -1,11 +1,11 @@
-import PropTypes from "prop-types"
-import { useEffect, useState } from "react"
-import { useSelector } from "react-redux"
-import API from "../../../api"
-import { getCartProducts } from "../../../store/cart"
-import Product from "../../ui/product/product"
-import ProductLoader from "../../ui/product/productLoader"
-import "./productsList.css"
+import PropTypes from 'prop-types'
+import { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux'
+import API from '../../../api'
+import { getCartProducts } from '../../../store/cart'
+import Product from '../../ui/product/product'
+import ProductLoader from '../../ui/product/productLoader'
+import './productsList.css'
 
 const ProductsPage = ({ search }) => {
   const cart = useSelector(getCartProducts())

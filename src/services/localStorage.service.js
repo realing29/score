@@ -1,4 +1,4 @@
-const CART_PRODUCTS = "cart-product"
+const CART_PRODUCTS = 'cart-product'
 
 const getItem = (key) => JSON.parse(localStorage.getItem(key))
 const setItem = (key, data) => localStorage.setItem(key, JSON.stringify(data))

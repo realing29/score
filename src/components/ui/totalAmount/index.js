@@ -1,2 +1,2 @@
-import totalAmount from "./totalAmount"
+import totalAmount from './totalAmount'
 export default totalAmount

@@ -1,12 +1,12 @@
-import { useState } from "react"
-import TextField from "../../common/form/textField"
-import style from "./style.module.sass"
+import { useState } from 'react'
+import TextField from '../../common/form/textField'
+import style from './style.module.sass'
 
 const RegistrationPage = () => {
   const [data, setData] = useState({
-    login: "",
-    password: "",
-    repeatPassword: "",
+    login: '',
+    password: '',
+    repeatPassword: '',
   })
 
   const handleChange = ({ name, value }) => {
@@ -18,32 +18,32 @@ const RegistrationPage = () => {
       <form className={style.registration__form}>
         <h1>Регистрация</h1>
         <TextField
-          label="Логин"
+          label='Логин'
           value={data.login}
-          name="login"
+          name='login'
           onChange={handleChange}
         />
         <TextField
-          label="Пароль"
+          label='Пароль'
           value={data.password}
-          name="password"
+          name='password'
           onChange={handleChange}
-          type="password"
+          type='password'
         />
         <TextField
-          label="Повторите пароль"
+          label='Повторите пароль'
           value={data.repeatPassword}
-          name="repeatPassword"
+          name='repeatPassword'
           onChange={handleChange}
-          type="password"
+          type='password'
         />
 
-        <label htmlFor="remember">
-          <input type="checkbox" name="remember" id="remember" />
+        <label htmlFor='remember'>
+          <input type='checkbox' name='remember' id='remember' />
           Принимаю пользовательское соглашение
         </label>
         <br />
-        <button className={style.registration__submit} type="button">
+        <button className={style.registration__submit} type='button'>
           Зарегистрироваться
         </button>
       </form>

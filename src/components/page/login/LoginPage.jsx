@@ -1,10 +1,10 @@
-import { useState } from "react"
-import TextField from "../../common/form/textField"
+import { useState } from 'react'
+import TextField from '../../common/form/textField'
 
 const LoginPage = () => {
   const [data, setData] = useState({
-    login: "",
-    password: "",
+    login: '',
+    password: '',
     remember: false,
   })
 
@@ -17,22 +17,22 @@ const LoginPage = () => {
       <h1>Авторизация</h1>
       <form>
         <TextField
-          label="Логин"
+          label='Логин'
           value={data.login}
-          name="login"
+          name='login'
           onChange={handleChange}
         />
         <TextField
-          label="Пароль"
+          label='Пароль'
           value={data.password}
-          name="password"
+          name='password'
           onChange={handleChange}
-          type="password"
+          type='password'
         />
-        <input type="checkbox" name="remember" id="remember" />
-        <label htmlFor="remember">Оставаться в системе</label>
+        <input type='checkbox' name='remember' id='remember' />
+        <label htmlFor='remember'>Оставаться в системе</label>
         <br />
-        <button type="button">Войти</button>
+        <button type='button'>Войти</button>
       </form>
     </div>
   )

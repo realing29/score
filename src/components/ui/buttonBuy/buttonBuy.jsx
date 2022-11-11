@@ -1,8 +1,8 @@
-import PropTypes from "prop-types"
-import { useDispatch } from "react-redux"
-import { Link } from "react-router-dom"
-import { addCart } from "../../../store/cart"
-import "./buttonBuy.css"
+import PropTypes from 'prop-types'
+import { useDispatch } from 'react-redux'
+import { Link } from 'react-router-dom'
+import { addCart } from '../../../store/cart'
+import './buttonBuy.css'
 
 const ButtonBuy = ({ id, isInCart }) => {
   const dispatch = useDispatch()
@@ -11,13 +11,13 @@ const ButtonBuy = ({ id, isInCart }) => {
   }
   if (isInCart) {
     return (
-      <Link to="/cart">
-        <button className="product__buy">В корзине</button>
+      <Link to='/cart'>
+        <button className='product__buy'>В корзине</button>
       </Link>
     )
   }
   return (
-    <button className="product__buy" onClick={handleClick}>
+    <button className='product__buy' onClick={handleClick}>
       Купить
     </button>
   )

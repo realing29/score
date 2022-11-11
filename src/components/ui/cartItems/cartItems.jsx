@@ -1,5 +1,5 @@
-import PropTypes from "prop-types"
-import "./cartItems.css"
+import PropTypes from 'prop-types'
+import './cartItems.css'
 
 const CartItems = ({ products, onChangeAmount }) => {
   const handleChangeAmount = (e, id) => {
@@ -12,23 +12,23 @@ const CartItems = ({ products, onChangeAmount }) => {
     return (
       <>
         {newProducts.map(({ amount, price, name, src, id }) => (
-          <div key={id} className="item-cart">
-            <div className="item-cart__container-img">
-              <img className="item-cart__img" src={src} alt={src} />
+          <div key={id} className='item-cart'>
+            <div className='item-cart__container-img'>
+              <img className='item-cart__img' src={src} alt={src} />
             </div>
-            <h3 className="item-cart__name">{name}</h3>
-            <p className="item-cart__price">{price} р.</p>
+            <h3 className='item-cart__name'>{name}</h3>
+            <p className='item-cart__price'>{price} р.</p>
             <p>x</p>
             <button onClick={() => onChangeAmount.decrement(id)}>-</button>
             <input
-              className="item-cart__amount"
-              type="text"
+              className='item-cart__amount'
+              type='text'
               value={amount}
-              step="1"
+              step='1'
               onChange={(e) => handleChangeAmount(e, id)}
             />
             <button onClick={(e) => onChangeAmount.increment(id)}>+</button>
-            <p>{" шт."}</p>
+            <p>{' шт.'}</p>
             <p>=</p>
             <p>{+amount * +price} р.</p>
           </div>
@@ -36,7 +36,7 @@ const CartItems = ({ products, onChangeAmount }) => {
       </>
     )
   } else {
-    return "Корзина пуста"
+    return 'Корзина пуста'
   }
 }
 

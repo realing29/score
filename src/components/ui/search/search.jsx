@@ -1,24 +1,24 @@
-import PropTypes from "prop-types"
-import { useLocation, useNavigate } from "react-router-dom"
-import "./search.css"
+import PropTypes from 'prop-types'
+import { useLocation, useNavigate } from 'react-router-dom'
+import './search.css'
 
 const Search = ({ handleSearch, search }) => {
   const navigate = useNavigate()
   const location = useLocation()
 
   const handleChange = (e) => {
-    if (location.pathname !== "/") {
-      navigate("/")
+    if (location.pathname !== '/') {
+      navigate('/')
     }
     handleSearch(e.target.value)
   }
   return (
-    <div className="search-product">
+    <div className='search-product'>
       <input
-        className="search-product__input"
-        type="text"
+        className='search-product__input'
+        type='text'
         value={search}
-        placeholder="Поиск товаров"
+        placeholder='Поиск товаров'
         onChange={handleChange}
       />
     </div>
