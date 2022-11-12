@@ -1,10 +1,10 @@
 import { Outlet } from 'react-router-dom'
 
-import './authorization.css'
+import style from './authorization.module.sass'
 
 const Login = () => {
   return (
-    <div className='authLayout'>
+    <div className={style.authLayout}>
       <Outlet />
     </div>
   )

@@ -1,13 +1,13 @@
 import PropTypes from 'prop-types'
-import './totalAmount.css'
+import style from './totalAmount.module.sass'
 
 const TotalAmount = ({ sum, amount }) => {
   return (
-    <div className='total-container'>
+    <div className={style.total_container}>
       <h3>Итого</h3>
       <p>Товаров: {amount}</p>
-      <p className='total-container__sum'>{sum} р.</p>
-      <button className='total-container__buy'>Оформить</button>
+      <p className={style.total_container__sum}>{sum} р.</p>
+      <button className={style.total_container__buy}>Оформить</button>
     </div>
   )
 }

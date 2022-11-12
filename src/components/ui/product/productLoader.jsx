@@ -1,10 +1,13 @@
+import style from './style.module.sass'
+import loader from './loader.module.sass'
+
 const ProductLoader = () => {
   return (
-    <div className='product product_loader'>
-      <div className='product__img-container'>
-        <div className='product__img_loader' />
+    <div className={style.product + ' ' + loader.product_loader}>
+      <div className={style.product__img_container}>
+        <div className={style.product__img_loader} />
       </div>
-      <div className='product__info-container product__info-container_loader'>
+      <div className={style.product__info_container}>
         <h3>&ensp;&ensp;&ensp;&ensp;&ensp;</h3>
         <p>
           <span>&ensp;&ensp;&ensp;&ensp;&ensp;</span>{' '}

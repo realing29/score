@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'
 import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { addCart } from '../../../store/cart'
-import './buttonBuy.css'
+import style from './buttonBuy.module.sass'
 
 const ButtonBuy = ({ id, isInCart }) => {
   const dispatch = useDispatch()
@@ -12,12 +12,12 @@ const ButtonBuy = ({ id, isInCart }) => {
   if (isInCart) {
     return (
       <Link to='/cart'>
-        <button className='product__buy'>В корзине</button>
+        <button className={style.product__buy}>В корзине</button>
       </Link>
     )
   }
   return (
-    <button className='product__buy' onClick={handleClick}>
+    <button className={style.product__buy} onClick={handleClick}>
       Купить
     </button>
   )

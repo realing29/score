@@ -1,4 +1,4 @@
-import './app.css'
+import './app.sass'
 import { Route, Routes } from 'react-router-dom'
 import Main from './layouts/main/main'
 import Login from './layouts/authorization/authorization'

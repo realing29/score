@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
 import { useLocation, useNavigate } from 'react-router-dom'
-import './search.css'
+import style from './search.module.sass'
 
 const Search = ({ handleSearch, search }) => {
   const navigate = useNavigate()
@@ -13,9 +13,9 @@ const Search = ({ handleSearch, search }) => {
     handleSearch(e.target.value)
   }
   return (
-    <div className='search-product'>
+    <div className={style.search_product}>
       <input
-        className='search-product__input'
+        className={style.search_product__input}
         type='text'
         value={search}
         placeholder='Поиск товаров'

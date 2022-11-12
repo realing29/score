@@ -1,17 +1,17 @@
 import PropTypes from 'prop-types'
 import { NavLink } from 'react-router-dom'
 import Search from '../search'
-import './header.css'
+import style from './header.module.sass'
 
 const Header = ({ handleSearch, search }) => {
   return (
-    <div className='headerContainer'>
-      <div className='logo-container'>
+    <div className={style.headerContainer}>
+      <div className={style.logo_container}>
         <img src='/logo.jpg' alt='logo' />
       </div>
       <Search handleSearch={handleSearch} search={search} />
       <nav>
-        <ul className='nav'>
+        <ul className={style.nav}>
           <li>
             <NavLink to='/'>Главная</NavLink>
           </li>
@@ -20,7 +20,7 @@ const Header = ({ handleSearch, search }) => {
           </li>
         </ul>
       </nav>
-      <div className='signIn'>
+      <div className={style.signIn}>
         <NavLink to='/login/registrtion'>Регистрация</NavLink>
         <NavLink to='/login'>Вход</NavLink>
       </div>

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import API from '../../api'
 import CartItems from '../../components/ui/cartItems'
-import './cart.css'
+import style from './cart.module.sass'
 import TotalAmount from '../../components/ui/totalAmount'
 import { changeCartProductAmount, getCartProducts } from '../../store/cart'
 import { useDispatch, useSelector } from 'react-redux'
@@ -59,7 +59,7 @@ const Cart = () => {
   )
 
   return (
-    <div className='cart-container'>
+    <div className={style.cart_container}>
       <h1>Корзина</h1>
       <CartItems products={products} onChangeAmount={handleAmountChange} />
       <TotalAmount {...total} />

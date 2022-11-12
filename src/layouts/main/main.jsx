@@ -1,9 +1,9 @@
 import { Outlet } from 'react-router-dom'
-import './main.css'
+import style from './main.module.sass'
 
 const Main = () => {
   return (
-    <div className='main-container'>
+    <div className={style.main_container}>
       <Outlet />
     </div>
   )

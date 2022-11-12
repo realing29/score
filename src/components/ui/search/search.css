@@ -1,9 +1,0 @@
-.search-product {
-  display: flex;
-  align-items: center;
-}
-.search-product__input {
-  height: 30px;
-  width: 250px;
-  max-width: 90%;
-}

@@ -5,7 +5,6 @@ import API from '../../../api'
 import { getCartProducts } from '../../../store/cart'
 import Product from '../../ui/product/product'
 import ProductLoader from '../../ui/product/productLoader'
-import './productsList.css'
 
 const ProductsPage = ({ search }) => {
   const cart = useSelector(getCartProducts())
@@ -22,10 +21,9 @@ const ProductsPage = ({ search }) => {
         return new RegExp(search).test(item.name)
       })
     : products
-
   return (
     <div>
-      {newProducts
+      {newProducts.length
         ? newProducts.map((item) => (
             <Product {...item} key={item.id} isInCart={Boolean(cart[item.id])} />
           ))
