@@ -1,5 +1,5 @@
-const { createSlice } = require('@reduxjs/toolkit')
-const lStorage = require('../services/localStorage.service')
+import { createSlice } from '@reduxjs/toolkit'
+import lStorage from '../services/localStorage.service'
 
 const cartSlice = createSlice({
   name: 'cart',

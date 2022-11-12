@@ -1,21 +1,21 @@
 import PropTypes from 'prop-types'
-import { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
-import API from '../../../api'
+import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { getCartProducts } from '../../../store/cart'
+import { getProducts, getProductsLoadStatus, loadProducts } from '../../../store/products'
 import Product from '../../ui/product/product'
 import ProductLoader from '../../ui/product/productLoader'
 
 const ProductsPage = ({ search }) => {
+  const dispatch = useDispatch()
   const cart = useSelector(getCartProducts())
-  const [products, setProducts] = useState([])
-  const fetchProducts = async () => {
-    const result = await API.products.fetchAll()
-    setProducts(result)
-  }
+  const products = useSelector(getProducts())
+  const usersIsLoad = useSelector(getProductsLoadStatus())
+
   useEffect(() => {
-    fetchProducts()
+    dispatch(loadProducts())
   }, [])
+
   const newProducts = search
     ? products.filter((item) => {
         return new RegExp(search).test(item.name)
@@ -23,7 +23,7 @@ const ProductsPage = ({ search }) => {
     : products
   return (
     <div>
-      {newProducts.length
+      {usersIsLoad
         ? newProducts.map((item) => (
             <Product {...item} key={item.id} isInCart={Boolean(cart[item.id])} />
           ))

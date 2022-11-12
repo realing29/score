@@ -8,3 +8,5 @@ export const updateCart = (products) => {
 }
 
 export const cartGetProducts = () => getItem(CART_PRODUCTS)
+
+export default { updateCart, cartGetProducts }
