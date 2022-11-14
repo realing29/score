@@ -1,11 +1,12 @@
 import PropTypes from 'prop-types'
 import Stars from './stars'
+import style from './rate.module.sass'
 
 const Rate = ({ rate }) => {
   const { count, value } = rate
 
   return (
-    <div>
+    <div className={style.product__rate}>
       <p>
         {value}
         <Stars value={value} />

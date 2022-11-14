@@ -7,6 +7,7 @@ import {
   getProducts,
   getProductsLoadStatus,
 } from '../../../store/products'
+import СonditionalRender from '../../common/conditionalRender'
 import Product from '../../ui/product/product'
 import ProductLoader from '../../ui/product/productLoader/productLoader'
 import style from './product.module.sass'
@@ -28,14 +29,21 @@ const ProductsPage = ({ search }) => {
     : products
   return (
     <div className={style.product_container}>
-      {{
-        loading: () => new Array(10).fill(0).map((item, i) => <ProductLoader key={i} />),
-        loaded: () =>
-          newProducts.map((item) => (
-            <Product {...item} key={item.id} isInCart={Boolean(cart[item.id])} />
-          )),
-        error: () => 'Произошла ошибка',
-      }[productsLoadStatus]()}
+      <СonditionalRender condition={productsLoadStatus}>
+        {{
+          loading() {
+            return new Array(10).fill(0).map((item, i) => <ProductLoader key={i} />)
+          },
+          loaded() {
+            return newProducts.map((item) => (
+              <Product {...item} key={item.id} isInCart={Boolean(cart[item.id])} />
+            ))
+          },
+          error() {
+            return 'Произошла ошибка при загрузке товаров'
+          },
+        }}
+      </СonditionalRender>
     </div>
   )
 }

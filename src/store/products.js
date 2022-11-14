@@ -1,12 +1,13 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import API from '../api'
 import { delay } from '../utils/delay'
+import { getRandomIntInclusive } from '../utils/getRandom'
 
 export const fetchProductsAsync = createAsyncThunk(
   'products/fetchAll',
   async (payload, thunkApi) => {
     try {
-      await delay(500)
+      await delay(getRandomIntInclusive(100, 500, 0))
       return await API.products.fetchAll()
     } catch (error) {
       return thunkApi.rejectWithValue(error)
