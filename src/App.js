@@ -9,6 +9,7 @@ import LoginPage from './components/page/login'
 import RegistrationPage from './components/page/registration'
 import ProductsListPage from './components/page/productList'
 import ProductPage from './components/page/product'
+import Develop from './components/page/develop/develop'
 
 function App() {
   const [search, setSearch] = useState('')
@@ -29,6 +30,7 @@ function App() {
           <Route path='registrtion' element={<RegistrationPage />} />
         </Route>
         <Route path='cart' element={<Cart />} />
+        <Route path='develop' element={<Develop />} />
       </Routes>
     </>
   )

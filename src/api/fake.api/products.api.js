@@ -1,12 +1,22 @@
+import createEndpointFetcher from '../../services/db.service'
+
+const endpoint = 'products/'
+
+const products = createEndpointFetcher(endpoint)
+
 const fetchAll = async () => {
-  const respons = await fetch('http://localhost:81/products')
-  const result = await respons.json()
-  return result
+  const { data } = await products()
+  return data
 }
 const getById = async (id) => {
-  const respons = await fetch(`http://localhost:81/products/${id}`)
-  const result = await respons.json()
-  return result
+  const { data } = await products(id)
+  return data
 }
 
-export default { fetchAll, getById }
+const update = async (newProduct) => {
+  const { id } = newProduct
+  const { data } = await products.put(id, newProduct)
+  return data
+}
+
+export default { fetchAll, getById, update }

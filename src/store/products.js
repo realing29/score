@@ -1,44 +1,45 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import API from '../api'
+import { delay } from '../utils/delay'
+
+export const fetchProductsAsync = createAsyncThunk(
+  'products/fetchAll',
+  async (payload, thunkApi) => {
+    try {
+      await delay(500)
+      return await API.products.fetchAll()
+    } catch (error) {
+      return thunkApi.rejectWithValue(error)
+    }
+  },
+)
 
 const productsSlice = createSlice({
   name: 'product',
   initialState: {
     entities: [],
-    isLoad: false,
+    loadStatus: 'loading',
     error: null,
   },
-  reducers: {
-    productsRequested(state) {
-      state.isLoad = false
+  extraReducers: {
+    [fetchProductsAsync.pending.type]: (state) => {
+      state.loadStatus = 'loading'
     },
-    productsReceived(state, actions) {
-      state.entities = actions.payload
-      state.isLoad = true
+    [fetchProductsAsync.fulfilled.type]: (state, { payload }) => {
+      state.entities = payload
+      state.loadStatus = 'loaded'
     },
-    productsRequestFailed(state, actions) {
-      state.isLoad = true
-      state.error = actions.payload
+    [fetchProductsAsync.rejected.type]: (state, { payload }) => {
+      state.loadStatus = 'error'
+      state.error = payload
     },
   },
 })
 
-const { reducer: productsReducer, actions } = productsSlice
-
-const { productsRequested, productsReceived, productsRequestFailed } = actions
-
-export const loadProducts = () => async (dispatch) => {
-  dispatch(productsRequested())
-  try {
-    const products = await API.products.fetchAll()
-    dispatch(productsReceived(products))
-  } catch (error) {
-    dispatch(productsRequestFailed(error.message))
-  }
-}
+const { reducer: productsReducer } = productsSlice
 
 export const getProducts = () => (state) => state.products.entities
 
-export const getProductsLoadStatus = () => (state) => state.products.isLoad
+export const getProductsLoadStatus = () => (state) => state.products.loadStatus
 
 export default productsReducer

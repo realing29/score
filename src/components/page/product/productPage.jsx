@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom'
 import API from '../../../api'
 import { getCartProducts } from '../../../store/cart'
 import ButtonBuy from '../../ui/buttonBuy'
-import style from './product.module.sass'
+import style from './productPage.module.sass'
 
 const ProductPage = () => {
   const { id } = useParams()

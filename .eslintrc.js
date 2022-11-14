@@ -23,7 +23,7 @@ module.exports = {
     ],
     'multiline-ternary': ['off'],
     indent: ['off'],
-    quotes: [2, 'single', { avoidEscape: true }],
+    quotes: [2, 'single', { avoidEscape: true, allowTemplateLiterals: true }],
     'react/react-in-jsx-scope': 'off',
     'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }],
     'comma-dangle': [2, 'always-multiline'],

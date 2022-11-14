@@ -1,0 +1,32 @@
+import ContentLoader from 'react-content-loader'
+import style from '../product.module.sass'
+
+const ProductLoader = (props) => {
+  return (
+    <div className={style.product}>
+      <ContentLoader
+        width={780}
+        height={203}
+        viewBox='0 0 780 203'
+        backgroundColor='#f5f5f5'
+        foregroundColor='#dbdbdb'
+        {...props}
+      >
+        <rect x='0' y='0' rx='3' ry='3' width='200' height='200' />
+
+        <rect x='220' y='20' rx='3' ry='3' width='200' height='20' />
+        <rect x='220' y='60' rx='3' ry='3' width='400' height='15' />
+        <rect x='220' y='80' rx='3' ry='3' width='380' height='15' />
+        <rect x='220' y='100' rx='3' ry='3' width='360' height='15' />
+        <rect x='220' y='120' rx='3' ry='3' width='390' height='15' />
+
+        <rect x='220' y='170' rx='3' ry='3' width='150' height='20' />
+
+        <rect x='670' y='40' rx='3' ry='3' width='100' height='40' />
+        <rect x='650' y='100' rx='3' ry='3' width='120' height='40' />
+      </ContentLoader>
+    </div>
+  )
+}
+
+export default ProductLoader
