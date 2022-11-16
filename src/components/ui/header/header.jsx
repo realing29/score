@@ -21,8 +21,7 @@ const Header = ({ handleSearch, search }) => {
         </ul>
       </nav>
       <div className={style.signIn}>
-        <NavLink to='/login/registrtion'>Регистрация</NavLink>
-        <NavLink to='/login'>Вход</NavLink>
+        <NavLink to='/login'>Войти</NavLink>
       </div>
     </div>
   )

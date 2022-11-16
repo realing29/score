@@ -7,9 +7,11 @@ import style from './product.module.sass'
 const Product = ({ id, src, name, description, price, isInCart, rate }) => {
   return (
     <div className={style.product}>
-      <div className={style.product__img_container}>
-        <img src={src} alt={src} className={style.product__img} />
-      </div>
+      <Link to={'/product/' + id}>
+        <div className={style.product__img_container}>
+          <img src={src} alt={src} className={style.product__img} />
+        </div>
+      </Link>
       <div className={style.product__info_container}>
         <h3>
           <Link to={'/product/' + id}>{name}</Link>
