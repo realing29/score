@@ -1,8 +1,22 @@
-import API from '../../../api'
+import {
+	useGetProductsListQuery,
+	useUpdateProductMutation,
+} from '../../../store/productsApi'
 import { getRandomIntInclusive } from '../../../utils/getRandom'
 import style from './develop.module.sass'
 
 const Develop = () => {
+	const { data: products = [], isLoading, isSuccess, isError } = useGetProductsListQuery()
+	const [updateProduct] = useUpdateProductMutation()
+
+	const catcherUpdateProduct = async (body) => {
+		try {
+			await updateProduct(body)
+		} catch (error) {
+			console.log(error)
+		}
+	}
+
 	function addRate(product) {
 		return {
 			...product,
@@ -20,9 +34,8 @@ const Develop = () => {
 	}
 
 	const updateProducts = async (transform) => {
-		const products = await API.products.fetchAll()
 		for (const product of products) {
-			await API.products.update(transform(product))
+			catcherUpdateProduct(transform(product))
 		}
 	}
 
@@ -30,12 +43,18 @@ const Develop = () => {
 		updateProducts(transform)
 	}
 	return (
-		<div className={style.container}>
-			<button onClick={() => handleUpdateProducts(addRate)}>обновить продукты</button>
-			<button onClick={() => handleUpdateProducts(deleteField)}>
-				удалить поле продуктов
-			</button>
-		</div>
+		<>
+			{isLoading && 'loading...'}
+			{isSuccess && (
+				<div className={style.container}>
+					<button onClick={() => handleUpdateProducts(addRate)}>обновить продукты</button>
+					<button onClick={() => handleUpdateProducts(deleteField)}>
+						удалить поле продуктов
+					</button>
+				</div>
+			)}
+			{isError && 'error...'}
+		</>
 	)
 }
 

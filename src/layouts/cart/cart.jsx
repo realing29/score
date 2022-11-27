@@ -8,7 +8,6 @@ import { useDispatch, useSelector } from 'react-redux'
 
 const Cart = () => {
 	const [products, setProducts] = useState({})
-
 	const dispatch = useDispatch()
 	const cart = useSelector(getCartProducts())
 	useEffect(() => {

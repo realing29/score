@@ -9,10 +9,21 @@ export const productsApi = createApi({
 	reducerPath: 'productsApi',
 	baseQuery: fetchBaseQuery({ baseUrl }),
 	endpoints: (build) => ({
-		getProducts: build.query({
-			query: () => ({ url: 'products' }),
+		getProductsList: build.query({
+			query: (limit = '') => `products?${limit && `_limit=${limit}`}`,
+		}),
+		getProduct: build.query({
+			query: (id) => `products/${id}`,
+		}),
+		updateProduct: build.mutation({
+			query: (body) => ({
+				url: `products/${body.id}`,
+				method: 'PUT',
+				body,
+			}),
 		}),
 	}),
 })
 
-export const { useGetProductsQuery } = productsApi
+export const { useGetProductsListQuery, useGetProductQuery, useUpdateProductMutation } =
+	productsApi
