@@ -12,28 +12,28 @@ import ProductPage from './components/page/product'
 import Develop from './components/page/develop/develop'
 
 function App() {
-  const [search, setSearch] = useState('')
-  const handleSearch = (val) => setSearch(val)
+	const [search, setSearch] = useState('')
+	const handleSearch = (val) => setSearch(val)
 
-  return (
-    <>
-      <Header handleSearch={handleSearch} search={search} />
-      <Routes>
-        <Route path='' element={<Main search={search} />}>
-          <Route path='' element={<ProductsListPage search={search} />} />
-          <Route path='product'>
-            <Route path=':id' element={<ProductPage />} />
-          </Route>
-        </Route>
-        <Route path='login' element={<Login />}>
-          <Route path='' element={<LoginPage />} />
-          <Route path='registrtion' element={<RegistrationPage />} />
-        </Route>
-        <Route path='cart' element={<Cart />} />
-        <Route path='develop' element={<Develop />} />
-      </Routes>
-    </>
-  )
+	return (
+		<>
+			<Header handleSearch={handleSearch} search={search} />
+			<Routes>
+				<Route path='' element={<Main search={search} />}>
+					<Route path='' element={<ProductsListPage search={search} />} />
+					<Route path='product'>
+						<Route path=':id' element={<ProductPage />} />
+					</Route>
+				</Route>
+				<Route path='login' element={<Login />}>
+					<Route path='' element={<LoginPage />} />
+					<Route path='registrtion' element={<RegistrationPage />} />
+				</Route>
+				<Route path='cart' element={<Cart />} />
+				<Route path='develop' element={<Develop />} />
+			</Routes>
+		</>
+	)
 }
 
 export default App

@@ -1,7 +1,7 @@
 import products from './fake.api/products.api'
 
 const API = {
-  products,
+	products,
 }
 
 export default API
