@@ -7,10 +7,18 @@ const baseUrl =
 
 export const productsApi = createApi({
 	reducerPath: 'productsApi',
+	tagTypes: ['Products'],
 	baseQuery: fetchBaseQuery({ baseUrl }),
 	endpoints: (build) => ({
 		getProductsList: build.query({
 			query: (limit = '') => `products?${limit && `_limit=${limit}`}`,
+			providesTags: (result, error, arg) =>
+				result
+					? [
+							...result.map(({ id }) => ({ type: 'Products', id })),
+							{ type: 'Products', id: 'LIST' },
+					  ]
+					: [{ type: 'Products', id: 'LIST' }],
 		}),
 		getProduct: build.query({
 			query: (id) => `products/${id}`,
@@ -21,6 +29,7 @@ export const productsApi = createApi({
 				method: 'PUT',
 				body,
 			}),
+			invalidatesTags: ['Products'],
 		}),
 	}),
 })

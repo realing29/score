@@ -35,7 +35,7 @@ const Develop = () => {
 
 	const updateProducts = async (transform) => {
 		for (const product of products) {
-			catcherUpdateProduct(transform(product))
+			await catcherUpdateProduct(transform(product))
 		}
 	}
 
