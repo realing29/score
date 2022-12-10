@@ -11,7 +11,7 @@ router.get('/', async (req, res) => {
 	}
 })
 
-router.get('/ids', async (req, res) => {
+router.post('/ids', async (req, res) => {
 	const ids = req.body
 	try {
 		const list = await Product.find({ _id: { $in: ids } })

@@ -4,10 +4,10 @@ import { Link } from 'react-router-dom'
 import { addCart } from '../../../store/cart'
 import style from './buttonBuy.module.sass'
 
-const ButtonBuy = ({ id, isInCart }) => {
+const ButtonBuy = ({ _id, isInCart }) => {
 	const dispatch = useDispatch()
 	const handleClick = () => {
-		dispatch(addCart(id))
+		dispatch(addCart(_id))
 	}
 	if (isInCart) {
 		return (
@@ -24,7 +24,7 @@ const ButtonBuy = ({ id, isInCart }) => {
 }
 
 ButtonBuy.propTypes = {
-	id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+	_id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 	isInCart: PropTypes.bool,
 }
 

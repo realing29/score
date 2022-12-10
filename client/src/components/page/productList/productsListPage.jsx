@@ -9,18 +9,19 @@ import style from './product.module.sass'
 const ProductsPage = ({ search }) => {
 	const cart = useSelector(getCartProducts())
 	const { data = [], isLoading, isSuccess, isError } = useGetProductsListQuery()
-
+	// console.log(data)
 	const dataFiltered = search
 		? data.filter((item) => {
 				return new RegExp(search).test(item.name)
 		  })
 		: data
+	// console.log(dataFiltered)
 	return (
 		<div className={style.product_container}>
 			{isLoading && new Array(10).fill(0).map((item, i) => <ProductLoader key={i} />)}
 			{isSuccess &&
 				dataFiltered.map((item) => (
-					<Product {...item} key={item.id} isInCart={Boolean(cart[item.id])} />
+					<Product {...item} key={item._id} isInCart={Boolean(cart[item._id])} />
 				))}
 			{isError && 'Произошла ошибка при загрузке товаров'}
 		</div>

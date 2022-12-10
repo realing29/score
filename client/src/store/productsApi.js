@@ -1,9 +1,8 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import config from '../config.json'
-const { jsonApiEndpoint, productionDBEndpoint } = config
+const { jsonApiEndpoint, productionEndpoint, useJsonDB } = config
 
-const baseUrl =
-	process.env.NODE_ENV === 'development' ? jsonApiEndpoint : productionDBEndpoint
+const baseUrl = process.env.NODE_ENV === useJsonDB ? jsonApiEndpoint : productionEndpoint
 
 export const productsApi = createApi({
 	reducerPath: 'productsApi',
@@ -31,8 +30,19 @@ export const productsApi = createApi({
 			}),
 			invalidatesTags: ['Products'],
 		}),
+		getProductsIds: build.query({
+			query: (ids) => ({
+				url: 'products/ids',
+				method: 'POST',
+				body: ids,
+			}),
+		}),
 	}),
 })
 
-export const { useGetProductsListQuery, useGetProductQuery, useUpdateProductMutation } =
-	productsApi
+export const {
+	useGetProductsListQuery,
+	useGetProductQuery,
+	useUpdateProductMutation,
+	useGetProductsIdsQuery,
+} = productsApi

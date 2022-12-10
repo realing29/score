@@ -2,9 +2,7 @@ import PropTypes from 'prop-types'
 import Stars from './stars'
 import style from './rate.module.sass'
 
-const Rate = ({ rate }) => {
-	const { count, value } = rate
-
+const Rate = ({ value, count }) => {
 	return (
 		<div className={style.product__rate}>
 			<p>
@@ -17,7 +15,8 @@ const Rate = ({ rate }) => {
 }
 
 Rate.propTypes = {
-	rate: PropTypes.object,
+	value: PropTypes.oneOfType([PropTypes.number, PropTypes.bool]),
+	count: PropTypes.oneOfType([PropTypes.number, PropTypes.bool]),
 }
 
 export default Rate
