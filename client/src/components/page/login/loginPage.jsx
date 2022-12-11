@@ -2,8 +2,11 @@ import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import TextField from '../../common/form/textField'
 import * as yup from 'yup'
+import { useDispatch } from 'react-redux'
+import { login } from '../../../store/user'
 
 const LoginPage = () => {
+	const dispatch = useDispatch()
 	const [data, setData] = useState({
 		email: '',
 		password: '',
@@ -40,8 +43,8 @@ const LoginPage = () => {
 
 	const handleSubmit = async () => {
 		const isValid = await validate()
-		console.log(data, errors)
 		if (!isValid) return
+		dispatch(login(data))
 	}
 
 	return (
