@@ -22,6 +22,7 @@ const CartItems = ({ products, onChangeAmount }) => {
 						<button
 							onClick={() => onChangeAmount.decrement(_id)}
 							className={`
+								${'btn_design'} 
 								${style.item_cart__button_ammount} 
 								${style.item_cart__button_ammount__decr}`}
 						>
@@ -37,6 +38,7 @@ const CartItems = ({ products, onChangeAmount }) => {
 						<button
 							onClick={(e) => onChangeAmount.increment(_id)}
 							className={`
+								${'btn_design'} 
 								${style.item_cart__button_ammount} 
 								${style.item_cart__button_ammount__incr}`}
 						>

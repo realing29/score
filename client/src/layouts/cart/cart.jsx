@@ -16,8 +16,6 @@ const Cart = () => {
 	const [mergeProductsAmount, setMergeProductsAmount] = useState({})
 	const [total, setTotal] = useState({ amount: 0, sum: 0 })
 
-	// const [mergeProductsAmount, setMergeProductsAmount] = useState({})
-
 	useEffect(() => {
 		if (!isSuccess) return
 

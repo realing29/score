@@ -7,7 +7,7 @@ const TotalAmount = ({ sum, amount }) => {
 			<h2 className={style.total_container__title}>Итого</h2>
 			<p>Товаров: {amount}</p>
 			<p className={style.total_container__sum}>{sum} р.</p>
-			<button className={style.total_container__buy}>Оформить</button>
+			<button className={style.total_container__buy + ' btn_design'}>Оформить</button>
 		</div>
 	)
 }

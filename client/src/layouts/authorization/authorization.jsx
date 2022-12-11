@@ -4,7 +4,7 @@ import style from './authorization.module.sass'
 
 const Login = () => {
 	return (
-		<div className={style.authLayout}>
+		<div className={style.auth_layout}>
 			<Outlet />
 		</div>
 	)

@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import TextField from '../../common/form/textField'
 
 const LoginPage = () => {
@@ -12,29 +13,31 @@ const LoginPage = () => {
 		setData((prev) => ({ ...prev, [name]: value }))
 	}
 
+	const handleSubmit = () => {
+		console.log(data)
+	}
+
 	return (
-		<div>
+		<>
 			<h1>Авторизация</h1>
-			<form>
-				<TextField
-					label='Логин'
-					value={data.login}
-					name='login'
-					onChange={handleChange}
-				/>
-				<TextField
-					label='Пароль'
-					value={data.password}
-					name='password'
-					onChange={handleChange}
-					type='password'
-				/>
+			<TextField label='Логин' value={data.login} name='login' onChange={handleChange} />
+			<TextField
+				label='Пароль'
+				value={data.password}
+				name='password'
+				onChange={handleChange}
+				type='password'
+			/>
+
+			<label htmlFor='remember'>
 				<input type='checkbox' name='remember' id='remember' />
-				<label htmlFor='remember'>Оставаться в системе</label>
-				<br />
-				<button type='button'>Войти</button>
-			</form>
-		</div>
+				Оставаться в системе
+			</label>
+			<button type='button' className='btn_design' onClick={handleSubmit}>
+				Войти
+			</button>
+			<Link to='registration'>Зарегистрироваться</Link>
+		</>
 	)
 }
 

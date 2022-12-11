@@ -1,5 +1,5 @@
 import './app.sass'
-import { Route, Routes } from 'react-router-dom'
+import { Navigate, Route, Routes } from 'react-router-dom'
 import Main from './layouts/main/main'
 import Login from './layouts/authorization/authorization'
 import Cart from './layouts/cart/cart'
@@ -27,10 +27,12 @@ function App() {
 				</Route>
 				<Route path='login' element={<Login />}>
 					<Route path='' element={<LoginPage />} />
-					<Route path='registrtion' element={<RegistrationPage />} />
+					<Route path='registration' element={<RegistrationPage />} />
 				</Route>
 				<Route path='cart' element={<Cart />} />
+				{/* //!Удалить перед продакшеном */}
 				<Route path='develop' element={<Develop />} />
+				<Route path='*' element={<Navigate to={'/'} />} />
 			</Routes>
 		</>
 	)
