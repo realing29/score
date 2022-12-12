@@ -1,10 +1,19 @@
+$orange: #fda23a
+$gray: #535353
+
+html
+  margin-right: calc(-1 * (100vw - 100%))
+  padding-right: 15px
+  overflow-x: hidden
 body
   background: #f6f6f6
+  color: $gray
+  overflow-y: visible
 
 .btn_design
   border: 1px solid #ddd
   padding: 5px 9px
-  background: #ffc967
+  background: $orange
   color: #3a3a3a
   box-shadow: 1px 1px 1.5px 0.5px #eee
   font-size: 17px
@@ -12,3 +21,7 @@ body
   &:hover
     background-color: #ffe3b0
     cursor: pointer
+a
+  color: $gray
+  &:hover
+    color: $orange

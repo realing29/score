@@ -46,7 +46,7 @@ const CartItems = ({ products, onChangeAmount }) => {
 						</button>
 						<p>{' шт.'}</p>
 						<p>=</p>
-						<p>{+amount * +price} р.</p>
+						<p className={style.item_cart__sum}>{+amount * +price} р.</p>
 					</div>
 				))}
 			</>

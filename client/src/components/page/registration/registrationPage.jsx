@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import TextField from '../../common/form/textField'
 import * as yup from 'yup'
 import { useDispatch } from 'react-redux'
@@ -7,6 +7,7 @@ import { signUp } from '../../../store/user'
 
 const RegistrationPage = () => {
 	const dispatch = useDispatch()
+	const navigate = useNavigate()
 	const [data, setData] = useState({
 		email: '',
 		password: '',
@@ -56,6 +57,7 @@ const RegistrationPage = () => {
 		const isValid = await validate()
 		if (!isValid) return
 		dispatch(signUp(data))
+		navigate('/')
 	}
 
 	return (

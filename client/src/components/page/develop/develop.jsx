@@ -42,12 +42,23 @@ const Develop = () => {
 	const handleUpdateProducts = (transform) => {
 		updateProducts(transform)
 	}
+
+	const addCategory = (product) => {
+		const newProduct = { ...product }
+		newProduct.category = newProduct.catagory
+		delete newProduct.catagory
+		console.log(newProduct)
+		return newProduct
+	}
 	return (
 		<>
 			{isLoading && 'loading...'}
 			{isSuccess && (
 				<div className={style.container}>
-					<button onClick={() => handleUpdateProducts(addRate)}>обновить продукты</button>
+					<button onClick={() => handleUpdateProducts(addRate)}>добавить рейтинг</button>
+					<button onClick={() => handleUpdateProducts(addCategory)}>
+						добавить категории
+					</button>
 					<button onClick={() => handleUpdateProducts(deleteField)}>
 						удалить поле продуктов
 					</button>

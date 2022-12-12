@@ -1,5 +1,4 @@
 import { createAction, createSlice } from '@reduxjs/toolkit'
-import { useNavigate } from 'react-router-dom'
 import authService from '../services/auth.service'
 import localStorageService from '../services/localStorage.service'
 
@@ -20,11 +19,14 @@ const userSlice = createSlice({
 		authRequestSuccess(state, action) {
 			state.entity = action.payload
 		},
+		userDeleted(state, action) {
+			state.entity = {}
+		},
 	},
 })
 
 const { reducer: userReducer, actions } = userSlice
-const { authRequestSuccess } = actions
+const { authRequestSuccess, userDeleted } = actions
 
 const authRequested = createAction('users/authRequested')
 
@@ -54,14 +56,8 @@ export const login = (payload) => async (dispatch) => {
 }
 
 export const logout = () => async (dispatch) => {
-	dispatch(authRequested())
-	try {
-		const navigate = useNavigate()
-		localStorageService.removeAuthData()
-		navigate('/')
-	} catch (error) {
-		console.error(error)
-	}
+	dispatch(userDeleted())
+	localStorageService.removeAuthData()
 }
 
 export const getUser = () => (state) => state.user.entity
