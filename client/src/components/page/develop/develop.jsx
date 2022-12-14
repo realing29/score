@@ -13,7 +13,7 @@ const Develop = () => {
 		try {
 			await updateProduct(body)
 		} catch (error) {
-			console.log(error)
+			console.error(error)
 		}
 	}
 

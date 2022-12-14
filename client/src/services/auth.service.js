@@ -8,14 +8,12 @@ const httpAuth = axios.create({
 
 const authService = {
 	async register(payload) {
-		console.log(payload)
 		const { data } = await httpAuth.post('signUp', payload)
-		console.log(data)
 		return data
 	},
-	async login({ email, password }) {
+	async login({ login, password }) {
 		const { data } = await httpAuth.post('signInWithPassword', {
-			email,
+			login,
 			password,
 		})
 		return data

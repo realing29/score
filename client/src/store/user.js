@@ -35,21 +35,21 @@ export const signUp = (payload) => async (dispatch) => {
 	try {
 		const data = await authService.register(payload)
 		localStorageService.setTokens(data)
-		localStorageService.setUser({ email: payload.email })
-		dispatch(authRequestSuccess({ email: payload.email }))
+		localStorageService.setUser({ login: payload.login, userId: data.userId })
+		dispatch(authRequestSuccess({ login: payload.login, userId: data.userId }))
 	} catch (error) {
 		console.error(error)
 	}
 }
 
 export const login = (payload) => async (dispatch) => {
-	const { email, password } = payload
+	const { login, password } = payload
 	dispatch(authRequested())
 	try {
-		const data = await authService.login({ email, password })
+		const data = await authService.login({ login, password })
 		localStorageService.setTokens(data)
-		localStorageService.setUser({ email: payload.email })
-		dispatch(authRequestSuccess({ email: payload.email }))
+		localStorageService.setUser({ login: payload.login, userId: data.userId })
+		dispatch(authRequestSuccess({ login: payload.login, userId: data.userId }))
 	} catch (error) {
 		console.error(error)
 	}

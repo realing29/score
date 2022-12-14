@@ -42,4 +42,22 @@ router.put('/:_id', async (req, res) => {
 	}
 })
 
+router.put('/rate/:_id', async (req, res) => {
+	const { _id, rate } = req.body
+	try {
+		const product = await Product.findById(_id)
+		const count = product.rate.count ?? 0
+		const value = product.rate.value ?? 0
+
+		const newValue = (value * count + +rate) / (count + 1)
+
+		const result = await Product.findByIdAndUpdate(_id, {
+			rate: { count: count + 1, value: newValue },
+		})
+		res.status(200).send(result)
+	} catch (error) {
+		res.status(500).json({ message: 'На сервере произошла ошибка. Попробуйте позже' })
+	}
+})
+
 module.exports = router

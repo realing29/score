@@ -9,7 +9,7 @@ const RegistrationPage = () => {
 	const dispatch = useDispatch()
 	const navigate = useNavigate()
 	const [data, setData] = useState({
-		email: '',
+		login: '',
 		password: '',
 		repeatPassword: '',
 		confirm: false,
@@ -26,10 +26,7 @@ const RegistrationPage = () => {
 			.string()
 			.test('equal', 'Пароли не совпадают', (value) => value === data.password)
 			.required('Пароль обязателен для заполнения'),
-		email: yup
-			.string()
-			.required('Электронная почта обязательна для заполнения')
-			.email('Email введен не корректно'),
+		login: yup.string().required('Электронная почта обязательна для заполнения'),
 		confirm: yup
 			.boolean()
 			.test('true', 'Вы должны согласиться с правилами', (value) => value === true),
@@ -63,7 +60,7 @@ const RegistrationPage = () => {
 	return (
 		<>
 			<h1>Регистрация</h1>
-			<TextField label='Логин' value={data.email} name='email' onChange={handleChange} />
+			<TextField label='Логин' value={data.login} name='login' onChange={handleChange} />
 			<TextField
 				label='Пароль'
 				value={data.password}

@@ -6,7 +6,7 @@ const Rate = ({ value, count }) => {
 	return (
 		<div className={style.product__rate}>
 			<p>
-				{value}
+				{value ? value.toFixed(1) : value}
 				<Stars value={value} />
 				<sup>{count}</sup>
 			</p>

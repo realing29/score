@@ -10,7 +10,7 @@ import { useNavigate } from 'react-router-dom'
 const Header = ({ handleSearch, search }) => {
 	const dispatch = useDispatch()
 	const navigate = useNavigate()
-	const { email } = useSelector(getUser())
+	const { login } = useSelector(getUser())
 	function handleLogout() {
 		dispatch(logout())
 		navigate('/')
@@ -39,10 +39,10 @@ const Header = ({ handleSearch, search }) => {
 				</ul>
 			</nav>
 			<div className={style.signIn}>
-				{email ? (
+				{login ? (
 					<>
 						<NavLink to='/profile' className={isActive}>
-							{email.split('@')[0]}
+							{login.split('@')[0]}
 						</NavLink>
 						<div className={style.block}>
 							<ProfileIco />

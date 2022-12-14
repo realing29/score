@@ -5,13 +5,13 @@ const User = require('../models/User')
 const tokenService = require('../services/token.service')
 const router = express.Router({ mergeParams: true })
 
-// 1. get data from req (email, password ...)
+// 1. get data from req (login, password ...)
 // 2. check if users already exists
 // 3. hash pasword
 // 4. create user
 // 5. generate tokens
 router.post('/signUp', [
-	check('email', 'Некорректный email').isEmail(),
+	check('login', 'Минимальная длина логина 4 символова').isLength({ min: 4 }),
 	check('password', 'Минимальная длина пароля 8 символов').isLength({ min: 8 }),
 	async (req, res) => {
 		try {
@@ -25,23 +25,22 @@ router.post('/signUp', [
 				})
 			}
 
-			const { email, password } = req.body
+			const { login, password } = req.body
 
-			const existingUser = await User.findOne({ email })
+			const existingUser = await User.findOne({ login })
 
 			if (existingUser) {
 				return res.status(400).json({
 					error: {
-						message: 'EMAIL_EXISTS',
+						message: 'LOGIN_EXISTS',
 						code: 400,
 					},
 				})
 			}
 
 			const hashedPassword = await bcrypt.hash(password, 12)
-
 			const newUser = await User.create({
-				...req.body,
+				login: req.body.login,
 				password: hashedPassword,
 			})
 
@@ -63,7 +62,7 @@ router.post('/signUp', [
 // 4. generate token
 // 5. return data
 router.post('/signInWithPassword', [
-	check('email', 'Email некорректный').normalizeEmail().isEmail(),
+	check('login', 'Логин не может быть пустым').exists(),
 	check('password', 'Пароль не может быть пустым').exists(),
 	async (req, res) => {
 		try {
@@ -77,14 +76,14 @@ router.post('/signInWithPassword', [
 				})
 			}
 
-			const { email, password } = req.body
+			const { login, password } = req.body
 
-			const existingUser = await User.findOne({ email })
+			const existingUser = await User.findOne({ login })
 
 			if (!existingUser) {
 				return res.status(400).send({
 					error: {
-						message: 'EMAIL_NOT_FOUND',
+						message: 'LOGIN_NOT_FOUND',
 						code: 400,
 					},
 				})

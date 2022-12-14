@@ -21,6 +21,13 @@ export const productsApi = createApi({
 		}),
 		getProduct: build.query({
 			query: (id) => `products/${id}`,
+			providesTags: (result, error, arg) =>
+				result
+					? [
+							{ type: 'Products', id: result._id },
+							{ type: 'Products', id: 'LIST' },
+					  ]
+					: [{ type: 'Products', id: 'LIST' }],
 		}),
 		updateProduct: build.mutation({
 			query: (body) => ({
@@ -37,6 +44,14 @@ export const productsApi = createApi({
 				body: ids,
 			}),
 		}),
+		updateProductRate: build.mutation({
+			query: (body) => ({
+				url: `products/rate/${body._id}`,
+				method: 'PUT',
+				body,
+			}),
+			invalidatesTags: ['Products'],
+		}),
 	}),
 })
 
@@ -45,4 +60,5 @@ export const {
 	useGetProductQuery,
 	useUpdateProductMutation,
 	useGetProductsIdsQuery,
+	useUpdateProductRateMutation,
 } = productsApi
