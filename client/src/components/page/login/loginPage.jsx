@@ -16,8 +16,14 @@ const LoginPage = () => {
 	const [errors, setErrors] = useState({})
 
 	const validateShema = yup.object().shape({
-		password: yup.string().required('Пароль обязателен для заполнения'),
-		login: yup.string().required('Электронная почта обязательна для заполнения'),
+		password: yup
+			.string()
+			.required('Пароль обязателен для заполнения')
+			.min(4, 'Минимальная длина 4 символа'),
+		login: yup
+			.string()
+			.required('Логин обязателен для заполнения')
+			.min(4, 'Минимальная длина 4 символа'),
 	})
 
 	const validate = async () => {
@@ -42,20 +48,38 @@ const LoginPage = () => {
 	const handleSubmit = async () => {
 		const isValid = await validate()
 		if (!isValid) return
-		dispatch(login(data))
-		navigate('/')
+		try {
+			await dispatch(login(data))
+			navigate('/')
+		} catch (error) {
+			const { message } = error?.response?.data?.error
+			if (message === 'LOGIN_NOT_FOUND') {
+				setErrors({ login: 'Логин не найден' })
+			} else if (message === 'INVALID_PASSWORD') {
+				setErrors({ password: 'Неправильный пароль' })
+			} else {
+				console.error(error)
+			}
+		}
 	}
 
 	return (
 		<>
 			<h1>Авторизация</h1>
-			<TextField label='Логин' value={data.login} name='login' onChange={handleChange} />
+			<TextField
+				label='Логин'
+				value={data.login}
+				name='login'
+				onChange={handleChange}
+				error={errors.login}
+			/>
 			<TextField
 				label='Пароль'
 				value={data.password}
 				name='password'
 				onChange={handleChange}
 				type='password'
+				error={errors.password}
 			/>
 
 			<label htmlFor='remember'>

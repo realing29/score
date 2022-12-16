@@ -51,7 +51,7 @@ export const login = (payload) => async (dispatch) => {
 		localStorageService.setUser({ login: payload.login, userId: data.userId })
 		dispatch(authRequestSuccess({ login: payload.login, userId: data.userId }))
 	} catch (error) {
-		console.error(error)
+		throw error
 	}
 }
 
