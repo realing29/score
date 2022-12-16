@@ -1,32 +1,39 @@
-import { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { useSearchParams } from 'react-router-dom'
+import {
+	categoryChange,
+	countOnPageChange,
+	getCategory,
+	getCountOnPage,
+	getPageNumber,
+	getSort,
+	pageNumberChange,
+	sortChange,
+} from '../../../store/filter'
 import CheckBoxField from '../../common/form/checkBoxField'
 import RadioField from '../../common/form/radioField'
+import SelectField from '../../common/form/selectField'
 import style from './filter.module.sass'
 
-const Filters = ({ className, filter, setFilter }) => {
-	// const [filter, setFilter] = useState({
-	// 	category: {
-	// 		инструменты: false,
-	// 		'для уборки': false,
-	// 		'для кухни': false,
-	// 		другое: false,
-	// 	},
-	// 	sort: '',
-	// })
+const Filters = ({ className }) => {
+	const dispatch = useDispatch()
+	const [, setSearchParams] = useSearchParams()
+	const pageNumber = useSelector(getPageNumber())
+	const category = useSelector(getCategory())
 
-	const handleChange = (target) => {
-		setFilter((prevState) => ({
-			...prevState,
-			[target.name]: target.value,
-		}))
+	const handleChangeSort = (payload) => {
+		dispatch(sortChange(payload.value))
+	}
+	const handleCheckBoxField = (payload) => {
+		dispatch(categoryChange(payload))
+		dispatch(pageNumberChange(1))
+	}
+	const handleChangeCountOnPage = (payload) => {
+		dispatch(countOnPageChange(payload))
+		dispatch(pageNumberChange(1))
 	}
 
-	const handleCheckBoxField = ({ name, value, checked }) => {
-		setFilter((prevState) => ({
-			...prevState,
-			[name]: { ...prevState[name], [value]: checked },
-		}))
-	}
+	const sort = useSelector(getSort())
 
 	const radioVariables = [
 		{ name: 'сначала популярные', value: 'сначала популярные' },
@@ -34,14 +41,27 @@ const Filters = ({ className, filter, setFilter }) => {
 		{ name: 'сначала дорогие', value: 'сначала дорогие' },
 	]
 
+	const countOnPage = useSelector(getCountOnPage())
+
 	return (
 		<form className={`${className} ${style.filter}`}>
+			<SelectField
+				name='countOnPage'
+				value={countOnPage}
+				label='Количество товаров на странице:'
+				onChange={handleChangeCountOnPage}
+				options={[
+					{ value: 5, label: 5 },
+					{ value: 10, label: 10 },
+					{ value: 20, label: 20 },
+				]}
+			/>
 			<h2>По категории</h2>
 			<CheckBoxField
 				name='category'
 				value='инструменты'
 				onChange={handleCheckBoxField}
-				checked={filter.category['инструменты']}
+				checked={category['инструменты']}
 			>
 				инструменты
 			</CheckBoxField>
@@ -49,7 +69,7 @@ const Filters = ({ className, filter, setFilter }) => {
 				name='category'
 				value='для уборки'
 				onChange={handleCheckBoxField}
-				checked={filter.category['для уборки']}
+				checked={category['для уборки']}
 			>
 				для уборки
 			</CheckBoxField>
@@ -57,7 +77,7 @@ const Filters = ({ className, filter, setFilter }) => {
 				name='category'
 				value='для кухни'
 				onChange={handleCheckBoxField}
-				checked={filter.category['для кухни']}
+				checked={category['для кухни']}
 			>
 				для кухни
 			</CheckBoxField>
@@ -65,7 +85,7 @@ const Filters = ({ className, filter, setFilter }) => {
 				name='category'
 				value='другое'
 				onChange={handleCheckBoxField}
-				checked={filter.category['другое']}
+				checked={category['другое']}
 			>
 				другое
 			</CheckBoxField>
@@ -73,8 +93,8 @@ const Filters = ({ className, filter, setFilter }) => {
 			<RadioField
 				options={radioVariables}
 				name='sort'
-				value={filter.sort}
-				onChange={handleChange}
+				value={sort}
+				onChange={handleChangeSort}
 			/>
 		</form>
 	)

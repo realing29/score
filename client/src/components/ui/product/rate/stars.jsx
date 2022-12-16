@@ -13,7 +13,7 @@ const Stars = ({ value }) => {
 	const classes = []
 	while (classes.length < 5) {
 		value--
-		if (value > 0) {
+		if (value >= 0) {
 			classes.push(star.full)
 		} else if (value > -0.5) {
 			classes.push(star.half)

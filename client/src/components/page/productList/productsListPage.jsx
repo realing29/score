@@ -1,18 +1,30 @@
 import PropTypes from 'prop-types'
-import { useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { getCartProducts } from '../../../store/cart'
+import {
+	getCategory,
+	getCountOnPage,
+	getPageNumber,
+	getSearch,
+	getSort,
+	pageNumberChange,
+} from '../../../store/filter'
 import { useGetProductsListQuery } from '../../../store/productsApi'
+import { paginate } from '../../../utils/paginate'
+import Pagination from '../../common/pagination'
 import Product from '../../ui/product/product'
 import ProductLoader from '../../ui/product/productLoader/productLoader'
 import Filters from './filters'
 import style from './product.module.sass'
 
-const ProductsPage = ({ search }) => {
+const ProductsPage = () => {
+	const dispatch = useDispatch()
+
 	const cart = useSelector(getCartProducts())
 	const { data = [], isLoading, isSuccess, isError } = useGetProductsListQuery()
 
 	// поиск по названию
+	const search = useSelector(getSearch())
 	let dataFiltered = search
 		? data.filter((item) => {
 				return new RegExp(search).test(item.name)
@@ -20,17 +32,8 @@ const ProductsPage = ({ search }) => {
 		: data
 
 	// фильтр по категории
-	const [filter, setFilter] = useState({
-		category: {
-			инструменты: false,
-			'для уборки': false,
-			'для кухни': false,
-			другое: false,
-		},
-		sort: 'сначала популярные',
-	})
-
-	let useCategory = Object.entries(filter.category).reduce((acc, [key, val]) => {
+	const category = useSelector(getCategory())
+	let useCategory = Object.entries(category).reduce((acc, [key, val]) => {
 		if (val) {
 			acc.push(key)
 		}
@@ -47,25 +50,44 @@ const ProductsPage = ({ search }) => {
 	}
 
 	// сортировка
-	if (filter.sort === 'сначала не дорогие') {
+	const sort = useSelector(getSort())
+	if (sort === 'сначала не дорогие') {
 		dataFiltered = [...dataFiltered].sort((a, b) => +a.price - +b.price)
 	}
-	if (filter.sort === 'сначала дорогие') {
+	if (sort === 'сначала дорогие') {
 		dataFiltered = [...dataFiltered].sort((a, b) => +b.price - +a.price)
 	}
-	if (filter.sort === 'сначала популярные') {
+	if (sort === 'сначала популярные') {
 		dataFiltered = [...dataFiltered].sort((a, b) => +b.rate.value - +a.rate.value)
 	}
 
+	// Пагинация
+	const pageNumber = useSelector(getPageNumber())
+	const handleChangePage = (pageNumber) => {
+		dispatch(pageNumberChange(pageNumber))
+		window.scrollTo(0, 0)
+	}
+	const countOnPage = useSelector(getCountOnPage())
+	const dataPaginate = paginate(dataFiltered, pageNumber, countOnPage)
+
 	return (
 		<div className={style.products_page_block}>
-			<Filters className={style.filters} filter={filter} setFilter={setFilter} />
+			<Filters className={style.filters} handleChangePage={handleChangePage} />
 			<div className={style.product_container}>
 				{isLoading && new Array(10).fill(0).map((item, i) => <ProductLoader key={i} />)}
-				{isSuccess &&
-					dataFiltered.map((item) => (
-						<Product {...item} key={item._id} isInCart={Boolean(cart[item._id])} />
-					))}
+				{isSuccess && (
+					<>
+						{dataPaginate.map((item) => (
+							<Product {...item} key={item._id} isInCart={Boolean(cart[item._id])} />
+						))}
+						<Pagination
+							itemsCount={dataFiltered.length}
+							pageSize={+countOnPage}
+							onPageChange={handleChangePage}
+							currentPage={pageNumber}
+						/>
+					</>
+				)}
 				{isError && 'Произошла ошибка при загрузке товаров'}
 			</div>
 		</div>

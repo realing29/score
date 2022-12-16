@@ -12,15 +12,12 @@ import ProductPage from './components/page/product'
 import Develop from './components/page/develop/develop'
 
 function App() {
-	const [search, setSearch] = useState('')
-	const handleSearch = (val) => setSearch(val)
-
 	return (
 		<>
-			<Header handleSearch={handleSearch} search={search} />
+			<Header />
 			<Routes>
-				<Route path='' element={<Main search={search} />}>
-					<Route path='' element={<ProductsListPage search={search} />} />
+				<Route path='' element={<Main />}>
+					<Route path='' element={<ProductsListPage />} />
 					<Route path='product'>
 						<Route path=':id' element={<ProductPage />} />
 					</Route>
