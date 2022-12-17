@@ -4,12 +4,12 @@ import Main from './layouts/main/main'
 import Login from './layouts/authorization/authorization'
 import Cart from './layouts/cart/cart'
 import Header from './components/ui/header'
-import { useState } from 'react'
 import LoginPage from './components/page/login'
 import RegistrationPage from './components/page/registration'
 import ProductsListPage from './components/page/productList'
 import ProductPage from './components/page/product'
 import Develop from './components/page/develop/develop'
+import Profile from './components/page/profile'
 
 function App() {
 	return (
@@ -27,6 +27,7 @@ function App() {
 					<Route path='registration' element={<RegistrationPage />} />
 				</Route>
 				<Route path='cart' element={<Cart />} />
+				<Route path='profile' element={<Profile />} />
 				{/* //!Удалить перед продакшеном */}
 				<Route path='develop' element={<Develop />} />
 				<Route path='*' element={<Navigate to={'/'} />} />

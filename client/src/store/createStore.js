@@ -5,6 +5,7 @@ import { productsApi } from './productsApi'
 import { commentsApi } from './commentsApi'
 import userReducer from './user'
 import filterReducer from './filter'
+import { userApi } from './userApi'
 
 const rootReducer = combineReducers({
 	cart: cartReducer,
@@ -13,12 +14,17 @@ const rootReducer = combineReducers({
 	filter: filterReducer,
 	[commentsApi.reducerPath]: commentsApi.reducer,
 	[productsApi.reducerPath]: productsApi.reducer,
+	[userApi.reducerPath]: userApi.reducer,
 })
 
 export default function createStore() {
 	return configureStore({
 		reducer: rootReducer,
 		middleware: (getDefaultMiddleware) =>
-			getDefaultMiddleware().concat(productsApi.middleware, commentsApi.middleware),
+			getDefaultMiddleware().concat(
+				productsApi.middleware,
+				commentsApi.middleware,
+				userApi.middleware,
+			),
 	})
 }

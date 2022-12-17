@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux'
-import { useParams } from 'react-router-dom'
+import { Link, useLocation, useParams } from 'react-router-dom'
 import { getCartProducts } from '../../../store/cart'
 import { useGetProductQuery } from '../../../store/productsApi'
 import { getUser } from '../../../store/user'
@@ -15,6 +15,7 @@ const ProductPage = () => {
 	const cart = useSelector(getCartProducts())
 	const user = useSelector(getUser())
 	const isUser = Boolean(Object.keys(user).length)
+	const location = useLocation()
 
 	return (
 		<>
@@ -33,7 +34,18 @@ const ProductPage = () => {
 						</div>
 					</div>
 					<div className={style.comment_list_container}>
-						{isUser && <ProductAddComment />}
+						{isUser ? (
+							<ProductAddComment />
+						) : (
+							<div className={style.comment_list_container__is_not_auth}>
+								<h2>
+									<Link to='/login' state={{ from: location }}>
+										Авторизуйтесь
+									</Link>{' '}
+									что бы оставлять комментарии
+								</h2>
+							</div>
+						)}
 						<CommentList />
 					</div>
 				</div>

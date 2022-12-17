@@ -12,7 +12,6 @@ const Cart = () => {
 
 	const ids = Object.keys(cart)
 	const { data: products, isLoading, isSuccess, isError } = useGetProductsIdsQuery(ids)
-
 	const [mergeProductsAmount, setMergeProductsAmount] = useState({})
 	const [total, setTotal] = useState({ amount: 0, sum: 0 })
 
@@ -36,7 +35,6 @@ const Cart = () => {
 		if (!isSuccess) return
 
 		const newMergeProductsAmount = {}
-
 		products.forEach((product) => {
 			if (cart[product._id]) {
 				newMergeProductsAmount[product._id] = {
@@ -46,8 +44,8 @@ const Cart = () => {
 			} else {
 				delete newMergeProductsAmount[product._id]
 			}
-			setMergeProductsAmount(newMergeProductsAmount)
 		})
+		setMergeProductsAmount(newMergeProductsAmount)
 	}, [cart])
 
 	useEffect(() => {

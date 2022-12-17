@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'
 import { useState } from 'react'
 import style from './textField.module.sass'
 
-const TextField = ({ label, type, name, value, onChange, error, className }) => {
+const TextField = ({ label, type, name, value, onChange, error, className, ...rest }) => {
 	const [showPassword, setShowPassword] = useState(false)
 
 	const handleChange = ({ target }) => {
@@ -11,6 +11,8 @@ const TextField = ({ label, type, name, value, onChange, error, className }) => 
 	const toggleShowPassword = () => {
 		setShowPassword((prevState) => !prevState)
 	}
+	const inputErrorClass = error ? ' ' + style.text_field__input__invalid : ''
+
 	return (
 		<div className={`${style.text_field} ${className}`}>
 			<label htmlFor={name}>{label}</label>
@@ -21,19 +23,28 @@ const TextField = ({ label, type, name, value, onChange, error, className }) => 
 					id={name}
 					value={value}
 					onChange={handleChange}
-					className={style.text_field__input}
+					className={style.text_field__input + inputErrorClass}
+					{...rest}
 				/>
 				{type === 'password' && (
 					<button
-						className='btn btn-outline-secondary'
+						className={style.text_field__show_btn}
 						type='button'
 						onClick={toggleShowPassword}
 					>
-						<i className={'bi bi-eye' + (showPassword ? '-slash' : '')}>&#128065;</i>
+						<img
+							src={
+								showPassword
+									? '/assets/eye_show_filled_icon_200617.png'
+									: '/assets/eye_show_regular_icon_203603.png'
+							}
+							alt='&#128065;'
+							className={style.text_field__show_img}
+						/>
 					</button>
 				)}
 			</div>
-			{error && <div className='invalid-feedback'>{error}</div>}
+			{error && <div className={style.text_field__invalid_feedback}>{error}</div>}
 		</div>
 	)
 }

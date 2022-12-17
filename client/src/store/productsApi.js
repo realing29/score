@@ -1,8 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import config from '../config.json'
 const { jsonApiEndpoint, productionEndpoint, useJsonDB } = config
-
-const baseUrl = process.env.NODE_ENV === useJsonDB ? jsonApiEndpoint : productionEndpoint
+const baseUrl = useJsonDB ? jsonApiEndpoint : productionEndpoint
 
 export const productsApi = createApi({
 	reducerPath: 'productsApi',

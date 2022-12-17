@@ -35,7 +35,7 @@ router.put('/:_id', async (req, res) => {
 	const id = req.params._id
 	const newDataOfProduct = req.body
 	try {
-		const result = await Product.findByIdAndUpdate(id, newDataOfProduct)
+		const { result } = await Product.findByIdAndUpdate(id, newDataOfProduct)
 		res.status(200).send(result)
 	} catch (error) {
 		res.status(500).json({ message: 'На сервере произошла ошибка. Попробуйте позже' })

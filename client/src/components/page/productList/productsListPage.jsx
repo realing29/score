@@ -27,7 +27,7 @@ const ProductsPage = () => {
 	const search = useSelector(getSearch())
 	let dataFiltered = search
 		? data.filter((item) => {
-				return new RegExp(search).test(item.name)
+				return new RegExp(search, 'i').test(item.name)
 		  })
 		: data
 

@@ -12,7 +12,6 @@ const CommentList = () => {
 	if (isSuccess) {
 		comments = [...data].sort((a, b) => new Date(b.create_at) - new Date(a.create_at))
 	}
-	console.log(comments)
 
 	return (
 		<div className={style.comment_list}>

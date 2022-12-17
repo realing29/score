@@ -1,13 +1,18 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import config from '../config.json'
+import headersSetAuth from '../utils/headersSetAuth'
 const { jsonApiEndpoint, productionEndpoint, useJsonDB } = config
 
 const baseUrl = process.env.NODE_ENV === useJsonDB ? jsonApiEndpoint : productionEndpoint
 
 export const commentsApi = createApi({
 	reducerPath: 'commentsApi',
+
 	tagTypes: ['Comments'],
-	baseQuery: fetchBaseQuery({ baseUrl }),
+	baseQuery: fetchBaseQuery({
+		baseUrl,
+		prepareHeaders: headersSetAuth,
+	}),
 	endpoints: (build) => ({
 		getCommentList: build.query({
 			query: (productId = '') => `comments/${productId}`,

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import TextField from '../../common/form/textField'
 import * as yup from 'yup'
 import { useDispatch } from 'react-redux'
@@ -8,6 +8,7 @@ import { login } from '../../../store/user'
 const LoginPage = () => {
 	const dispatch = useDispatch()
 	const navigate = useNavigate()
+	const location = useLocation()
 	const [data, setData] = useState({
 		login: '',
 		password: '',
@@ -45,16 +46,18 @@ const LoginPage = () => {
 		validate()
 	}, [data])
 
+	const redirect = location.state ? location?.state?.from?.pathname : '/'
+
 	const handleSubmit = async () => {
 		const isValid = await validate()
 		if (!isValid) return
 		try {
 			await dispatch(login(data))
-			navigate('/')
+			navigate(redirect)
 		} catch (error) {
 			const { message } = error?.response?.data?.error
 			if (message === 'LOGIN_NOT_FOUND') {
-				setErrors({ login: 'Логин не найден' })
+				setErrors({ login: 'Пользователя с таким логином не существует' })
 			} else if (message === 'INVALID_PASSWORD') {
 				setErrors({ password: 'Неправильный пароль' })
 			} else {
@@ -72,6 +75,7 @@ const LoginPage = () => {
 				name='login'
 				onChange={handleChange}
 				error={errors.login}
+				autoFocus
 			/>
 			<TextField
 				label='Пароль'
@@ -98,7 +102,12 @@ const LoginPage = () => {
 			<button type='button' className='btn_design' onClick={handleSubmit}>
 				Войти
 			</button>
-			<Link to='registration'>Зарегистрироваться</Link>
+			<Link
+				to='registration'
+				state={location.state ? { from: location.state.from } : null}
+			>
+				Зарегистрироваться
+			</Link>
 		</>
 	)
 }

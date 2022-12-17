@@ -2,9 +2,11 @@ import PropTypes from 'prop-types'
 import style from './cartItems.module.sass'
 
 const CartItems = ({ products, onChangeAmount }) => {
-	const handleChangeAmount = (e, id) => {
-		if (e.target.value >= 0) {
-			onChangeAmount.set(id, e.target.value)
+	const handleChangeAmount = (value, id) => {
+		if (value === '') {
+			onChangeAmount.set(id, 1)
+		} else if (value >= 0) {
+			onChangeAmount.set(id, value)
 		}
 	}
 	const newProducts = Object.values(products)
@@ -33,7 +35,7 @@ const CartItems = ({ products, onChangeAmount }) => {
 							type='text'
 							value={amount}
 							step='1'
-							onChange={(e) => handleChangeAmount(e, _id)}
+							onChange={(e) => handleChangeAmount(e.target.value, _id)}
 						/>
 						<button
 							onClick={(e) => onChangeAmount.increment(_id)}
@@ -47,6 +49,12 @@ const CartItems = ({ products, onChangeAmount }) => {
 						<p>{' шт.'}</p>
 						<p>=</p>
 						<p className={style.item_cart__sum}>{+amount * +price} р.</p>
+						<button
+							className={style.item_cart__button_delete}
+							onClick={() => handleChangeAmount(0, _id)}
+						>
+							+
+						</button>
 					</div>
 				))}
 			</>
