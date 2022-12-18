@@ -1,12 +1,16 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import config from '../config.json'
+import headersSetAuth from '../utils/headersSetAuth'
 const { jsonApiEndpoint, productionEndpoint, useJsonDB } = config
 const baseUrl = useJsonDB ? jsonApiEndpoint : productionEndpoint
 
 export const productsApi = createApi({
 	reducerPath: 'productsApi',
-	tagTypes: ['Products'],
-	baseQuery: fetchBaseQuery({ baseUrl }),
+	tagTypes: ['Products', 'Comments'],
+	baseQuery: fetchBaseQuery({
+		baseUrl,
+		prepareHeaders: headersSetAuth,
+	}),
 	endpoints: (build) => ({
 		getProductsList: build.query({
 			query: (limit = '') => `products?${limit && `_limit=${limit}`}`,
@@ -20,13 +24,9 @@ export const productsApi = createApi({
 		}),
 		getProduct: build.query({
 			query: (id) => `products/${id}`,
-			providesTags: (result, error, arg) =>
-				result
-					? [
-							{ type: 'Products', id: result._id },
-							{ type: 'Products', id: 'LIST' },
-					  ]
-					: [{ type: 'Products', id: 'LIST' }],
+			providesTags: (result, error, arg) => {
+				return [{ type: 'Products', id: 'LIST' }]
+			},
 		}),
 		updateProduct: build.mutation({
 			query: (body) => ({

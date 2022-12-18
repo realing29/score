@@ -2,9 +2,10 @@ $orange: #fda23a
 $gray: #535353
 
 html
-  margin-right: calc(-1 * (100vw - 100%))
-  padding-right: 15px
-  overflow-x: hidden
+  @media screen and (min-width: 767px)
+    margin-right: calc(-1 * (100vw - 100%))
+    padding-right: 15px
+    overflow-x: hidden
 body
   background: #f6f6f6
   color: $gray
@@ -25,3 +26,5 @@ a
   color: $gray
   &:hover
     color: $orange
+ul
+  padding-left: 0

@@ -1,6 +1,12 @@
 .filter
   display: flex
   flex-direction: column
-  padding: 5px 5px 10px
-  flex-basis: 200px
+  padding: 2%
+  flex-basis: 230px
   background: #fff
+  @media screen and (max-width: 1010px)
+    flex-direction: row
+    flex-basis: 100%
+    flex-wrap: wrap
+    gap: 15px
+    justify-content: space-around

@@ -60,6 +60,12 @@ export const logout = () => async (dispatch) => {
 	localStorageService.removeAuthData()
 }
 
+export const userUpdateState = (payload) => async (dispatch) => {
+	console.log(payload)
+	localStorageService.setUser({ login: payload.login, userId: payload._id })
+	dispatch(authRequestSuccess({ login: payload.login, userId: payload._id }))
+}
+
 export const getUser = () => (state) => state.user.entity
 
 export default userReducer

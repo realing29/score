@@ -8,6 +8,7 @@ import CommentList from '../../ui/commentList'
 import Rate from '../../ui/product/rate/rate'
 import ProductAddComment from '../../ui/productAddComment/productAddComment'
 import style from './productPage.module.sass'
+import ProductPageLoader from './productPageLoader'
 
 const ProductPage = () => {
 	const { id } = useParams()
@@ -50,7 +51,7 @@ const ProductPage = () => {
 					</div>
 				</div>
 			)}
-			{isLoading && 'Loading...'}
+			{isLoading && <ProductPageLoader />}
 			{isError && 'Error... '}
 		</>
 	)

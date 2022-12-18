@@ -3,7 +3,12 @@
   flex-wrap: wrap
   justify-content: space-between
   background: #fff
+  align-content: stretch
+  @media screen and (max-width: 760px)
+    justify-content: space-around
 
+  & > *
+    height: 82px
 .nav
   display: flex
 
@@ -21,7 +26,6 @@
 .signIn a
   display: inline-block
   text-decoration: none
-  height: 50px
   margin-right: 10px
   line-height: 83px
   text-align: center

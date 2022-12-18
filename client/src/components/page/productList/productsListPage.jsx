@@ -74,7 +74,7 @@ const ProductsPage = () => {
 		<div className={style.products_page_block}>
 			<Filters className={style.filters} handleChangePage={handleChangePage} />
 			<div className={style.product_container}>
-				{isLoading && new Array(10).fill(0).map((item, i) => <ProductLoader key={i} />)}
+				{isLoading && new Array(5).fill(0).map((item, i) => <ProductLoader key={i} />)}
 				{isSuccess && (
 					<>
 						{dataPaginate.map((item) => (

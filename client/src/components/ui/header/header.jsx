@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types'
-import { NavLink } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import Search from '../search'
 import style from './header.module.sass'
 import { useDispatch, useSelector } from 'react-redux'
@@ -21,7 +21,9 @@ const Header = ({ handleSearch, search }) => {
 	return (
 		<div className={style.headerContainer}>
 			<div className={style.logo_container}>
-				<img src='/logo.jpg' alt='logo' />
+				<Link to='/'>
+					<img src='/logo.jpg' alt='logo' />
+				</Link>
 			</div>
 			<Search handleSearch={handleSearch} search={search} />
 			<nav>

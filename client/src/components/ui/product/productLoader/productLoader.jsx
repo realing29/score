@@ -6,7 +6,6 @@ const ProductLoader = (props) => {
 		<div className={style.product}>
 			<ContentLoader
 				width={780}
-				height={203}
 				viewBox='0 0 780 203'
 				backgroundColor='#f5f5f5'
 				foregroundColor='#dbdbdb'

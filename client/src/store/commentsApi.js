@@ -1,18 +1,6 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import config from '../config.json'
-import headersSetAuth from '../utils/headersSetAuth'
-const { jsonApiEndpoint, productionEndpoint, useJsonDB } = config
+import { productsApi } from './productsApi'
 
-const baseUrl = process.env.NODE_ENV === useJsonDB ? jsonApiEndpoint : productionEndpoint
-
-export const commentsApi = createApi({
-	reducerPath: 'commentsApi',
-
-	tagTypes: ['Comments'],
-	baseQuery: fetchBaseQuery({
-		baseUrl,
-		prepareHeaders: headersSetAuth,
-	}),
+export const commentsApi = productsApi.injectEndpoints({
 	endpoints: (build) => ({
 		getCommentList: build.query({
 			query: (productId = '') => `comments/${productId}`,
@@ -32,7 +20,18 @@ export const commentsApi = createApi({
 			}),
 			invalidatesTags: [{ type: 'Comments', id: 'LIST' }],
 		}),
+		delteComment: build.mutation({
+			query: (id) => ({
+				url: `comments/${id}`,
+				method: 'delete',
+			}),
+			invalidatesTags: [
+				{ type: 'Comments', id: 'LIST' },
+				{ type: 'Products', id: 'LIST' },
+			],
+		}),
 	}),
 })
 
-export const { useGetCommentListQuery, useAddCommentMutation } = commentsApi
+export const { useGetCommentListQuery, useAddCommentMutation, useDelteCommentMutation } =
+	commentsApi

@@ -1,12 +1,26 @@
 import { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
-import { getUser } from '../../../store/user'
+import { useDispatch, useSelector } from 'react-redux'
+import { useLocation, useNavigate } from 'react-router-dom'
+import { getUser, userUpdateState } from '../../../store/user'
 import { useGetUserByIdQuery, useUpdateUserMutation } from '../../../store/userApi'
 import TextField from '../../common/form/textField'
 import style from './profile.module.sass'
 
 const Profile = () => {
+	const dispatch = useDispatch()
 	const user = useSelector(getUser())
+	const navigate = useNavigate()
+	const location = useLocation()
+
+	useEffect(() => {
+		const isLoggedIn = Boolean(Object.keys(user).length)
+		if (!isLoggedIn) {
+			navigate('/login', {
+				state: { from: location },
+			})
+		}
+	}, [])
+
 	const [isEdit, setEdit] = useState(false)
 	const [newUserData, setNewUserData] = useState({
 		_id: '',
@@ -30,11 +44,15 @@ const Profile = () => {
 	useEffect(() => {
 		if (updateUserResult?.error?.data?.message === 'Duplicate login') {
 			setError({ login: 'Логин уже занят' })
+			setEdit(true)
+		} else if (updateUserResult?.isSuccess) {
+			setEdit(false)
+			setError({})
+			dispatch(userUpdateState(newUserData))
 		}
 	}, [updateUserResult])
 
 	const handleSubmit = async () => {
-		setEdit(false)
 		updateUser(newUserData)
 	}
 
