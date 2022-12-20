@@ -46,19 +46,6 @@ const Filters = ({ className }) => {
 	return (
 		<form className={`${className} ${style.filter}`}>
 			<div>
-				<h2>Количество товаров на странице</h2>
-				<SelectField
-					name='countOnPage'
-					value={countOnPage}
-					onChange={handleChangeCountOnPage}
-					options={[
-						{ value: 5, label: 5 },
-						{ value: 10, label: 10 },
-						{ value: 20, label: 20 },
-					]}
-				/>
-			</div>
-			<div>
 				<h2>По категории</h2>
 				<CheckBoxField
 					name='category'
@@ -100,6 +87,19 @@ const Filters = ({ className }) => {
 					name='sort'
 					value={sort}
 					onChange={handleChangeSort}
+				/>
+			</div>
+			<div>
+				<h2>Отображать на странице</h2>
+				<SelectField
+					name='countOnPage'
+					value={countOnPage}
+					onChange={handleChangeCountOnPage}
+					options={[
+						{ value: 5, label: 5 },
+						{ value: 10, label: 10 },
+						{ value: 20, label: 20 },
+					]}
 				/>
 			</div>
 		</form>

@@ -5,6 +5,7 @@ import { getUser, userUpdateState } from '../../../store/user'
 import { useGetUserByIdQuery, useUpdateUserMutation } from '../../../store/userApi'
 import TextField from '../../common/form/textField'
 import style from './profile.module.sass'
+import ProfileLoader from './profileLoader'
 
 const Profile = () => {
 	const dispatch = useDispatch()
@@ -108,8 +109,7 @@ const Profile = () => {
 					/>
 				</>
 			)}
-			{isLoading && 'Загрузка'}
-
+			{isLoading && <ProfileLoader count={5} />}
 			<div className={style.profile__button_container}>
 				{isEdit ? (
 					<>

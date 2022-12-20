@@ -5,6 +5,7 @@ import { changeCartProductAmount, getCartProducts } from '../../store/cart'
 import { useDispatch, useSelector } from 'react-redux'
 import { useGetProductsIdsQuery } from '../../store/productsApi'
 import { useEffect, useState } from 'react'
+import CartLoader from './cartLoader'
 
 const Cart = () => {
 	const dispatch = useDispatch()
@@ -80,12 +81,14 @@ const Cart = () => {
 		<div className={style.cart_container}>
 			<h1>Корзина</h1>
 			{isSuccess && (
-				<CartItems products={mergeProductsAmount} onChangeAmount={handleAmountChange} />
+				<>
+					<CartItems products={mergeProductsAmount} onChangeAmount={handleAmountChange} />
+					<TotalAmount {...total} />
+				</>
 			)}
+			{isLoading && <CartLoader />}
 			{/* // todo */}
-			{isLoading && 'Загрузка...'}
 			{isError && 'Произошла ошибка при загрузке данных...'}
-			<TotalAmount {...total} />
 		</div>
 	)
 }

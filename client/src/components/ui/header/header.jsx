@@ -46,7 +46,7 @@ const Header = ({ handleSearch, search }) => {
 						<NavLink to='/profile' className={isActive}>
 							{login.split('@')[0]}
 						</NavLink>
-						<div className={style.block}>
+						<div className={style.block} onClick={() => navigate('/profile')}>
 							<ProfileIco />
 						</div>
 						<div className={style.block}>
