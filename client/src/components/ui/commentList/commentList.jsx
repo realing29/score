@@ -1,5 +1,6 @@
 import { useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
+import useErrorToastify from '../../../hooks/useErrorToastify'
 import {
 	useDelteCommentMutation,
 	useGetCommentListQuery,
@@ -21,7 +22,8 @@ const CommentList = () => {
 		comments = [...data].sort((a, b) => new Date(b.create_at) - new Date(a.create_at))
 	}
 
-	const [commentDelete] = useDelteCommentMutation()
+	const [commentDelete, status] = useDelteCommentMutation()
+	useErrorToastify(status.isError)
 
 	return (
 		<div className={style.comment_list}>

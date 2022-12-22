@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useLocation, useNavigate } from 'react-router-dom'
+import useErrorToastify from '../../../hooks/useErrorToastify'
 import { getUser, userUpdateState } from '../../../store/user'
 import { useGetUserByIdQuery, useUpdateUserMutation } from '../../../store/userApi'
 import TextField from '../../common/form/textField'
 import style from './profile.module.sass'
 import ProfileLoader from './profileLoader'
+import * as yup from 'yup'
 
 const Profile = () => {
 	const dispatch = useDispatch()
@@ -31,7 +33,31 @@ const Profile = () => {
 		phone: '',
 	})
 	const { data, isSuccess, isLoading } = useGetUserByIdQuery(user.userId)
-	const [error, setError] = useState({ login: null })
+
+	const [error, setError] = useState({ login: null, phone: null, email: null })
+	const isErorrValidate = Boolean(Object.keys(error).length)
+	const validateShema = yup.object().shape({
+		phone: yup
+			.string()
+			.matches(/^(\+7|8)\d{10}$/, 'укажите мобильный телефон, в формате - +7/8*'),
+		email: yup.string().email('укажите e-mail, в формате - *@*.*'),
+	})
+
+	const validate = async () => {
+		try {
+			await validateShema.validate(newUserData)
+			setError({})
+			return true
+		} catch (err) {
+			setError({ [err.path]: err.message })
+			return false
+		}
+	}
+	useEffect(() => {
+		if (!isSuccess) return
+		validate()
+	}, [newUserData])
+
 	const [updateUser, updateUserResult] = useUpdateUserMutation()
 
 	useEffect(() => {
@@ -54,12 +80,18 @@ const Profile = () => {
 	}, [updateUserResult])
 
 	const handleSubmit = async () => {
+		const isValid = await validate()
+		if (!isValid) return
 		updateUser(newUserData)
 	}
 
 	const handleChange = ({ name, value }) => {
 		setNewUserData((prev) => ({ ...prev, [name]: value }))
 	}
+
+	const styleLoad = updateUserResult.isLoading ? 'load' : ''
+
+	useErrorToastify(updateUserResult.isError)
 
 	return (
 		<div className={style.profile}>
@@ -98,6 +130,7 @@ const Profile = () => {
 						type='email'
 						onChange={handleChange}
 						disabled={!isEdit}
+						error={error.email}
 					/>
 					<TextField
 						label='Телефон'
@@ -106,6 +139,7 @@ const Profile = () => {
 						type='phone'
 						onChange={handleChange}
 						disabled={!isEdit}
+						error={error.phone}
 					/>
 				</>
 			)}
@@ -113,7 +147,11 @@ const Profile = () => {
 			<div className={style.profile__button_container}>
 				{isEdit ? (
 					<>
-						<button className='btn_design' onClick={handleSubmit}>
+						<button
+							className={`btn_design ${styleLoad}`}
+							onClick={handleSubmit}
+							disabled={isErorrValidate}
+						>
 							Сохранить
 						</button>
 						<button className='btn_design' onClick={handleCancel}>
@@ -121,7 +159,7 @@ const Profile = () => {
 						</button>
 					</>
 				) : (
-					<button className='btn_design' onClick={() => setEdit(true)}>
+					<button className={'btn_design'} onClick={() => setEdit(true)}>
 						Редактировать
 					</button>
 				)}

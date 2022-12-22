@@ -5,7 +5,6 @@ import {
 	getNewRate,
 	newCommentChange,
 	newRateChange,
-	submitNewComment,
 } from '../../../store/comments'
 import StarChanger from '../product/rate/starChanger'
 import style from './productAddComment.module.sass'
@@ -13,13 +12,19 @@ import { useParams } from 'react-router-dom'
 import { useUpdateProductRateMutation } from '../../../store/productsApi'
 import { useAddCommentMutation } from '../../../store/commentsApi'
 import { getUser } from '../../../store/user'
+// import { useEffect } from 'react'
+// import { toast } from 'react-toastify'
+import useErrorToastify from '../../../hooks/useErrorToastify'
 
 const ProductAddComment = () => {
 	const dispatch = useDispatch()
 	let { id } = useParams()
 	const rate = useSelector(getNewRate())
 	const [productRateUpdate] = useUpdateProductRateMutation()
-	const [addComment] = useAddCommentMutation()
+	const [addComment, status] = useAddCommentMutation()
+	const { isLoading } = status
+
+	useErrorToastify(status.isError)
 
 	const setRate = (val) => {
 		dispatch(newRateChange(val))
@@ -37,14 +42,16 @@ const ProductAddComment = () => {
 
 	const user = useSelector(getUser())
 
-	const handleSubmit = async () => {
-		const result = await productRateUpdate({ _id: id, rate })
+	const handleSubmit = () => {
+		productRateUpdate({ _id: id, rate })
 
 		if (text === '') return
 		const commentData = { text, rate, productId: id, ...user }
-		await addComment(commentData)
+		addComment(commentData)
 		dispatch(newCommentChange(''))
 	}
+
+	const load = isLoading ? 'load' : ''
 
 	return (
 		<div className={style.comment_list_add}>
@@ -59,8 +66,8 @@ const ProductAddComment = () => {
 			/>
 			<button
 				onClick={handleSubmit}
-				disabled={isErorr}
-				className={'btn_design ' + style.comment_list_add__submit}
+				disabled={isErorr || isLoading}
+				className={`btn_design ${style.comment_list_add__submit} ${load}`}
 			>
 				Отправить
 			</button>

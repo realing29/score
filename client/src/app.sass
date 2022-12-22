@@ -1,6 +1,9 @@
 $orange: #fda23a
 $gray: #535353
 
+*
+  box-sizing: border-box
+
 html
   @media screen and (min-width: 767px)
     margin-right: calc(-1 * (100vw - 100%))
@@ -22,9 +25,21 @@ body
   &:hover
     background-color: #ffe3b0
     cursor: pointer
+  &:disabled
+    background: gray
+    cursor: not-allowed
 a
   color: $gray
   &:hover
     color: $orange
 ul
   padding-left: 0
+
+.load, button.load:disabled
+  background: repeating-linear-gradient(-45deg, #3a95fd, #3a95fd 25px, #fda23a 25px, #fda23a 50px) fixed
+  animation: load 1s linear infinite
+@keyframes load
+  0%
+    background-position: 0px
+  100%
+    background-position: 71px

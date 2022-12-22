@@ -10,10 +10,13 @@ import ProductsListPage from './components/page/productList'
 import ProductPage from './components/page/product'
 import Develop from './components/page/develop/develop'
 import Profile from './components/page/profile'
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 function App() {
 	return (
 		<>
+			<ToastContainer />
 			<Header />
 			<Routes>
 				<Route path='' element={<Main />}>
