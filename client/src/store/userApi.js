@@ -11,6 +11,9 @@ export const userApi = createApi({
 	endpoints: (build) => ({
 		getUserById: build.query({
 			query: (id) => `user/${id}`,
+			providesTags: (result, error, arg) => {
+				return [{ type: 'userApi', id: 'LIST' }]
+			},
 		}),
 		updateUser: build.mutation({
 			query: (body) => ({
@@ -18,6 +21,7 @@ export const userApi = createApi({
 				method: 'PUT',
 				body,
 			}),
+			invalidatesTags: ['userApi'],
 		}),
 	}),
 })

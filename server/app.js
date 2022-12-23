@@ -5,6 +5,7 @@ const routes = require('./routes')
 const chalk = require('chalk')
 const initDatabase = require('./startUp/initDatabase')
 const cors = require('cors')
+const path = require('path')
 
 const app = express()
 
@@ -15,6 +16,15 @@ app.use(cors())
 app.use('/api', routes)
 
 const PORT = config.get('port')
+
+if (process.env.NODE_ENV === 'production') {
+	app.use('/', express.static(path.join(__dirname, 'client')))
+
+	const indexPath = path.join(__dirname, 'client', 'index.html')
+	app.get('*', (req, res) => {
+		res.sendFile(indexPath)
+	})
+}
 
 async function start() {
 	try {

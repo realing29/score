@@ -12,7 +12,7 @@ const router = express.Router({ mergeParams: true })
 // 5. generate tokens
 router.post('/signUp', [
 	check('login', 'Минимальная длина логина 4 символова').isLength({ min: 4 }),
-	check('password', 'Минимальная длина пароля 8 символов').isLength({ min: 8 }),
+	check('password', 'Минимальная длина пароля 8 символов').isLength({ min: 4 }),
 	async (req, res) => {
 		try {
 			const errors = validationResult(req)

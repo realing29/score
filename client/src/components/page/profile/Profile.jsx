@@ -38,12 +38,10 @@ const Profile = () => {
 	const [error, setError] = useState({ login: null, phone: null, email: null })
 	const isErorrValidate = Boolean(Object.keys(error).length)
 	const validateShema = yup.object().shape({
-		phone: yup
-			.string()
-			.matches(/^(\+7|8)\d{10}$/, {
-				message: 'укажите мобильный телефон, в формате - +7/8*',
-				excludeEmptyString: true,
-			}),
+		phone: yup.string().matches(/^(\+7|8)\d{10}$/, {
+			message: 'укажите мобильный телефон, в формате - +7/8*',
+			excludeEmptyString: true,
+		}),
 		email: yup.string().email('укажите e-mail, в формате - *@*.*'),
 	})
 
@@ -66,7 +64,7 @@ const Profile = () => {
 
 	useEffect(() => {
 		if (isSuccess) setNewUserData((prev) => ({ ...prev, ...data }))
-	}, [isSuccess])
+	}, [isSuccess, data])
 
 	const handleCancel = () => {
 		setEdit(false)
