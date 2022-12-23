@@ -12,28 +12,27 @@ const LoginPage = () => {
 	const [data, setData] = useState({
 		login: '',
 		password: '',
-		remember: false,
 	})
 	const [errors, setErrors] = useState({})
 
+	const [isLoadStyle, setLoadStyle] = useState('')
+
+	const [isValid, setValid] = useState(false)
+
 	const validateShema = yup.object().shape({
-		password: yup
-			.string()
-			.required('Пароль обязателен для заполнения')
-			.min(4, 'Минимальная длина 4 символа'),
-		login: yup
-			.string()
-			.required('Логин обязателен для заполнения')
-			.min(4, 'Минимальная длина 4 символа'),
+		password: yup.string().required('Пароль обязателен для заполнения'),
+		login: yup.string().required('Логин обязателен для заполнения'),
 	})
 
 	const validate = async () => {
 		try {
 			await validateShema.validate(data)
 			setErrors({})
+			setValid(true)
 			return true
 		} catch (err) {
 			setErrors({ [err.path]: err.message })
+			setValid(false)
 			return false
 		}
 	}
@@ -49,9 +48,9 @@ const LoginPage = () => {
 	const redirect = location.state ? location?.state?.from?.pathname : '/'
 
 	const handleSubmit = async () => {
-		const isValid = await validate()
 		if (!isValid) return
 		try {
+			setLoadStyle('load')
 			await dispatch(login(data))
 			navigate(redirect)
 		} catch (error) {
@@ -63,6 +62,8 @@ const LoginPage = () => {
 			} else {
 				console.error(error)
 			}
+		} finally {
+			setLoadStyle('')
 		}
 	}
 
@@ -86,20 +87,12 @@ const LoginPage = () => {
 				error={errors.password}
 			/>
 
-			<label htmlFor='remember'>
-				<input
-					type='checkbox'
-					name='remember'
-					id='remember'
-					onChange={({ target }) => {
-						handleChange({ name: target.name, value: target.checked })
-					}}
-					value='remember'
-					checked={data.remember}
-				/>
-				Оставаться в системе
-			</label>
-			<button type='button' className='btn_design' onClick={handleSubmit}>
+			<button
+				type='button'
+				className={`btn_design ${isLoadStyle}`}
+				onClick={handleSubmit}
+				disabled={!isValid}
+			>
 				Войти
 			</button>
 			<Link

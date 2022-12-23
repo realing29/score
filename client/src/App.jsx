@@ -31,8 +31,6 @@ function App() {
 				</Route>
 				<Route path='cart' element={<Cart />} />
 				<Route path='profile' element={<Profile />} />
-				{/* //!Удалить перед продакшеном */}
-				<Route path='develop' element={<Develop />} />
 				<Route path='*' element={<Navigate to={'/'} />} />
 			</Routes>
 		</>

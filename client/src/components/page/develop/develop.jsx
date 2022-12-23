@@ -3,6 +3,7 @@ import {
 	useUpdateProductMutation,
 } from '../../../store/productsApi'
 import { getRandomIntInclusive } from '../../../utils/getRandom'
+import Error from '../../common/error'
 import style from './develop.module.sass'
 
 const Develop = () => {
@@ -64,7 +65,7 @@ const Develop = () => {
 					</button>
 				</div>
 			)}
-			{isError && 'error...'}
+			{isError && <Error />}
 		</>
 	)
 }

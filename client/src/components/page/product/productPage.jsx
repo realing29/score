@@ -3,6 +3,7 @@ import { Link, useLocation, useParams } from 'react-router-dom'
 import { getCartProducts } from '../../../store/cart'
 import { useGetProductQuery } from '../../../store/productsApi'
 import { getUser } from '../../../store/user'
+import Error from '../../common/error'
 import ButtonBuy from '../../ui/buttonBuy'
 import CommentList from '../../ui/commentList'
 import Rate from '../../ui/product/rate/rate'
@@ -52,7 +53,7 @@ const ProductPage = () => {
 				</div>
 			)}
 			{isLoading && <ProductPageLoader />}
-			{isError && 'Error... '}
+			{isError && <Error />}
 		</>
 	)
 }

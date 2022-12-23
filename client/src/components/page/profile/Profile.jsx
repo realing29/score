@@ -8,6 +8,7 @@ import TextField from '../../common/form/textField'
 import style from './profile.module.sass'
 import ProfileLoader from './profileLoader'
 import * as yup from 'yup'
+import Error from '../../common/error'
 
 const Profile = () => {
 	const dispatch = useDispatch()
@@ -32,14 +33,17 @@ const Profile = () => {
 		email: '',
 		phone: '',
 	})
-	const { data, isSuccess, isLoading } = useGetUserByIdQuery(user.userId)
+	const { data, isSuccess, isLoading, isError } = useGetUserByIdQuery(user.userId)
 
 	const [error, setError] = useState({ login: null, phone: null, email: null })
 	const isErorrValidate = Boolean(Object.keys(error).length)
 	const validateShema = yup.object().shape({
 		phone: yup
 			.string()
-			.matches(/^(\+7|8)\d{10}$/, 'укажите мобильный телефон, в формате - +7/8*'),
+			.matches(/^(\+7|8)\d{10}$/, {
+				message: 'укажите мобильный телефон, в формате - +7/8*',
+				excludeEmptyString: true,
+			}),
 		email: yup.string().email('укажите e-mail, в формате - *@*.*'),
 	})
 
@@ -144,6 +148,7 @@ const Profile = () => {
 				</>
 			)}
 			{isLoading && <ProfileLoader count={5} />}
+			{isError && <Error />}
 			<div className={style.profile__button_container}>
 				{isEdit ? (
 					<>

@@ -11,6 +11,7 @@ import {
 } from '../../../store/filter'
 import { useGetProductsListQuery } from '../../../store/productsApi'
 import { paginate } from '../../../utils/paginate'
+import Error from '../../common/error'
 import Pagination from '../../common/pagination'
 import Product from '../../ui/product/product'
 import ProductLoader from '../../ui/product/productLoader/productLoader'
@@ -88,7 +89,7 @@ const ProductsPage = () => {
 						/>
 					</>
 				)}
-				{isError && 'Произошла ошибка при загрузке товаров'}
+				{isError && <Error />}
 			</div>
 		</div>
 	)

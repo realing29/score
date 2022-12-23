@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useGetProductsIdsQuery } from '../../store/productsApi'
 import { useEffect, useState } from 'react'
 import CartLoader from './cartLoader'
+import Error from '../../components/common/error'
 
 const Cart = () => {
 	const dispatch = useDispatch()
@@ -87,8 +88,7 @@ const Cart = () => {
 				</>
 			)}
 			{isLoading && <CartLoader />}
-			{/* // todo */}
-			{isError && 'Произошла ошибка при загрузке данных...'}
+			{isError && <Error />}
 		</div>
 	)
 }

@@ -18,7 +18,11 @@ const RegistrationPage = () => {
 		confirm: false,
 	})
 
+	const [isLoadStyle, setLoadStyle] = useState('')
+
 	const [errors, setErrors] = useState({})
+
+	const [isValid, setValid] = useState(false)
 
 	const validateShema = yup.object().shape({
 		confirm: yup
@@ -46,9 +50,11 @@ const RegistrationPage = () => {
 		try {
 			await validateShema.validate(data)
 			setErrors({})
+			setValid(true)
 			return true
 		} catch (err) {
 			setErrors({ [err.path]: err.message })
+			setValid(false)
 			return false
 		}
 	}
@@ -63,9 +69,9 @@ const RegistrationPage = () => {
 	const redirect = location.state ? location?.state?.from?.pathname : '/'
 
 	const handleSubmit = async () => {
-		const isValid = await validate()
 		if (!isValid) return
 		try {
+			setLoadStyle('load')
 			await dispatch(signUp(data))
 			navigate(redirect)
 		} catch (error) {
@@ -75,6 +81,8 @@ const RegistrationPage = () => {
 			} else {
 				console.error(error)
 			}
+		} finally {
+			setLoadStyle('')
 		}
 	}
 	return (
@@ -120,7 +128,12 @@ const RegistrationPage = () => {
 				</label>
 				{errors.confirm && <div className={style.confirm_error}>{errors.confirm}</div>}
 			</div>
-			<button type='button' className='btn_design' onClick={handleSubmit}>
+			<button
+				type='button'
+				className={`btn_design ${isLoadStyle}`}
+				onClick={handleSubmit}
+				disabled={!isValid}
+			>
 				Зарегистрироваться
 			</button>
 			<Link to='/login' state={location.state ? { from: location.state.from } : null}>
