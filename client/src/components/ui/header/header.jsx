@@ -20,44 +20,46 @@ const Header = ({ handleSearch, search }) => {
 
 	return (
 		<div className={style.headerContainer}>
-			<div className={style.logo_container}>
-				<Link to='/'>
-					<img src='/logo.jpg' alt='logo' />
-				</Link>
-			</div>
-			<Search handleSearch={handleSearch} search={search} />
-			<nav>
-				<ul className={style.nav}>
-					<li>
-						<NavLink to='/' className={isActive}>
-							Главная
-						</NavLink>
-					</li>
-					<li>
-						<NavLink to='/cart' className={isActive}>
-							Корзина
-						</NavLink>
-					</li>
-				</ul>
-			</nav>
-			<div className={style.signIn}>
-				{login ? (
-					<>
-						<NavLink to='/profile' className={isActive}>
-							{login.split('@')[0]}
-						</NavLink>
-						<div className={style.block} onClick={() => navigate('/profile')}>
-							<ProfileIco />
-						</div>
-						<div className={style.block}>
-							<button className={style.logout} onClick={handleLogout}>
-								Выйти
-							</button>
-						</div>
-					</>
-				) : (
-					<NavLink to='/login'>Войти</NavLink>
-				)}
+			<div className={style.header}>
+				<div className={style.logo_container}>
+					<Link to='/'>
+						<img src='/logo.jpg' alt='logo' />
+					</Link>
+				</div>
+				<Search handleSearch={handleSearch} search={search} />
+				<nav className={style.container_nav}>
+					<ul className={style.nav}>
+						<li>
+							<NavLink to='/' className={isActive}>
+								Главная
+							</NavLink>
+						</li>
+						<li>
+							<NavLink to='/cart' className={isActive}>
+								Корзина
+							</NavLink>
+						</li>
+					</ul>
+				</nav>
+				<div className={style.signIn}>
+					{login ? (
+						<>
+							<NavLink to='/profile' className={`${isActive} ${style.login}`}>
+								{login.split('@')[0]}
+							</NavLink>
+							<div className={style.block} onClick={() => navigate('/profile')}>
+								<ProfileIco />
+							</div>
+							<div className={style.block}>
+								<button className={style.logout} onClick={handleLogout}>
+									Выйти
+								</button>
+							</div>
+						</>
+					) : (
+						<NavLink to='/login'>Войти</NavLink>
+					)}
+				</div>
 			</div>
 		</div>
 	)

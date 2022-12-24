@@ -5,14 +5,22 @@ $gray: #535353
   box-sizing: border-box
 
 html
+  height: 100%
   @media screen and (min-width: 767px)
     margin-right: calc(-1 * (100vw - 100%))
     padding-right: 15px
     overflow-x: hidden
+
 body
   background: #f6f6f6
   color: $gray
   overflow-y: visible
+  height: 100%
+  margin: 0
+#root
+  min-height: 100%
+  display: flex
+  flex-direction: column
 
 .btn_design
   border: 1px solid #ddd

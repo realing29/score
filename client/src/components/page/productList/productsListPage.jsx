@@ -87,6 +87,11 @@ const ProductsPage = () => {
 							onPageChange={handleChangePage}
 							currentPage={pageNumber}
 						/>
+						{!dataPaginate.length && (
+							<h2 className={style.notFound}>
+								Результаты не найдены, попробуйте изменить запрос поиска
+							</h2>
+						)}
 					</>
 				)}
 				{isError && <Error />}

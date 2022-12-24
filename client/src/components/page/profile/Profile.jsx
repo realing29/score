@@ -9,6 +9,7 @@ import style from './profile.module.sass'
 import ProfileLoader from './profileLoader'
 import * as yup from 'yup'
 import Error from '../../common/error'
+import Button from '../../common/button'
 
 const Profile = () => {
 	const dispatch = useDispatch()
@@ -150,21 +151,17 @@ const Profile = () => {
 			<div className={style.profile__button_container}>
 				{isEdit ? (
 					<>
-						<button
-							className={`btn_design ${styleLoad}`}
+						<Button
+							className={styleLoad}
 							onClick={handleSubmit}
 							disabled={isErorrValidate}
 						>
 							Сохранить
-						</button>
-						<button className='btn_design' onClick={handleCancel}>
-							Отмена
-						</button>
+						</Button>
+						<Button onClick={handleCancel}>Отмена</Button>
 					</>
 				) : (
-					<button className={'btn_design'} onClick={() => setEdit(true)}>
-						Редактировать
-					</button>
+					<Button onClick={() => setEdit(true)}>Редактировать</Button>
 				)}
 			</div>
 		</div>

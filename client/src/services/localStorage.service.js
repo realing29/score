@@ -14,6 +14,8 @@ export const updateCart = (products) => {
 
 export const cartGetProducts = () => getItem(CART_PRODUCTS)
 
+export const clearCart = () => setItem(CART_PRODUCTS, {})
+
 export function setTokens({ refreshToken, accessToken, userId, expiresIn = 3600 }) {
 	const expiresDate = new Date().getTime() + expiresIn * 1000
 	localStorage.setItem(USERID_KEY, userId)
@@ -45,7 +47,7 @@ export function getUserId() {
 export const setUser = (payload) => setItem(USER, payload)
 export const getUser = () => getItem(USER)
 
-export default {
+const localStorageService = {
 	updateCart,
 	cartGetProducts,
 	setTokens,
@@ -56,4 +58,7 @@ export default {
 	removeAuthData,
 	getUser,
 	setUser,
+	clearCart,
 }
+
+export default localStorageService

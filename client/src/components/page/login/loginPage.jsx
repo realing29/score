@@ -4,6 +4,7 @@ import TextField from '../../common/form/textField'
 import * as yup from 'yup'
 import { useDispatch } from 'react-redux'
 import { login } from '../../../store/user'
+import Button from '../../common/button'
 
 const LoginPage = () => {
 	const dispatch = useDispatch()
@@ -87,14 +88,14 @@ const LoginPage = () => {
 				error={errors.password}
 			/>
 
-			<button
+			<Button
 				type='button'
-				className={`btn_design ${isLoadStyle}`}
+				className={isLoadStyle}
 				onClick={handleSubmit}
 				disabled={!isValid}
 			>
 				Войти
-			</button>
+			</Button>
 			<Link
 				to='registration'
 				state={location.state ? { from: location.state.from } : null}

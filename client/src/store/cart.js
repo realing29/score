@@ -1,9 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit'
-import lStorage from '../services/localStorage.service'
+import localStorageService from '../services/localStorage.service'
 
 const cartSlice = createSlice({
 	name: 'cart',
-	initialState: { entries: lStorage.cartGetProducts() || {} },
+	initialState: { entries: localStorageService.cartGetProducts() || {} },
 	reducers: {
 		cartAddedProduct(state, { payload }) {
 			state.entries[payload] = { amount: 1 }
@@ -16,28 +16,36 @@ const cartSlice = createSlice({
 				state.entries[id].amount = val
 			}
 		},
+		cartCleared(state) {
+			state.entries = {}
+		},
 	},
 })
 
 const { reducer: cartReducer, actions } = cartSlice
 
-const { cartAddedProduct, cartChangedProductAmount } = actions
+const { cartAddedProduct, cartChangedProductAmount, cartCleared } = actions
 
 export const addCart = (payload) => (dispatch, getState) => {
 	dispatch(cartAddedProduct(payload))
 	const cartProducts = getCartProducts()(getState())
-	lStorage.updateCart(cartProducts)
+	localStorageService.updateCart(cartProducts)
 }
 
 export const changeCartProductAmount = (payload) => (dispatch, getState) => {
 	dispatch(cartChangedProductAmount(payload))
 	const cartProducts = getCartProducts()(getState())
 
-	lStorage.updateCart(cartProducts)
+	localStorageService.updateCart(cartProducts)
 }
 
 export function getCartProducts() {
 	return (state) => state.cart.entries
+}
+
+export const clearCart = (payload) => (dispatch) => {
+	dispatch(cartCleared())
+	localStorageService.clearCart()
 }
 
 export default cartReducer

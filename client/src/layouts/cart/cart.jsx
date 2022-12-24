@@ -84,7 +84,7 @@ const Cart = () => {
 			{isSuccess && (
 				<>
 					<CartItems products={mergeProductsAmount} onChangeAmount={handleAmountChange} />
-					<TotalAmount {...total} />
+					{Boolean(total.sum) && <TotalAmount {...total} />}
 				</>
 			)}
 			{isLoading && <CartLoader />}

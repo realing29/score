@@ -15,6 +15,7 @@ import { getUser } from '../../../store/user'
 // import { useEffect } from 'react'
 // import { toast } from 'react-toastify'
 import useErrorToastify from '../../../hooks/useErrorToastify'
+import Button from '../../common/button'
 
 const ProductAddComment = () => {
 	const dispatch = useDispatch()
@@ -64,13 +65,13 @@ const ProductAddComment = () => {
 				onChange={setComment}
 				className={style.comment_list_add__textarea}
 			/>
-			<button
+			<Button
 				onClick={handleSubmit}
 				disabled={isErorr || isLoading}
-				className={`btn_design ${style.comment_list_add__submit} ${load}`}
+				className={`${style.comment_list_add__submit} ${load}`}
 			>
 				Отправить
-			</button>
+			</Button>
 		</div>
 	)
 }

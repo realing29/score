@@ -2,6 +2,7 @@ import React from 'react'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
 import style from './pagination.module.sass'
+import Button from '../button'
 
 const Pagination = ({ itemsCount, pageSize, onPageChange, currentPage }) => {
 	const pageCount = Math.ceil(itemsCount / pageSize)
@@ -12,12 +13,12 @@ const Pagination = ({ itemsCount, pageSize, onPageChange, currentPage }) => {
 			<ul className={style.pagination}>
 				{pages.map((page) => (
 					<li key={'page_' + page}>
-						<button
-							className={'btn_design ' + (page === currentPage ? style.active : '')}
+						<Button
+							className={page === currentPage ? style.active : ''}
 							onClick={() => onPageChange(page)}
 						>
 							{page}
-						</button>
+						</Button>
 					</li>
 				))}
 			</ul>

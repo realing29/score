@@ -1,0 +1,97 @@
+:root
+  --color-1: #186cb8
+  --color-2: #2a9a9f
+  --color-3: #f1b211
+  --color-4: #e83611
+  --color-5: #f9002f
+
+.joke
+  width: 100%
+
+  position: fixed
+  top: 0
+  left: 0
+  bottom: 0
+  display: flex
+  align-items: center
+  justify-content: center
+  background: rgba(255, 255, 255, 0.2)
+  backdrop-filter: blur(2px)
+  &__content
+    padding: 2%
+    display: flex
+    flex-direction: column
+    gap: 10px
+    background: white
+  & input
+    height: 30px
+  &__header
+    display: flex
+    align-items: center
+    justify-content: space-between
+    gap: 20px
+  &__number
+    display: flex
+    flex-direction: column
+  &__date_cvv
+    display: flex
+    justify-content: space-between
+  &__container_input
+    max-width: 150px
+  &__input_short
+    max-width: 100%
+  &__container_text
+    background: linear-gradient(219deg, var(--color-1) 19%, black 19%,black 20%, var(--color-2) 20%, var(--color-2) 39%,black 39%,black 40%, var(--color-3) 40%,var(--color-3) 59% ,black 59%,black 60%, var(--color-4) 60%, var(--color-4) 79%,black 79%, black 80%, var(--color-5) 80%)
+    background-clip: text
+    -webkit-background-clip: text
+    animation: rotate 2s linear infinite
+  &__text
+    font-size: 70px
+    text-align: center
+    color: transparent
+
+@keyframes rotate
+  0%
+    background: linear-gradient(0deg, var(--color-1) 19%, black 19%,black 20%, var(--color-2) 20%, var(--color-2) 39%,black 39%,black 40%, var(--color-3) 40%,var(--color-3) 59% ,black 59%,black 60%, var(--color-4) 60%, var(--color-4) 79%,black 79%, black 80%, var(--color-5) 80%)
+    background-clip: text
+    -webkit-background-clip: text
+  10%
+    background: linear-gradient(36deg, var(--color-1) 19%, black 19%,black 20%, var(--color-2) 20%, var(--color-2) 39%,black 39%,black 40%, var(--color-3) 40%,var(--color-3) 59% ,black 59%,black 60%, var(--color-4) 60%, var(--color-4) 79%,black 79%, black 80%, var(--color-5) 80%)
+    background-clip: text
+    -webkit-background-clip: text
+  20%
+    background: linear-gradient(72deg, var(--color-1) 19%, black 19%,black 20%, var(--color-2) 20%, var(--color-2) 39%,black 39%,black 40%, var(--color-3) 40%,var(--color-3) 59% ,black 59%,black 60%, var(--color-4) 60%, var(--color-4) 79%,black 79%, black 80%, var(--color-5) 80%)
+    background-clip: text
+    -webkit-background-clip: text
+  30%
+    background: linear-gradient(108deg, var(--color-1) 19%, black 19%,black 20%, var(--color-2) 20%, var(--color-2) 39%,black 39%,black 40%, var(--color-3) 40%,var(--color-3) 59% ,black 59%,black 60%, var(--color-4) 60%, var(--color-4) 79%,black 79%, black 80%, var(--color-5) 80%)
+    background-clip: text
+    -webkit-background-clip: text
+  40%
+    background: linear-gradient(144deg, var(--color-1) 19%, black 19%,black 20%, var(--color-2) 20%, var(--color-2) 39%,black 39%,black 40%, var(--color-3) 40%,var(--color-3) 59% ,black 59%,black 60%, var(--color-4) 60%, var(--color-4) 79%,black 79%, black 80%, var(--color-5) 80%)
+    background-clip: text
+    -webkit-background-clip: text
+  50%
+    background: linear-gradient(180deg, var(--color-1) 19%, black 19%,black 20%, var(--color-2) 20%, var(--color-2) 39%,black 39%,black 40%, var(--color-3) 40%,var(--color-3) 59% ,black 59%,black 60%, var(--color-4) 60%, var(--color-4) 79%,black 79%, black 80%, var(--color-5) 80%)
+    background-clip: text
+    -webkit-background-clip: text
+  60%
+    background: linear-gradient(216deg, var(--color-1) 19%, black 19%,black 20%, var(--color-2) 20%, var(--color-2) 39%,black 39%,black 40%, var(--color-3) 40%,var(--color-3) 59% ,black 59%,black 60%, var(--color-4) 60%, var(--color-4) 79%,black 79%, black 80%, var(--color-5) 80%)
+    background-clip: text
+    -webkit-background-clip: text
+  70%
+    background: linear-gradient(252deg, var(--color-1) 19%, black 19%,black 20%, var(--color-2) 20%, var(--color-2) 39%,black 39%,black 40%, var(--color-3) 40%,var(--color-3) 59% ,black 59%,black 60%, var(--color-4) 60%, var(--color-4) 79%,black 79%, black 80%, var(--color-5) 80%)
+    background-clip: text
+    -webkit-background-clip: text
+  80%
+    background: linear-gradient(288deg, var(--color-1) 19%, black 19%,black 20%, var(--color-2) 20%, var(--color-2) 39%,black 39%,black 40%, var(--color-3) 40%,var(--color-3) 59% ,black 59%,black 60%, var(--color-4) 60%, var(--color-4) 79%,black 79%, black 80%, var(--color-5) 80%)
+    background-clip: text
+    -webkit-background-clip: text
+  90%
+    background: linear-gradient(342deg, var(--color-1) 19%, black 19%,black 20%, var(--color-2) 20%, var(--color-2) 39%,black 39%,black 40%, var(--color-3) 40%,var(--color-3) 59% ,black 59%,black 60%, var(--color-4) 60%, var(--color-4) 79%,black 79%, black 80%, var(--color-5) 80%)
+    background-clip: text
+    -webkit-background-clip: text
+  100%
+    background: linear-gradient(360deg, var(--color-1) 19%, black 19%,black 20%, var(--color-2) 20%, var(--color-2) 39%,black 39%,black 40%, var(--color-3) 40%,var(--color-3) 59% ,black 59%,black 60%, var(--color-4) 60%, var(--color-4) 79%,black 79%, black 80%, var(--color-5) 80%)
+    background-clip: text
+    -webkit-background-clip: text

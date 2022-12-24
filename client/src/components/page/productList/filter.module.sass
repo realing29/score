@@ -1,12 +1,47 @@
 .filter
   display: flex
-  flex-direction: column
   padding: 2%
   flex-basis: 230px
   background: #fff
-  @media screen and (max-width: 1010px)
-    flex-direction: row
+  gap: 5px
+
+  &__blocks
+    display: flex
+    flex-direction: column
+    @media screen and ( min-width: 1011px )
+      display: flex !important
+  &__collapse_button
+    overflow: hidden
+    display: none
+    flex-shrink: 0
+    width: 35px
+    height: 35px
+    font-weight: bold
+    font-size: 30px
+    vertical-align: bottom
+    line-height: 45px
+    padding: 0
+    transition: rotate .1s
+    &__rotate
+      rotate: 180deg
+
+.collapse
+  display: none
+  &__info
+    margin: 0
+    vertical-align: middle
+    line-height: 35px
+    @media screen and ( min-width: 1011px )
+      display: none
+
+@media screen and (max-width: 1010px)
+  .filter
     flex-basis: 100%
-    flex-wrap: wrap
-    gap: 15px
-    justify-content: space-around
+    &__blocks
+      flex-grow: 1
+      flex-direction: row
+      flex-wrap: wrap
+      gap: 15px
+      justify-content: space-around
+    &__collapse_button
+      display: block

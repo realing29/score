@@ -8,10 +8,11 @@ import LoginPage from './components/page/login'
 import RegistrationPage from './components/page/registration'
 import ProductsListPage from './components/page/productList'
 import ProductPage from './components/page/product'
-import Develop from './components/page/develop/develop'
 import Profile from './components/page/profile'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import Footer from './components/ui/footer'
+import Terms from './components/page/terms'
 
 function App() {
 	return (
@@ -31,8 +32,10 @@ function App() {
 				</Route>
 				<Route path='cart' element={<Cart />} />
 				<Route path='profile' element={<Profile />} />
+				<Route path='terms' element={<Terms />} />
 				<Route path='*' element={<Navigate to={'/'} />} />
 			</Routes>
+			<Footer />
 		</>
 	)
 }

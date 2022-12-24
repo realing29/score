@@ -5,6 +5,7 @@ import * as yup from 'yup'
 import { useDispatch } from 'react-redux'
 import { signUp } from '../../../store/user'
 import style from './registrationPage.module.sass'
+import Button from '../../common/button'
 
 const RegistrationPage = () => {
 	const dispatch = useDispatch()
@@ -128,14 +129,14 @@ const RegistrationPage = () => {
 				</label>
 				{errors.confirm && <div className={style.confirm_error}>{errors.confirm}</div>}
 			</div>
-			<button
+			<Button
 				type='button'
-				className={`btn_design ${isLoadStyle}`}
+				className={isLoadStyle}
 				onClick={handleSubmit}
 				disabled={!isValid}
 			>
 				Зарегистрироваться
-			</button>
+			</Button>
 			<Link to='/login' state={location.state ? { from: location.state.from } : null}>
 				Войти
 			</Link>

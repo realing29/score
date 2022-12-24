@@ -1,8 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import config from '../config.json'
+import { getEndPoint } from '../utils/getEndPoint'
 import headersSetAuth from '../utils/headersSetAuth'
-const { jsonApiEndpoint, productionEndpoint, useJsonDB } = config
-const baseUrl = useJsonDB ? jsonApiEndpoint : productionEndpoint
+const baseUrl = getEndPoint()
 
 export const userApi = createApi({
 	reducerPath: 'userApi',

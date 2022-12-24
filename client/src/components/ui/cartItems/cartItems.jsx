@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types'
+import Button from '../../common/button'
 import ButtonDelete from '../buttonDelete/buttonDelete'
 import style from './cartItems.module.sass'
 
@@ -21,20 +22,19 @@ const CartItems = ({ products, onChangeAmount }) => {
 							<img className={style.item_cart__img} src={src} alt={src} />
 						</div>
 						<h3 className={style.item_cart__name}>{name}</h3>
+
 						<p className={style.item_cart__price}>
 							{price} р. <sup>цена</sup>
 						</p>
-
 						<div>
-							<button
+							<Button
 								onClick={() => onChangeAmount.decrement(_id)}
 								className={`
-								${'btn_design'} 
 								${style.item_cart__button_ammount} 
 								${style.item_cart__button_ammount__decr}`}
 							>
 								-
-							</button>
+							</Button>
 							<input
 								className={style.item_cart__amount}
 								type='text'
@@ -42,15 +42,14 @@ const CartItems = ({ products, onChangeAmount }) => {
 								step='1'
 								onChange={(e) => handleChangeAmount(e.target.value, _id)}
 							/>
-							<button
+							<Button
 								onClick={(e) => onChangeAmount.increment(_id)}
 								className={`
-								${'btn_design'} 
 								${style.item_cart__button_ammount} 
 								${style.item_cart__button_ammount__incr}`}
 							>
 								+
-							</button>
+							</Button>
 						</div>
 						<p>{' шт.'}</p>
 						<div className={style.item_cart__end}>

@@ -1,9 +1,8 @@
 import axios from 'axios'
 import config from '../config.json'
+import { getEndPoint } from '../utils/getEndPoint'
 
-const { jsonApiEndpoint, useJsonDB, productionDBEndpoint } = config
-
-const baseURL = useJsonDB ? jsonApiEndpoint : productionDBEndpoint
+const baseURL = getEndPoint()
 
 export default function createEndpointFetcher(endpoint) {
 	return axios.create({
