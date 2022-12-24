@@ -3,7 +3,6 @@ const config = require('config')
 const mongoose = require('mongoose')
 const routes = require('./routes')
 const chalk = require('chalk')
-const initDatabase = require('./startUp/initDatabase')
 const cors = require('cors')
 const path = require('path')
 
@@ -17,7 +16,9 @@ app.use('/api', routes)
 
 const PORT = config.get('port')
 
-if (process.env.NODE_ENV === 'production') {
+const isProd = process.env.NODE_ENV === 'production'
+
+if (isProd) {
 	app.use('/', express.static(path.join(__dirname, 'client')))
 
 	const indexPath = path.join(__dirname, 'client', 'index.html')
@@ -28,9 +29,6 @@ if (process.env.NODE_ENV === 'production') {
 
 async function start() {
 	try {
-		mongoose.connection.once('open', () => {
-			initDatabase()
-		})
 		await mongoose.connect(config.get('mongoUri'))
 		console.log(chalk.green('MongoDB connected'))
 		app.listen(PORT, () =>
