@@ -1,10 +1,8 @@
-import { useState } from 'react'
+import PropTypes from 'prop-types'
 import star from './star'
 import style from './starChanger.module.sass'
 
-const StarChanger = ({ setRate }) => {
-	const [value, setValue] = useState([0, 0, 0, 0, 0])
-
+const StarChanger = ({ setRate, value, setValue }) => {
 	const starType = (val) => (val ? star.full : star.void)
 
 	const handleClick = (e) => {
@@ -28,6 +26,12 @@ const StarChanger = ({ setRate }) => {
 			<img src={starType(value[4])} data-order='4' className={style.star} />
 		</div>
 	)
+}
+
+StarChanger.propTypes = {
+	setRate: PropTypes.func,
+	setValue: PropTypes.func,
+	value: PropTypes.any,
 }
 
 export default StarChanger

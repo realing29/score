@@ -25,7 +25,7 @@ const Footer = () => {
 			ico: '/assets/discord.ico',
 		},
 		{
-			href: 'mailto:realing29@gmail.com',
+			href: 'mailto:realing29@gmail.com&body=Привет, Роман!?subject=вопрос',
 			alt: 'gmail',
 			ico: '/assets/gmail.ico',
 		},

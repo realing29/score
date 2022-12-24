@@ -3,7 +3,6 @@ import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { addCart } from '../../../store/cart'
 import Button from '../../common/button'
-// import style from './buttonBuy.module.sass'
 
 const ButtonBuy = ({ _id, isInCart }) => {
 	const dispatch = useDispatch()

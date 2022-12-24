@@ -44,7 +44,7 @@ const ProductPage = () => {
 									<Link to='/login' state={{ from: location }}>
 										Авторизуйтесь
 									</Link>{' '}
-									что бы оставлять комментарии
+									что бы оставлять отзывы
 								</h2>
 							</div>
 						)}

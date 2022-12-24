@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux'
-import { Link, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import useErrorToastify from '../../../hooks/useErrorToastify'
 import {
 	useDelteCommentMutation,

@@ -106,6 +106,7 @@ const Filters = ({ className }) => {
 					<SelectField
 						name='countOnPage'
 						value={countOnPage}
+						label='Карточек товара '
 						onChange={handleChangeCountOnPage}
 						options={[
 							{ value: 5, label: 5 },

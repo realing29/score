@@ -125,7 +125,7 @@ const RegistrationPage = () => {
 							handleChange({ name: target.name, value: target.checked })
 						}}
 					/>
-					Принимаю пользовательское соглашение
+					Принимаю <Link to='/terms'>пользовательское соглашение</Link>
 				</label>
 				{errors.confirm && <div className={style.confirm_error}>{errors.confirm}</div>}
 			</div>

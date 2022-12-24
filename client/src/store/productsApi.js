@@ -15,7 +15,7 @@ export const productsApi = createApi({
 	endpoints: (build) => ({
 		getProductsList: build.query({
 			query: (limit = '') => `products?${limit && `_limit=${limit}`}`,
-			providesTags: (result, error, arg) =>
+			providesTags: (result) =>
 				result
 					? [
 							...result.map(({ id }) => ({ type: 'Products', id })),
@@ -25,7 +25,7 @@ export const productsApi = createApi({
 		}),
 		getProduct: build.query({
 			query: (id) => `products/${id}`,
-			providesTags: (result, error, arg) => {
+			providesTags: () => {
 				return [{ type: 'Products', id: 'LIST' }]
 			},
 		}),

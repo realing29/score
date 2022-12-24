@@ -1,6 +1,4 @@
 {
-	"useJsonDB": false,
-	"jsonApiEndpoint": "http://localhost:81/",
 	"productionEndpoint": "http://45.131.41.232/api/",
 	"developmentEndpoint": "http://localhost:8080/api/"
 }

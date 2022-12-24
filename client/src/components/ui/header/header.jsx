@@ -23,7 +23,7 @@ const Header = ({ handleSearch, search }) => {
 			<div className={style.header}>
 				<div className={style.logo_container}>
 					<Link to='/'>
-						<img src='/logo.jpg' alt='logo' />
+						<img src='/logo192.png' alt='logo' />
 					</Link>
 				</div>
 				<Search handleSearch={handleSearch} search={search} />
