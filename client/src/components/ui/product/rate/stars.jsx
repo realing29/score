@@ -25,7 +25,7 @@ const Stars = ({ value }) => {
 	return (
 		<>
 			{classes.map((enties, i) => (
-				<img key={'star' + i} src={enties} />
+				<img key={'star' + i} src={enties} alt='star' />
 			))}
 		</>
 	)

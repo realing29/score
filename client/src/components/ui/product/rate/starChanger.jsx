@@ -19,11 +19,11 @@ const StarChanger = ({ setRate, value, setValue }) => {
 	}
 	return (
 		<div onClick={handleClick}>
-			<img src={starType(value[0])} data-order='0' className={style.star} />
-			<img src={starType(value[1])} data-order='1' className={style.star} />
-			<img src={starType(value[2])} data-order='2' className={style.star} />
-			<img src={starType(value[3])} data-order='3' className={style.star} />
-			<img src={starType(value[4])} data-order='4' className={style.star} />
+			<img src={starType(value[0])} data-order='0' className={style.star} alt='star' />
+			<img src={starType(value[1])} data-order='1' className={style.star} alt='star' />
+			<img src={starType(value[2])} data-order='2' className={style.star} alt='star' />
+			<img src={starType(value[3])} data-order='3' className={style.star} alt='star' />
+			<img src={starType(value[4])} data-order='4' className={style.star} alt='star' />
 		</div>
 	)
 }
