@@ -131,7 +131,7 @@ const RegistrationPage = () => {
 			</div>
 			<Button
 				type='button'
-				className={isLoadStyle}
+				className={`${isLoadStyle} ${style.button}`}
 				onClick={handleSubmit}
 				disabled={!isValid}
 			>
