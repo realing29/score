@@ -22,7 +22,7 @@ const ProductPage = () => {
 	return (
 		<>
 			{isSuccess && (
-				<div className={style.product_container}>
+				<article className={style.product_container}>
 					<div className={style.product_card}>
 						<h1>{data.name}</h1>
 						<div className={style.product_card__container_img}>
@@ -50,7 +50,7 @@ const ProductPage = () => {
 						)}
 						<CommentList />
 					</div>
-				</div>
+				</article>
 			)}
 			{isLoading && <ProductPageLoader />}
 			{isError && <Error />}

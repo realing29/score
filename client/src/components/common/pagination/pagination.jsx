@@ -14,7 +14,9 @@ const Pagination = ({ itemsCount, pageSize, onPageChange, currentPage }) => {
 				{pages.map((page) => (
 					<li key={'page_' + page}>
 						<Button
-							className={page === currentPage ? style.active : ''}
+							className={`${page === currentPage ? style.active : ''} ${
+								style.pagination__button
+							}`}
 							onClick={() => onPageChange(page)}
 						>
 							{page}

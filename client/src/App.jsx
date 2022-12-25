@@ -13,28 +13,32 @@ import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import Footer from './components/ui/footer'
 import Terms from './components/page/terms'
+import Technologies from './components/page/technologies'
 
 function App() {
 	return (
 		<>
 			<ToastContainer />
 			<Header />
-			<Routes>
-				<Route path='' element={<Main />}>
-					<Route path='' element={<ProductsListPage />} />
-					<Route path='product'>
-						<Route path=':id' element={<ProductPage />} />
+			<main>
+				<Routes>
+					<Route path='' element={<Main />}>
+						<Route path='' element={<ProductsListPage />} />
+						<Route path='product'>
+							<Route path=':id' element={<ProductPage />} />
+						</Route>
 					</Route>
-				</Route>
-				<Route path='login' element={<Login />}>
-					<Route path='' element={<LoginPage />} />
-					<Route path='registration' element={<RegistrationPage />} />
-				</Route>
-				<Route path='cart' element={<Cart />} />
-				<Route path='profile' element={<Profile />} />
-				<Route path='terms' element={<Terms />} />
-				<Route path='*' element={<Navigate to={'/'} />} />
-			</Routes>
+					<Route path='login' element={<Login />}>
+						<Route path='' element={<LoginPage />} />
+						<Route path='registration' element={<RegistrationPage />} />
+					</Route>
+					<Route path='cart' element={<Cart />} />
+					<Route path='profile' element={<Profile />} />
+					<Route path='terms' element={<Terms />} />
+					<Route path='technologies' element={<Technologies />} />
+					<Route path='*' element={<Navigate to={'/'} />} />
+				</Routes>
+			</main>
 			<Footer />
 		</>
 	)

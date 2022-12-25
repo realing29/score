@@ -26,9 +26,10 @@ body
   border: 1px solid #ddd
   padding: 5px 9px
   background: $orange
-  color: #3a3a3a
-  box-shadow: 1px 1px 1.5px 0.5px #eee
+  color: #505050
+  box-shadow: 2px 2px 4px rgba(0,0,0,.25)
   font-size: 17px
+  font-weight: bold
   white-space: nowrap
   &:hover
     background-color: #ffe3b0
@@ -36,6 +37,30 @@ body
   &:disabled, &_disabled
     background: gray
     cursor: not-allowed
+
+.btn_animate
+  border: none
+  width: 100px
+  height: 30px
+  overflow: hidden
+  padding: 0
+  z-index: 1
+  position: relative
+  line-height: 21px
+  vertical-align: middle
+  &:active .animation-click
+    visibility: visible
+    transform: scale(1, 1)
+    background: #eeeeee
+    transition: background 1s ease-out, transform 1s ease-out
+
+.animation-click
+  visibility: hidden
+  background: #3a95fd
+  position: absolute
+  border-radius: 50%
+  transform: scale(.2, .2)
+  z-index: -1
 
 a
   color: $gray

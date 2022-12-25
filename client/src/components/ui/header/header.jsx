@@ -19,7 +19,7 @@ const Header = ({ handleSearch, search }) => {
 	const isActive = ({ isActive }) => (isActive ? style.selected : '')
 
 	return (
-		<div className={style.headerContainer}>
+		<header className={style.headerContainer}>
 			<div className={style.header}>
 				<div className={style.logo_container}>
 					<Link to='/'>
@@ -61,7 +61,7 @@ const Header = ({ handleSearch, search }) => {
 					)}
 				</div>
 			</div>
-		</div>
+		</header>
 	)
 }
 

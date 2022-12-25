@@ -6,7 +6,7 @@ import style from './product.module.sass'
 
 const Product = ({ _id, src, name, description, price, isInCart, rate }) => {
 	return (
-		<div className={style.product}>
+		<article className={style.product}>
 			<Link to={'/product/' + _id}>
 				<div className={style.product__img_container}>
 					<img src={src} alt={src} className={style.product__img} />
@@ -27,7 +27,7 @@ const Product = ({ _id, src, name, description, price, isInCart, rate }) => {
 				</p>
 				<ButtonBuy _id={_id} isInCart={isInCart} />
 			</div>
-		</div>
+		</article>
 	)
 }
 

@@ -51,7 +51,7 @@ const Filters = ({ className }) => {
 	}`
 
 	return (
-		<form className={`${className} ${style.filter}`}>
+		<aside className={`${className} ${style.filter}`}>
 			<Button type='button' className={styleButtonCollapse} onClick={handleCollapse}>
 				^
 			</Button>
@@ -116,7 +116,7 @@ const Filters = ({ className }) => {
 					/>
 				</div>
 			</div>
-		</form>
+		</aside>
 	)
 }
 

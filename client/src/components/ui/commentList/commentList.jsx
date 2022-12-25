@@ -15,7 +15,6 @@ import style from './commentList.module.sass'
 const CommentList = () => {
 	const { id } = useParams()
 	const { data, isSuccess, isError, isLoading } = useGetCommentListQuery(id)
-
 	const { userId = null } = useSelector(getUser())
 
 	let comments = []
@@ -30,6 +29,10 @@ const CommentList = () => {
 
 	const isNotCommentsAndSuccess = !Boolean(comments.length) && isSuccess
 
+	const dateConvert = (date) => {
+		return new Date(date).toLocaleString()
+	}
+
 	return (
 		<div className={style.comment_list}>
 			{isCommentsAndSuccess && (
@@ -37,10 +40,11 @@ const CommentList = () => {
 					<h2>Отзывы:</h2>
 					{comments.map((comment) => {
 						return (
-							<div key={comment._id}>
+							<article key={comment._id}>
 								<header className={style.comment_header}>
 									<ProfileIco />
 									<h3> {comment.login}</h3>
+									<time className={style.time}>{dateConvert(comment.updatedAt)}</time>
 									{userId === comment.userId && (
 										<ButtonDelete
 											style={{ fontSize: '50px', marginLeft: 'auto' }}
@@ -52,7 +56,7 @@ const CommentList = () => {
 								<Rate value={comment.rate} />
 								<p>{comment.text}</p>
 								<hr />
-							</div>
+							</article>
 						)
 					})}
 				</>
