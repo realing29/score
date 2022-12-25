@@ -48,7 +48,6 @@ const Develop = () => {
 		const newProduct = { ...product }
 		newProduct.category = newProduct.catagory
 		delete newProduct.catagory
-		console.log(newProduct)
 		return newProduct
 	}
 	return (

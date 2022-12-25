@@ -1,5 +1,4 @@
 const onMousedownAnimate = (ctx) => {
-	console.log(ctx)
 	const { offsetX, offsetY, target } = ctx.nativeEvent
 	const button = target.closest('button')
 	if (!button) return
