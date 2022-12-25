@@ -161,7 +161,9 @@ const Profile = () => {
 						<Button onClick={handleCancel}>Отмена</Button>
 					</>
 				) : (
-					<Button onClick={() => setEdit(true)}>Редактировать</Button>
+					<Button className={style.profile__button_edit} onClick={() => setEdit(true)}>
+						Редактировать
+					</Button>
 				)}
 			</div>
 		</div>
