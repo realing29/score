@@ -2,11 +2,11 @@ const onMousedownAnimate = (ctx) => {
 	const { offsetX, offsetY, target } = ctx.nativeEvent
 	const button = target.closest('button')
 	if (!button) return
-	const animationClick = target.querySelector('.animation-click')
-	animationClick.style.marginLeft = +offsetX + -target.clientWidth + 'px'
-	animationClick.style.marginTop = +offsetY + -target.clientWidth + 'px'
-	animationClick.style.width = target.clientWidth * 2 + 'px'
-	animationClick.style.height = target.clientWidth * 2 + 'px'
+	const animationClick = button.querySelector('.animation-click')
+	animationClick.style.marginLeft = +offsetX + -button.clientWidth + 'px'
+	animationClick.style.marginTop = +offsetY + -button.clientWidth + 'px'
+	animationClick.style.width = button.clientWidth * 2 + 'px'
+	animationClick.style.height = button.clientWidth * 2 + 'px'
 }
 
 const Button = ({ children, className, ...rest }) => {

@@ -46,14 +46,15 @@ const Filters = ({ className }) => {
 	const handleCollapse = () => {
 		setCollapse((prev) => !prev)
 	}
-	const styleButtonCollapse = `${style.filter__collapse_button} ${
-		collapse ? style.filter__collapse_button__rotate : ''
-	}`
 
 	return (
 		<aside className={`${className} ${style.filter}`}>
-			<Button type='button' className={styleButtonCollapse} onClick={handleCollapse}>
-				^
+			<Button
+				type='button'
+				className={style.filter__collapse_button}
+				onClick={handleCollapse}
+			>
+				{collapse ? <>&#9206;</> : <>&#9207;</>}
 			</Button>
 			{collapse && <h2 className={style.collapse__info}>Показать фильтры</h2>}
 			<div className={`${style.filter__blocks} ${collapse ? style.collapse : ''}`}>
