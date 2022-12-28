@@ -47,16 +47,23 @@ const Filters = ({ className }) => {
 		setCollapse((prev) => !prev)
 	}
 
+	const styleSymbol = `${style.filter__symbol} ${
+		collapse ? style.filter__symbol__rotate : ''
+	}`
+
 	return (
 		<aside className={`${className} ${style.filter}`}>
-			<Button
-				type='button'
-				className={style.filter__collapse_button}
-				onClick={handleCollapse}
-			>
-				{collapse ? <>&#9206;</> : <>&#9207;</>}
-			</Button>
-			{collapse && <h2 className={style.collapse__info}>Показать фильтры</h2>}
+			<div>
+				<Button
+					type='button'
+					className={style.filter__collapse_button}
+					onClick={handleCollapse}
+				>
+					<img className={styleSymbol} src='/assets/arrow.ico' alt='arrow' />
+				</Button>
+			</div>
+			<h2 className={style.collapse__info}>Фильтры</h2>
+
 			<div className={`${style.filter__blocks} ${collapse ? style.collapse : ''}`}>
 				<div>
 					<h2>По категории</h2>

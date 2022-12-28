@@ -1,22 +1,25 @@
 import PropTypes from 'prop-types'
 import { useDispatch } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { addCart } from '../../../store/cart'
 import Button from '../../common/button'
 
 const ButtonBuy = ({ _id, isInCart }) => {
+	const navigate = useNavigate()
 	const dispatch = useDispatch()
-	const handleClick = () => {
+	const handleBuy = () => {
 		dispatch(addCart(_id))
 	}
-	if (isInCart) {
-		return (
-			<Link to='/cart'>
-				<Button>В корзине</Button>
-			</Link>
-		)
+
+	const handleToCart = () => {
+		navigate('/cart')
 	}
-	return <Button onClick={handleClick}>Купить</Button>
+
+	return (
+		<Button onClick={isInCart ? handleToCart : handleBuy}>
+			{isInCart ? 'В корзине' : 'Купить'}
+		</Button>
+	)
 }
 
 ButtonBuy.propTypes = {
