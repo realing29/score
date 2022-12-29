@@ -20,6 +20,8 @@ const LoginPage = () => {
 
 	const [isValid, setValid] = useState(false)
 
+	const [isInitValid, setInitValid] = useState(false)
+
 	const validateShema = yup.object().shape({
 		password: yup.string().required('Пароль обязателен для заполнения'),
 		login: yup.string().required('Логин обязателен для заполнения'),
@@ -28,22 +30,27 @@ const LoginPage = () => {
 	const validate = async () => {
 		try {
 			await validateShema.validate(data)
-			setErrors({})
+			setErrors((perv) => ({}))
 			setValid(true)
+
 			return true
 		} catch (err) {
-			setErrors({ [err.path]: err.message })
+			setErrors((prev) => ({ [err.path]: err.message }))
 			setValid(false)
+
 			return false
+		} finally {
 		}
 	}
 
 	const handleChange = ({ name, value }) => {
 		setData((prev) => ({ ...prev, [name]: value }))
+		validate()
+		if (!isInitValid) setInitValid(true)
 	}
 
 	useEffect(() => {
-		validate()
+		if (isInitValid) validate()
 	}, [data])
 
 	const redirect = location.state ? location?.state?.from?.pathname : '/'

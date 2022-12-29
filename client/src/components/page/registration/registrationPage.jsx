@@ -25,6 +25,8 @@ const RegistrationPage = () => {
 
 	const [isValid, setValid] = useState(false)
 
+	const [isInitValid, setInitValid] = useState(false)
+
 	const validateShema = yup.object().shape({
 		confirm: yup
 			.boolean()
@@ -48,6 +50,7 @@ const RegistrationPage = () => {
 	})
 
 	const validate = async () => {
+		if (!isInitValid) return false
 		try {
 			await validateShema.validate(data)
 			setErrors({})
@@ -65,6 +68,7 @@ const RegistrationPage = () => {
 
 	const handleChange = ({ name, value }) => {
 		setData((prev) => ({ ...prev, [name]: value }))
+		if (!isInitValid) setInitValid(true)
 	}
 
 	const redirect = location.state ? location?.state?.from?.pathname : '/'
