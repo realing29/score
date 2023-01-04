@@ -1,5 +1,6 @@
 const express = require('express')
 const adminMiddleware = require('../middleware/admin.middleware')
+const authMiddleware = require('../middleware/auth.middleware')
 const Category = require('../models/Category')
 const Product = require('../models/Product')
 const router = express.Router({ mergeParams: true })
@@ -33,7 +34,7 @@ router.get('/:_id', async (req, res) => {
 	}
 })
 
-router.put('/:_id', async (req, res) => {
+router.put('/:_id', ...adminMiddleware, async (req, res) => {
 	const id = req.params._id
 	const newDataOfProduct = req.body
 	try {
@@ -44,7 +45,7 @@ router.put('/:_id', async (req, res) => {
 	}
 })
 
-router.put('/rate/:_id', async (req, res) => {
+router.put('/rate/:_id', authMiddleware, async (req, res) => {
 	const { _id, rate } = req.body
 	try {
 		const product = await Product.findById(_id)
@@ -62,21 +63,23 @@ router.put('/rate/:_id', async (req, res) => {
 	}
 })
 
+// Роут для разработки
 router.post('/updateCategory', ...adminMiddleware, async (req, res) => {
 	try {
-		const categories = await Category.find()
-		const assCategory = categories.reduce((acc, category) => {
-			acc[category.name] = category._id
-			return acc
-		}, {})
-		const products = await Product.find()
-		const result = []
-		for (const product of products) {
-			result.push(await product.updateOne({ categoryId: assCategory[product.category] }))
-		}
-
-		res.status(200).send(result)
+		// const categories = await Category.find()
+		// const assCategory = categories.reduce((acc, category) => {
+		// 	acc[category.name] = category._id
+		// 	return acc
+		// }, {})
+		// const products = await Product.find()
+		// const result = []
+		// console.log(products)
+		// for (const product of products) {
+		// 	result.push(await product.updateOne({ $unset: { category: true } }))
+		// }
+		// res.status(200).send(result)
 	} catch (error) {
+		console.error(error)
 		res.status(500).json({ message: 'На сервере произошла ошибка. Попробуйте позже' })
 	}
 })
