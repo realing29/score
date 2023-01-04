@@ -7,6 +7,7 @@ const schema = new Schema(
 		address: String,
 		email: String,
 		phone: String,
+		right: String,
 	},
 	{
 		timestamps: true,

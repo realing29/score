@@ -1,4 +1,6 @@
 const express = require('express')
+const adminMiddleware = require('../middleware/admin.middleware')
+const Category = require('../models/Category')
 const Product = require('../models/Product')
 const router = express.Router({ mergeParams: true })
 
@@ -54,6 +56,25 @@ router.put('/rate/:_id', async (req, res) => {
 		const result = await Product.findByIdAndUpdate(_id, {
 			rate: { count: count + 1, value: newValue },
 		})
+		res.status(200).send(result)
+	} catch (error) {
+		res.status(500).json({ message: 'На сервере произошла ошибка. Попробуйте позже' })
+	}
+})
+
+router.post('/updateCategory', ...adminMiddleware, async (req, res) => {
+	try {
+		const categories = await Category.find()
+		const assCategory = categories.reduce((acc, category) => {
+			acc[category.name] = category._id
+			return acc
+		}, {})
+		const products = await Product.find()
+		const result = []
+		for (const product of products) {
+			result.push(await product.updateOne({ categoryId: assCategory[product.category] }))
+		}
+
 		res.status(200).send(result)
 	} catch (error) {
 		res.status(500).json({ message: 'На сервере произошла ошибка. Попробуйте позже' })

@@ -21,6 +21,6 @@ module.exports = (req, res, next) => {
 		req.user = data
 		next()
 	} catch (error) {
-		res.status(401).json({ message: 'Unauthorized' })
+		return res.status(401).json({ message: 'Unauthorized' })
 	}
 }

@@ -43,7 +43,7 @@ export function getCartProducts() {
 	return (state) => state.cart.entries
 }
 
-export const clearCart = (payload) => (dispatch) => {
+export const clearCart = () => (dispatch) => {
 	dispatch(cartCleared())
 	localStorageService.clearCart()
 }

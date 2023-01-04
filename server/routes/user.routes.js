@@ -18,7 +18,7 @@ router.get('/:id', authMiddleware, async (req, res) => {
 
 router.put('/:id', authMiddleware, async (req, res) => {
 	const id = req.params.id
-	const { _id, createdAt, updatedAt, __v, ...rest } = req.body
+	const { _id, createdAt, updatedAt, __v, right, ...rest } = req.body
 	if (id !== req.user._id) {
 		return res.status(403).json({ message: 'Unauthorized' })
 	}

@@ -19,7 +19,7 @@ const userSlice = createSlice({
 		authRequestSuccess(state, action) {
 			state.entity = action.payload
 		},
-		userDeleted(state, action) {
+		userDeleted(state) {
 			state.entity = {}
 		},
 	},

@@ -33,12 +33,8 @@ const Footer = () => {
 	return (
 		<footer className={style.container_footer}>
 			<div className={style.footer}>
-				<Link to={'/terms'} className={style.footer__terms_link}>
-					Пользовательское соглашение
-				</Link>
-				<Link to={'/technologies'} className={style.footer__terms_link}>
-					Технологии
-				</Link>
+				<Link to={'/terms'}>Пользовательское соглашение</Link>
+				<Link to={'/technologies'}>Технологии</Link>
 				<div className={style.footer__social_container}>
 					{socialLinks.map((item, i) => (
 						<LinkSocial key={'linkSocial' + i} {...item} />

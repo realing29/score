@@ -1,32 +1,20 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { getEndPoint } from '../utils/getEndPoint'
-import headersSetAuth from '../utils/headersSetAuth'
-const baseUrl = getEndPoint()
+import { appApi } from './appApi'
 
-getEndPoint()
-
-export const productsApi = createApi({
-	reducerPath: 'productsApi',
-	tagTypes: ['Products', 'Comments'],
-	baseQuery: fetchBaseQuery({
-		baseUrl,
-		prepareHeaders: headersSetAuth,
-	}),
+const productsApi = appApi.injectEndpoints({
 	endpoints: (build) => ({
 		getProductsList: build.query({
 			query: (limit = '') => `products?${limit && `_limit=${limit}`}`,
-			providesTags: (result) =>
-				result
-					? [
-							...result.map(({ id }) => ({ type: 'Products', id })),
-							{ type: 'Products', id: 'LIST' },
-					  ]
-					: [{ type: 'Products', id: 'LIST' }],
+			providesTags: (result = []) => [
+				'Products',
+				...result.map(({ _id }) => {
+					return { type: 'Products', id: _id }
+				}),
+			],
 		}),
 		getProduct: build.query({
 			query: (id) => `products/${id}`,
-			providesTags: () => {
-				return [{ type: 'Products', id: 'LIST' }]
+			providesTags: (_result, _error, arg) => {
+				return [{ type: 'Products', id: arg }]
 			},
 		}),
 		updateProduct: build.mutation({
@@ -62,3 +50,5 @@ export const {
 	useGetProductsIdsQuery,
 	useUpdateProductRateMutation,
 } = productsApi
+
+export default productsApi

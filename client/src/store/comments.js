@@ -7,11 +7,11 @@ const commentSlice = createSlice({
 		newRate: 0,
 	},
 	reducers: {
-		newCommentChanged(state, aciton) {
-			state.newComment = aciton.payload
+		newCommentChanged(state, action) {
+			state.newComment = action.payload
 		},
-		newRateChanged(state, aciton) {
-			state.newRate = aciton.payload
+		newRateChanged(state, action) {
+			state.newRate = action.payload
 		},
 	},
 })
@@ -20,11 +20,11 @@ const { reducer: commentReducer, actions } = commentSlice
 
 const { newCommentChanged, newRateChanged } = actions
 
-export const newCommentChange = (payload) => (dispatch, getstate) => {
+export const newCommentChange = (payload) => (dispatch) => {
 	dispatch(newCommentChanged(payload))
 }
 
-export const newRateChange = (payload) => (dispatch, getstate) => {
+export const newRateChange = (payload) => (dispatch) => {
 	if (payload >= 0 && payload <= 5) {
 		dispatch(newRateChanged(payload))
 	}

@@ -1,16 +1,13 @@
-import { productsApi } from './productsApi'
+import { appApi } from './appApi'
 
-export const commentsApi = productsApi.injectEndpoints({
+const commentsApi = appApi.injectEndpoints({
 	endpoints: (build) => ({
 		getCommentList: build.query({
 			query: (productId = '') => `comments/${productId}`,
-			providesTags: (result, error, arg) =>
-				result
-					? [
-							...result.map(({ id }) => ({ type: 'Comments', id })),
-							{ type: 'Comments', id: 'LIST' },
-					  ]
-					: [{ type: 'Comments', id: 'LIST' }],
+			providesTags: (result = []) => [
+				'Comments',
+				...result.map(({ _id }) => ({ type: 'Comments', id: _id })),
+			],
 		}),
 		addComment: build.mutation({
 			query: (body) => ({
@@ -18,20 +15,22 @@ export const commentsApi = productsApi.injectEndpoints({
 				method: 'POST',
 				body,
 			}),
-			invalidatesTags: [{ type: 'Comments', id: 'LIST' }],
+			invalidatesTags: ['Comments'],
 		}),
-		delteComment: build.mutation({
-			query: (id) => ({
-				url: `comments/${id}`,
+		deleteComment: build.mutation({
+			query: (comment) => ({
+				url: `comments/${comment._id}`,
 				method: 'delete',
 			}),
-			invalidatesTags: [
-				{ type: 'Comments', id: 'LIST' },
-				{ type: 'Products', id: 'LIST' },
+			invalidatesTags: (_result, _error, arg) => [
+				'Comments',
+				{ type: 'Products', id: arg.productId },
 			],
 		}),
 	}),
 })
 
-export const { useGetCommentListQuery, useAddCommentMutation, useDelteCommentMutation } =
+export const { useGetCommentListQuery, useAddCommentMutation, useDeleteCommentMutation } =
 	commentsApi
+
+export default commentsApi

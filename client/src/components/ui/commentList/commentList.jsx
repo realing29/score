@@ -2,7 +2,7 @@ import { useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import useErrorToastify from '../../../hooks/useErrorToastify'
 import {
-	useDelteCommentMutation,
+	useDeleteCommentMutation,
 	useGetCommentListQuery,
 } from '../../../store/commentsApi'
 import { getUser } from '../../../store/user'
@@ -22,7 +22,7 @@ const CommentList = () => {
 		comments = [...data].sort((a, b) => new Date(b.create_at) - new Date(a.create_at))
 	}
 
-	const [commentDelete, status] = useDelteCommentMutation()
+	const [commentDelete, status] = useDeleteCommentMutation()
 	useErrorToastify(status.isError)
 
 	const isCommentsAndSuccess = Boolean(comments.length) && isSuccess
@@ -48,7 +48,7 @@ const CommentList = () => {
 									{userId === comment.userId && (
 										<ButtonDelete
 											style={{ fontSize: '50px', marginLeft: 'auto' }}
-											handleDelete={() => commentDelete(comment._id)}
+											handleDelete={() => commentDelete(comment)}
 											title='Удалить отзыв'
 										/>
 									)}
