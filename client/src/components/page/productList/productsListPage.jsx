@@ -1,8 +1,10 @@
 import PropTypes from 'prop-types'
+import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getCartProducts } from '../../../store/cart'
 import {
-	getCategory,
+	categoryV2Update,
+	getCategoryV2,
 	getCountOnPage,
 	getPageNumber,
 	getSearch,
@@ -21,6 +23,10 @@ import style from './product.module.sass'
 const ProductsPage = () => {
 	const dispatch = useDispatch()
 
+	useEffect(() => {
+		dispatch(categoryV2Update())
+	}, [])
+
 	const cart = useSelector(getCartProducts())
 	const { data = [], isLoading, isSuccess, isError } = useGetProductsListQuery()
 
@@ -33,18 +39,18 @@ const ProductsPage = () => {
 		: data
 
 	// фильтр по категории
-	const category = useSelector(getCategory())
-	let useCategory = Object.entries(category).reduce((acc, [key, val]) => {
-		if (val) {
-			acc.push(key)
+	const category = useSelector(getCategoryV2())
+	let useCategory = Object.entries(category).reduce((acc, [_id, category]) => {
+		if (category.checked) {
+			acc.push(_id)
 		}
 		return acc
 	}, [])
 
 	if (useCategory.length) {
 		dataFiltered = dataFiltered.filter((item) => {
-			for (const category of useCategory) {
-				if (item.category === category) return true
+			for (const categoryId of useCategory) {
+				if (item.categoryId === categoryId) return true
 			}
 			return false
 		})

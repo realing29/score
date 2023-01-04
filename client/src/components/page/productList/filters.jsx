@@ -1,10 +1,10 @@
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import {
-	categoryChange,
+	categoryV2Check,
 	countOnPageChange,
-	getCategory,
 	getCountOnPage,
+	getIsErrorLoadCategory,
 	getSort,
 	pageNumberChange,
 	sortChange,
@@ -14,17 +14,19 @@ import CheckBoxField from '../../common/form/checkBoxField'
 import RadioField from '../../common/form/radioField'
 import SelectField from '../../common/form/selectField'
 import style from './filter.module.sass'
+import { getCategoryV2 } from './../../../store/filter'
+import Error from '../../common/error'
 
 const Filters = ({ className }) => {
 	const dispatch = useDispatch()
-	const category = useSelector(getCategory())
+	const categories = useSelector(getCategoryV2())
+	const isErrorLoadCategory = useSelector(getIsErrorLoadCategory())
 
 	const handleChangeSort = (payload) => {
 		dispatch(sortChange(payload.value))
 	}
 	const handleCheckBoxField = (payload) => {
-		dispatch(categoryChange(payload))
-		dispatch(pageNumberChange(1))
+		dispatch(categoryV2Check(payload))
 	}
 	const handleChangeCountOnPage = (payload) => {
 		dispatch(countOnPageChange(payload))
@@ -67,38 +69,18 @@ const Filters = ({ className }) => {
 			<div className={`${style.filter__blocks} ${collapse ? style.collapse : ''}`}>
 				<div>
 					<h2>По категории</h2>
-					<CheckBoxField
-						name='category'
-						value='инструменты'
-						onChange={handleCheckBoxField}
-						checked={category['инструменты']}
-					>
-						инструменты
-					</CheckBoxField>
-					<CheckBoxField
-						name='category'
-						value='для уборки'
-						onChange={handleCheckBoxField}
-						checked={category['для уборки']}
-					>
-						для уборки
-					</CheckBoxField>
-					<CheckBoxField
-						name='category'
-						value='для кухни'
-						onChange={handleCheckBoxField}
-						checked={category['для кухни']}
-					>
-						для кухни
-					</CheckBoxField>
-					<CheckBoxField
-						name='category'
-						value='другое'
-						onChange={handleCheckBoxField}
-						checked={category['другое']}
-					>
-						другое
-					</CheckBoxField>
+					{Object.values(categories).map(({ _id, name, checked }) => (
+						<CheckBoxField
+							name='category'
+							value={name}
+							onChange={({ checked }) => handleCheckBoxField({ id: _id, checked })}
+							checked={checked}
+							key={_id}
+						>
+							{name}
+						</CheckBoxField>
+					))}
+					{isErrorLoadCategory && <Error />}
 				</div>
 				<div>
 					<h2>Сортировать по</h2>
