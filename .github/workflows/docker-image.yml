@@ -13,8 +13,12 @@ jobs:
     runs-on: self-hosted
 
     steps:
-    - name: test
-      run: ls
-    - uses: actions/checkout@v3
-    - name: Build the Docker image
-      run: docker build -t jfd .
+      -
+        name: Set up QEMU
+        uses: docker/setup-qemu-action@v2
+      -
+        name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+      - 
+        name: Build the Docker image
+        run: docker build -t jfd .
