@@ -58,7 +58,7 @@ const ProductsPage = () => {
 
 	// сортировка
 	const sort = useSelector(getSort())
-	if (sort === 'сначала не дорогие') {
+	if (sort === 'сначала недорогие') {
 		dataFiltered = [...dataFiltered].sort((a, b) => +a.price - +b.price)
 	}
 	if (sort === 'сначала дорогие') {
