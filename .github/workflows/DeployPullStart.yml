@@ -1,0 +1,14 @@
+name: Deploy pull start
+
+on: [workflow_dispatch]
+
+jobs:
+  build:
+    runs-on: self-hosted
+    steps:
+      - name: Git pull
+        run: git pull
+      - name: Build the Docker image
+        run: docker build -t jfd .
+      - name: Run container
+        run: docker run -d -p 80:8080 --name jfd --rm jfd
