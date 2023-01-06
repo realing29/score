@@ -19,8 +19,9 @@
 	"scripts": {
 		"dev": "concurrently \"npm run serv\" \"npm run start\"",
 		"start": "react-scripts start",
-		"build": "react-scripts build",
-		"serv": "json-server --watch db.json"
+		"build": "npm run initBuild & react-scripts build",
+		"serv": "json-server --watch db.json",
+		"initBuild": "node ./src/scripts/initialBuild.js"
 	},
 	"eslintConfig": {
 		"extends": [
@@ -47,6 +48,8 @@
 		"eslint-plugin-n": "^15.5.1",
 		"eslint-plugin-promise": "^6.1.1",
 		"eslint-plugin-react": "^7.31.10",
+		"ip": "^2.0.0",
+		"jsonfile": "^6.1.0",
 		"prettier": "^2.8.0",
 		"sass": "^1.56.1"
 	}
