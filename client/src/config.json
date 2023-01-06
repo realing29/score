@@ -1,4 +1,4 @@
 {
-	"productionEndpoint": "http://45.156.22.140/api/",
+	"productionEndpoint": "http://45.156.21.4/api/",
 	"developmentEndpoint": "http://localhost:8080/api/"
 }

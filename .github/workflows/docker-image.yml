@@ -3,18 +3,14 @@ name: Docker Image CI
 on: [workflow_dispatch]
 
 jobs:
-
   build:
-
     runs-on: self-hosted
-
     steps:
-      -
-        name: test
+      - name: test
         run: pwd
-      -
-        name: Build the Docker image
+      - name: Build the Docker image
         run: docker build -t jfd .
-      -
-        name: Run container
+      - name: Stop container
+        run: docker stop jfd
+      - name: Run container
         run: docker run -d -p 80:8080 --name jfd --rm jfd
