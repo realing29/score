@@ -64,6 +64,11 @@ const Technologies = () => {
 			</section>
 			<hr />
 			<section>
+				<h2>Axios</h2>
+				<p>Асинхронный HTTP-клиент для браузера и node.js</p>
+			</section>
+			<hr />
+			<section>
 				<h2>MongoDB</h2>
 				<p>документоориентированная система управления базами данных.</p>
 			</section>
