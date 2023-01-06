@@ -6,8 +6,8 @@ jobs:
   build:
     runs-on: self-hosted
     steps:
-      - name: test
-        run: pwd
+      - name: Git pull
+        run: git pull
       - name: Build the Docker image
         run: docker build -t jfd .
       - name: Stop container
