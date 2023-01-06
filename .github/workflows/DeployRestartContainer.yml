@@ -12,5 +12,6 @@ jobs:
         run: docker build -t jfd .
       - name: Stop container
         run: docker stop jfd
+        continue-on-error: true
       - name: Run container
         run: docker run -d -p 80:8080 --name jfd --rm jfd
