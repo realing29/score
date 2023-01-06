@@ -1,21 +1,27 @@
 # Buy Things - Diplom project
 
 ## Run
+
 Для запуска нужен файл конфига содержащий credentials.
+
 ```cmd
 git clone https://github.com/realing29/score.git
 ```
+
 ```cmd
 npm i
 ```
+
 ```cmd
 npm run dev
 ```
 
 ## Demonstration
-http://45.156.21.4/
+
+[buy-things.ru](http://buy-things.ru/)
 
 ## Description
+
 Репозиторий содержит дипломный проект.
 
 Курс - [Junior Frontend Developer](https://result.school/products/junior-js).
@@ -26,7 +32,7 @@ http://45.156.21.4/
 
 Оценка дипломной работы - 9.3.
 
-[Технологии](http://45.156.21.4/technologies)
+[Технологии](http://buy-things.ru/technologies)
 
 ## Other
 
