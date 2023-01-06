@@ -97,6 +97,15 @@ const Technologies = () => {
 			</section>
 			<hr />
 			<section>
+				<h2>Github actions CI/CD</h2>
+				<p>
+					инструмент для автоматизации рутины в области разработки программного
+					обеспечения, автоматического тестирования, сборки и публикации приложений,
+					который глубоко интегрирован в экосистему инструментов GitHub.
+				</p>
+			</section>
+			<hr />
+			<section>
 				<h2>Семантическая верстка</h2>
 				<p>
 					подход к созданию веб-страниц на языке HTML, основанный на использовании
@@ -119,7 +128,6 @@ const Technologies = () => {
 				<p>Последний принятый стандарт описывающий cпецификацию JavaScript</p>
 			</section>
 			<hr />
-
 			<section>
 				<h2>Пакеты и зависимости</h2>
 				<section>
@@ -157,6 +165,13 @@ const Technologies = () => {
 					</ul>
 				</section>
 			</section>
+			<hr />
+			<span>
+				<a href='https://github.com/realing29/score' target='_blank'>
+					Репозиторий
+				</a>
+				{' проекта на Github '}
+			</span>
 		</section>
 	)
 }
