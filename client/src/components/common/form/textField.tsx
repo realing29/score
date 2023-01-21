@@ -2,18 +2,25 @@ import React, { FC, useState } from 'react'
 import style from './textField.module.sass'
 
 interface TextFieldProps {
-	label: string, 
-	type: string, 
-	name: string, 
-	value: string, 
-	onChange: (value: {name: string, value: string}) => void, 
-	error: string, 
-	className: string, 
+	label: string
+	type: string
+	name: string
+	value: string
+	onChange: (value: { name: string; value: string }) => void
+	error: string
+	className: string
 }
 
-const TextField: FC<TextFieldProps> = (
-	{ label, type = 'text', name, value, onChange, error, className = '', ...rest }
-	) => {
+const TextField: FC<TextFieldProps> = ({
+	label,
+	type = 'text',
+	name,
+	value,
+	onChange,
+	error,
+	className = '',
+	...rest
+}) => {
 	const [showPassword, setShowPassword] = useState(false)
 
 	const handleChange = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
@@ -59,6 +66,5 @@ const TextField: FC<TextFieldProps> = (
 		</div>
 	)
 }
-
 
 export default TextField

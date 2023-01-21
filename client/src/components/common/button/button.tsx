@@ -1,7 +1,7 @@
-import React, { FC } from 'react';
+import React, { FC } from 'react'
 const onMousedownAnimate = (event: React.MouseEvent<HTMLButtonElement>) => {
 	const { offsetX, offsetY, target } = event.nativeEvent
-	
+
 	const button: HTMLElement | null = (target as HTMLElement).closest('button')
 	if (!button) return
 	const animationClick = button.querySelector('.animation-click') as HTMLButtonElement
@@ -14,10 +14,10 @@ const onMousedownAnimate = (event: React.MouseEvent<HTMLButtonElement>) => {
 interface ButtonProps {
 	className?: string
 	children: React.ReactNode
-	onClick?: () => void 
+	onClick?: () => void
 }
 
-const Button: FC<ButtonProps> = ({ className, children, ...rest } ) => {
+const Button: FC<ButtonProps> = ({ className, children, ...rest }) => {
 	return (
 		<button
 			onMouseDown={onMousedownAnimate}
