@@ -27,7 +27,7 @@ if (isProd) {
 	})
 }
 
-async function start() {
+module.exports = async function start() {
 	try {
 		await mongoose.connect(config.get('mongoUri'))
 		console.log(chalk.green('MongoDB connected'))
@@ -39,5 +39,3 @@ async function start() {
 		process.exit(1)
 	}
 }
-
-start()
