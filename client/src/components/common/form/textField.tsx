@@ -1,11 +1,22 @@
-import PropTypes from 'prop-types'
-import { useState } from 'react'
+import React, { FC, useState } from 'react'
 import style from './textField.module.sass'
 
-const TextField = ({ label, type, name, value, onChange, error, className, ...rest }) => {
+interface TextFieldProps {
+	label: string, 
+	type: string, 
+	name: string, 
+	value: string, 
+	onChange: (value: {name: string, value: string}) => void, 
+	error: string, 
+	className: string, 
+}
+
+const TextField: FC<TextFieldProps> = (
+	{ label, type = 'text', name, value, onChange, error, className = '', ...rest }
+	) => {
 	const [showPassword, setShowPassword] = useState(false)
 
-	const handleChange = ({ target }) => {
+	const handleChange = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
 		onChange({ name: target.name, value: target.value })
 	}
 	const toggleShowPassword = () => {
@@ -49,18 +60,5 @@ const TextField = ({ label, type, name, value, onChange, error, className, ...re
 	)
 }
 
-TextField.defaultProps = {
-	type: 'text',
-	className: '',
-}
-
-TextField.propTypes = {
-	label: PropTypes.string,
-	type: PropTypes.string,
-	name: PropTypes.string,
-	value: PropTypes.string,
-	onChange: PropTypes.func,
-	error: PropTypes.string,
-}
 
 export default TextField
