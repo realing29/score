@@ -1,13 +1,22 @@
 import { appApi } from './appApi'
+import { createEntityAdapter } from '@reduxjs/toolkit'
+
+const productsAdapter = createEntityAdapter({ selectId: (product) => product._id })
+
+const initialState = productsAdapter.getInitialState()
 
 const productsApi = appApi.injectEndpoints({
 	endpoints: (build) => ({
 		getProductsList: build.query({
 			query: (limit = '') => `products?${limit && `_limit=${limit}`}`,
-			providesTags: (result = []) => [
+			transformResponse: (responseData) => {
+				console.log(initialState)
+				return productsAdapter.setAll(initialState, responseData)
+			},
+			providesTags: ({ ids = [] }) => [
 				'Products',
-				...result.map(({ _id }) => {
-					return { type: 'Products', id: _id }
+				...ids.map((id) => {
+					return { type: 'Products', id: id }
 				}),
 			],
 		}),

@@ -28,15 +28,23 @@ const ProductsPage = () => {
 	}, [])
 
 	const cart = useSelector(getCartProducts())
-	const { data = [], isLoading, isSuccess, isError } = useGetProductsListQuery()
+	const {
+		data = { ids: [], entities: {} },
+		isLoading,
+		isSuccess,
+		isError,
+	} = useGetProductsListQuery()
+	console.log(data)
+	// demonstrate normalized data data: {ids, entities}
+	const dataProducts = data.ids.map((id) => data.entities[id])
 
 	// поиск по названию
 	const search = useSelector(getSearch())
 	let dataFiltered = search
-		? data.filter((item) => {
+		? dataProducts.filter((item) => {
 				return new RegExp(search, 'i').test(item.name)
 		  })
-		: data
+		: dataProducts
 
 	// фильтр по категории
 	const category = useSelector(getCategoryV2())
