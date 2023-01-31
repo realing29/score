@@ -10,7 +10,6 @@ const productsApi = appApi.injectEndpoints({
 		getProductsList: build.query({
 			query: (limit = '') => `products?${limit && `_limit=${limit}`}`,
 			transformResponse: (responseData) => {
-				console.log(initialState)
 				return productsAdapter.setAll(initialState, responseData)
 			},
 			providesTags: ({ ids = [] }) => [

@@ -34,7 +34,6 @@ const ProductsPage = () => {
 		isSuccess,
 		isError,
 	} = useGetProductsListQuery()
-	console.log(data)
 	// demonstrate normalized data data: {ids, entities}
 	const dataProducts = data.ids.map((id) => data.entities[id])
 
